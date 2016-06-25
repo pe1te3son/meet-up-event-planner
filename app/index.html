@@ -46,11 +46,11 @@
     </div>
 
     <div class="container">
-    <div ng-include="'views/main.html'" ng-controller="MainCtrl"></div>
+      <div ng-include="'views/addFormView.html'" ng-controller="addEventFormCtrl as form" class="row"></div>
     </div>
 
     <div class="footer">
-      
+
     </div>
 
 
@@ -83,7 +83,7 @@
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/addeventform.js"></script>
         <!-- endbuild -->
 </body>
 </html>

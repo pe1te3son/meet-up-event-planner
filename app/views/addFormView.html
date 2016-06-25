@@ -1,0 +1,28 @@
+<form id="add-event-form" ng-submit="form.submit()" class="col-sm-6">
+  <fieldset class="form-group">
+    <label for="event-name">Event Name</label>
+    <input type="text" class="form-control" id="event-name" placeholder="Event name" ng-value="form.eventName" ng-model="form.eventName">
+  </fieldset>
+
+  <fieldset class="form-group">
+    <label for="category">Category</label>
+    <input list="selectCategory" id="category" class="form-control">
+    <datalist id="selectCategory">
+      <option value="Party"></option>
+      <option value="Meeting"></option>
+      <option value="Important"></option>
+    </datalist>
+  </fieldset>
+
+  <fieldset class="form-group">
+    <label for="event-host">Event host</label>
+    <input class="form-control" type="text" name="eventHost" value="" placeholder="Event host" id="event-host">
+  </fieldset>
+
+  <fieldset class="form-group">
+    <label for="optional-info">Additional information</label>
+    <textarea class="form-control" id="optional-info" rows="2"></textarea>
+  </fieldset>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
