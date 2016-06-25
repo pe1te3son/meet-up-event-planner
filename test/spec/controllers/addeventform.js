@@ -17,7 +17,7 @@ describe('Controller: addEventFormCtrl', function () {
     });
   }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(addEventFormCtrl.awesomeThings.length).toBe(3);
+  it('should be an Object', function () {
+    expect(addEventFormCtrl.event).toEqual(jasmine.any(Object));
   });
 });
