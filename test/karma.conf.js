@@ -31,6 +31,9 @@ module.exports = function(config) {
       'bower_components/angular-touch/angular-touch.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
+
+      'https://cdn.firebase.com/js/client/2.2.4/firebase.js',
+      'https://cdn.firebase.com/libs/angularfire/1.2.0/angularfire.min.js',
       'app/scripts/**/*.js',
       'test/mock/**/*.js',
       'test/spec/**/*.js'
