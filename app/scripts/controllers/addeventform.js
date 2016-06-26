@@ -8,8 +8,8 @@
  * Controller of the eventPlannerApp
  */
 angular.module('eventPlannerApp')
-  .controller('addEventFormCtrl', function ($scope, $firebaseArray) {
-    var ref = new Firebase('https://event-planner-janak.firebaseio.com/events');
+  .controller('addEventFormCtrl', ['$firebaseArray', 'firebaseHelper', function ($firebaseArray, firebaseHelper) {
+    var ref = new Firebase(firebaseHelper.link() + '/events');
 
     this.firebaseData = $firebaseArray(ref);
     this.event = {
@@ -24,10 +24,9 @@ angular.module('eventPlannerApp')
       this.event = {};
     };
 
-
-
-
     this.submit = function(){
       this.addEvent();
     };
-  });
+  }
+
+]);
