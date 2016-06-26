@@ -45,8 +45,12 @@
       </div>
     </div>
 
-    <div class="container wrapper">
+    <div class="container page-wrapper">
+
       <div ng-include="'views/addFormView.html'" ng-controller="addEventFormCtrl as form" class="row"></div>
+
+      <div class="row" ng-include="'views/allevents.html'" ng-controller="AlleventsCtrl as events"></div>
+
     </div>
 
     <div class="footer">
@@ -87,6 +91,8 @@
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/addeventform.js"></script>
+        <script src="scripts/controllers/allevents.js"></script>
+        <script src="scripts/services/firebase-helpers.js"></script>
         <!-- endbuild -->
 </body>
 </html>
