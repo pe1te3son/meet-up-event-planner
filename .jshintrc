@@ -12,6 +12,8 @@
   "unused": true,
   "globals": {
     "angular": false,
-    "Firebase": false
+    "Firebase": false,
+    "Pikaday": false,
+    "moment": false
   }
 }
