@@ -1,7 +1,18 @@
 <section class="col-xs-12 all-events-section">
   <ul class="list-inline event-list" ng-repeat="event in events.allEvents">
     <li class="event">
-      <h4>{{event.name}}</h4>
+
+      <ul>
+        <li>{{event.name}}</li>
+        <li>{{event.category}}</li>
+        <li>{{event.startDate}}</li>
+        <li>{{event.endDate}}</li>
+        <li>{{event.host}}</li>
+        <li>{{event.guests}}</li>
+        <li>{{event.eventLocation}}</li>
+        <li>{{event.additionalInfo}}</li>
+      </ul>
+
     </li>
   </ul>
 </section>

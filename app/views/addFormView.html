@@ -1,8 +1,8 @@
 <form id="add-event-form" ng-submit="form.submit()" class="col-sm-6">
-  <fieldset class="form-group">
+  <div class="form-group">
     <label for="event-name">Event Name</label>
     <input type="text" class="form-control" id="event-name" placeholder="Event name" ng-value="form.event.name" ng-model="form.event.name">
-  </fieldset>
+  </div>
 
   <fieldset class="form-group">
     <label for="category">Category</label>
@@ -14,15 +14,35 @@
     </datalist>
   </fieldset>
 
-  <fieldset class="form-group">
+  <div class="form-group">
+    <label for="start-date">Start date</label>
+    <input type="datetime-local" class="form-control" id="start-date" ng-model="form.selectedStartDate" ng-value="form.selectedStartDate" name="selectedStartDate" min="{{form.setDate}}" ng-change="form.updateEndDate()">
+  </div>
+
+  <div class="form-group">
+    <label for="end-date">End date</label>
+    <input type="datetime-local" name="selectedEndDate" class="form-control" id="end-date" ng-model="form.selectedEndDate" ng-value="form.selectedEndDate" min="{{form.setDate}}">
+  </div>
+
+  <div class="form-group">
     <label for="event-host">Event host</label>
     <input class="form-control" type="text" name="eventHost" placeholder="Event host" id="event-host" ng-model="form.event.host" ng-value="form.event.host">
-  </fieldset>
+  </div>
 
-  <fieldset class="form-group">
+  <div class="form-group">
+    <label for="event-guests">Event guests</label>
+    <input class="form-control" type="text" name="eventGuests" placeholder="Event guests" id="event-guests" ng-model="form.event.guests" ng-value="form.event.guests">
+  </div>
+
+  <div class="form-group">
+    <label for="location-input">Location</label>
+    <input type="text" name="location" id="location-input" class="form-control" placeholder="Location" ng-model="form.event.eventLocation" ng-value="form.event.eventLocation">
+  </div>
+
+  <div class="form-group">
     <label for="optional-info">Additional information</label>
     <textarea class="form-control" id="optional-info" rows="2" ng-model="form.event.additionalInfo" ng-value="event.additionalInfo" placeholder="Additional informations"></textarea>
-  </fieldset>
+  </div>
 
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
