@@ -46,8 +46,10 @@ angular.module('eventPlannerApp')
       vm.event = vm.eventDefault();
     };
 
-    this.submit = function(){
-      vm.addEvent();
+    this.submit = function(isValid){
+      if(isValid){
+        vm.addEvent();
+      }
     };
 
     this.updateEndDate = function(){

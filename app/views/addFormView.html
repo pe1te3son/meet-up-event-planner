@@ -1,12 +1,32 @@
-<form id="add-event-form" ng-submit="form.submit()" class="col-sm-6 css-form">
-  <div class="form-group">
+<form name="addEventForm" id="add-event-form" ng-submit="form.submit(addEventForm.$valid)" class="col-sm-6 css-form" novalidate>
+
+  <div class="form-group" ng-class="{ 'has-error' : addEventForm.eventName.$invalid && !addEventForm.eventName.$pristine, 'has-success': addEventForm.eventName.$valid }">
     <label for="event-name">Event Name</label>
-    <input type="text" class="form-control" id="event-name" placeholder="Event name" ng-value="form.event.name" ng-model="form.event.name" required>
+    <input type="text"
+          class="form-control"
+          id="event-name"
+          name="eventName"
+          placeholder="Event name"
+          ng-value="form.event.name"
+          ng-model="form.event.name"
+          ng-minlength="3"
+          required>
+    <span ng-show="addEventForm.eventName.$error.minlength" class="help-block">Username is too short!</span>
   </div>
 
-  <fieldset class="form-group">
+  <fieldset class="form-group" ng-class="{ 'has-error' : addEventForm.eventCategory.$invalid && !addEventForm.eventCategory.$pristine, 'has-success': addEventForm.eventCategory.$valid }">
     <label for="category">Category</label>
-    <input list="selectCategory" id="category" class="form-control" ng-value="form.event.category" ng-model="form.event.category" placeholder="Select category" required>
+    <input  list="selectCategory"
+            id="category"
+            name="eventCategory"
+            class="form-control"
+            ng-value="form.event.category"
+            ng-model="form.event.category"
+            placeholder="Select category"
+            ng-minlength="3"
+            required>
+    <span ng-show="addEventForm.eventCategory.$error.minlength" class="help-block">Please select Category or set custom!</span>
+
     <datalist id="selectCategory">
       <option value="Party"></option>
       <option value="Meeting"></option>
