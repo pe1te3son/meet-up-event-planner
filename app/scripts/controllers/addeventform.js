@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name eventPlannerApp.controller:addEventFormCtrl
+ * @name eventPlannerApp.controller:AddeventformCtrl
  * @description
- * # addEventFormCtrl
+ * # AddeventformCtrl
  * Controller of the eventPlannerApp
  */
 angular.module('eventPlannerApp')
-  .controller('addEventFormCtrl', ['$firebaseArray', 'firebaseHelper', function ($firebaseArray, firebaseHelper) {
+  .controller('AddeventformCtrl', ['$firebaseArray', 'firebaseHelper', function ($firebaseArray, firebaseHelper) {
 
     var ref = new Firebase(firebaseHelper.link() + '/events');
     var vm = this;
@@ -19,8 +19,8 @@ angular.module('eventPlannerApp')
     this.collection = $firebaseArray(ref);
 
     this.eventDefault = function(){
-      this.selectedStartDate = new Date(this.setDate);
-      this.selectedEndDate = this.selectedStartDate;
+      vm.selectedStartDate = new Date(vm.setDate);
+      vm.selectedEndDate = vm.selectedStartDate;
       return {
         name: '',
         category: '',
@@ -51,7 +51,7 @@ angular.module('eventPlannerApp')
     };
 
     this.updateEndDate = function(){
-      this.selectedEndDate = this.selectedStartDate;
+      vm.selectedEndDate = vm.selectedStartDate;
     };
 
   }

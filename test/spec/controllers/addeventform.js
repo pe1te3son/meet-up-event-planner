@@ -1,23 +1,23 @@
 'use strict';
 
-describe('Controller: addEventFormCtrl', function () {
+describe('Controller: AddeventformCtrl', function () {
 
   // load the controller's module
   beforeEach(module('eventPlannerApp'));
 
-  var addEventFormCtrl,
+  var AddeventformCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    addEventFormCtrl = $controller('addEventFormCtrl', {
+    AddeventformCtrl = $controller('AddeventformCtrl', {
       $scope: scope
       // place here mocked dependencies
     });
   }));
 
   it('should be an Object', function () {
-    expect(addEventFormCtrl.event).toEqual(jasmine.any(Object));
+    expect(AddeventformCtrl.event).toEqual(jasmine.any(Object));
   });
 });

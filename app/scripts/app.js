@@ -8,12 +8,12 @@
  *
  * Main module of the application.
  */
-
 angular
   .module('eventPlannerApp', [
     'ngAnimate',
     'ngAria',
     'ngCookies',
+    'ngMessages',
     'ngResource',
     'ngSanitize',
     'ngTouch',

@@ -2,9 +2,9 @@
 
 /**
  * @ngdoc service
- * @name eventPlannerApp.firebaseDatabase
+ * @name eventPlannerApp.firebaseHelper
  * @description
- * # firebaseDatabase
+ * # firebaseHelper
  * Service in the eventPlannerApp.
  */
 angular.module('eventPlannerApp')
@@ -13,5 +13,4 @@ angular.module('eventPlannerApp')
     this.link = function(){
       return 'https://event-planner-janak.firebaseio.com/';
     };
-
   });

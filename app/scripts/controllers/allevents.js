@@ -13,7 +13,7 @@ angular.module('eventPlannerApp')
     var ref = new Firebase( firebaseHelper.link() + '/events');
 
     this.allEvents = $firebaseArray(ref);
-    
+
   }// function ends
 
 ]);

@@ -1,12 +1,12 @@
-<form id="add-event-form" ng-submit="form.submit()" class="col-sm-6">
+<form id="add-event-form" ng-submit="form.submit()" class="col-sm-6 css-form">
   <div class="form-group">
     <label for="event-name">Event Name</label>
-    <input type="text" class="form-control" id="event-name" placeholder="Event name" ng-value="form.event.name" ng-model="form.event.name">
+    <input type="text" class="form-control" id="event-name" placeholder="Event name" ng-value="form.event.name" ng-model="form.event.name" required>
   </div>
 
   <fieldset class="form-group">
     <label for="category">Category</label>
-    <input list="selectCategory" id="category" class="form-control" ng-value="form.event.category" ng-model="form.event.category" placeholder="Select category">
+    <input list="selectCategory" id="category" class="form-control" ng-value="form.event.category" ng-model="form.event.category" placeholder="Select category" required>
     <datalist id="selectCategory">
       <option value="Party"></option>
       <option value="Meeting"></option>

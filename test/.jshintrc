@@ -13,7 +13,6 @@
   "unused": true,
   "globals": {
     "angular": false,
-    "inject": false,
-    "Firebase": false
+    "inject": false
   }
 }
