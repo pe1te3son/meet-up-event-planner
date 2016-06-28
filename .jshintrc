@@ -13,7 +13,6 @@
   "globals": {
     "angular": false,
     "Firebase": false,
-    "Pikaday": false,
     "moment": false
   }
 }
