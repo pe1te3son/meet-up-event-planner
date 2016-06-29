@@ -15,4 +15,12 @@ describe('Service: firebaseHelpers', function () {
     expect(!!firebaseHelpers).toBe(true);
   });
 
+  it('should have a correct url', function(){
+    String.prototype.startsWith = function(prefix) {
+      return this.indexOf(prefix) === 0;
+    };
+
+    expect(firebaseHelpers.firebaseUrl().startsWith('https://')).toBe(true);
+  });
+
 });
