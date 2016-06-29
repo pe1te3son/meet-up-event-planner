@@ -1,4 +1,5 @@
-<form name="addEventForm" id="add-event-form" ng-submit="form.submit(addEventForm.$valid)" class="col-sm-6 css-form" novalidate>
+
+<form name="addEventForm" id="add-event-form" ng-submit="form.submit(addEventForm.$valid)" class="col-sm-6 css-form">
 
   <div class="form-group" ng-class="{ 'has-error' : addEventForm.eventName.$invalid && !addEventForm.eventName.$pristine, 'has-success': addEventForm.eventName.$valid }">
     <label for="event-name">Event Name</label>

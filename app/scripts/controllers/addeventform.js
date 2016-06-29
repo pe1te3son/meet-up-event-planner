@@ -7,9 +7,9 @@
  * # AddeventformCtrl
  * Controller of the eventPlannerApp
  */
+
 angular.module('eventPlannerApp')
   .controller('AddeventformCtrl', ['$firebaseArray', 'firebaseHelper', function ($firebaseArray, firebaseHelper) {
-
     var ref = new Firebase(firebaseHelper.link() + '/events');
     var vm = this;
     var date = moment().format('YYYY-MM-DD');
@@ -17,7 +17,6 @@ angular.module('eventPlannerApp')
 
     this.setDate = date + 'T' + time;
     this.collection = $firebaseArray(ref);
-
     this.eventDefault = function(){
       vm.selectedStartDate = new Date(vm.setDate);
       vm.selectedEndDate = vm.selectedStartDate;
