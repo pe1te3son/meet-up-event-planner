@@ -23,10 +23,15 @@ angular
   .config(function($stateProvider, $urlRouterProvider) {
   //
   // For any unmatched url, redirect to /state1
-  $urlRouterProvider.otherwise('/events');
+  $urlRouterProvider.otherwise('/login');
   //
   // Now set up the states
   $stateProvider
+    .state('login', {
+      url: '/login',
+      templateUrl: 'views/login.html',
+      controller: 'LoginCtrl as login'
+    })
     .state('addEventForm', {
       url: '/add-new',
       templateUrl: 'views/addformview.html',
