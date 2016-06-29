@@ -8,8 +8,8 @@
  * Controller of the eventPlannerApp
  */
 angular.module('eventPlannerApp')
-  .controller('LoginCtrl', ['$firebaseAuth', 'firebaseHelper', function ($firebaseAuth, firebaseHelper) {
-    var ref = new Firebase(firebaseHelper.link());
+  .controller('LoginCtrl', ['$firebaseAuth', 'firebaseHelpers', function ($firebaseAuth, firebaseHelpers) {
+    var ref = new Firebase(firebaseHelpers.firebaseUrl());
     var auth = $firebaseAuth(ref);
     console.log(auth);
     console.log(this.authObj);
