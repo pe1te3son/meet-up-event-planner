@@ -18,6 +18,6 @@ describe('Controller: ControlpanelCtrl', function () {
   }));
 
   it('should attach a list of awesomeThings to the scope', function () {
-    // expect(ControlpanelCtrl.awesomeThings.length).toBe(3);
+
   });
 });

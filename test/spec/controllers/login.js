@@ -17,7 +17,11 @@ describe('Controller: LoginCtrl', function () {
     });
   }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    // expect(LoginCtrl.awesomeThings.length).toBe(3);
+  it('should be an object', function () {
+    expect(LoginCtrl.userDetails).toEqual(jasmine.any(Object));
+  });
+
+  it('$state must be defined', function(){
+    expect(LoginCtrl.$state).toBeDefined();
   });
 });

@@ -8,14 +8,22 @@
  * Controller of the eventPlannerApp
  */
 angular.module('eventPlannerApp')
-  .controller('LoginCtrl', ['$firebaseAuth', 'firebaseHelpers', function ($firebaseAuth, firebaseHelpers) {
+  .controller('LoginCtrl', ['$firebaseAuth', 'firebaseHelpers', '$state', function ($firebaseAuth, firebaseHelpers, $state) {
     var ref = new Firebase(firebaseHelpers.firebaseUrl());
     var auth = $firebaseAuth(ref);
-    console.log(auth);
+
+    this.$state = $state.current.name;
+    console.log(this.$state);
+    console.log(auth, $state);
 
     this.userDetails = {
-      email: '',
-      password: ''
+      /**
+        name: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+        rememberMe: true
+      */
     };
 
     this.submit = function(isValid){

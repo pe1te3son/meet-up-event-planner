@@ -31,6 +31,11 @@ angular
       templateUrl: 'views/login.html',
       controller: 'LoginCtrl as userForm'
     })
+    .state('register', {
+      url: '/register',
+      templateUrl: 'views/login.html',
+      controller: 'LoginCtrl as userForm'
+    })
     .state('addEventForm', {
       url: '/add-new',
       templateUrl: 'views/addformview.html',
