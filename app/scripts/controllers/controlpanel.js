@@ -23,7 +23,7 @@ angular.module('eventPlannerApp')
 
     vm.authObj.$unauth();
     console.log(vm.authObj.$getAuth());
-    $rootScope.isUser = true;
+    $rootScope.isUser = false;
 
   }
 ]);

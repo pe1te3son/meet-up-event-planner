@@ -29,7 +29,7 @@ angular
     .state('login', {
       url: '/login',
       templateUrl: 'views/login.html',
-      controller: 'LoginCtrl as login'
+      controller: 'LoginCtrl as userForm'
     })
     .state('addEventForm', {
       url: '/add-new',

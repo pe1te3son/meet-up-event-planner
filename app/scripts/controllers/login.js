@@ -13,5 +13,13 @@ angular.module('eventPlannerApp')
     var auth = $firebaseAuth(ref);
     console.log(auth);
 
+    this.userDetails = {
+      email: '',
+      password: ''
+    };
+
+    this.submit = function(isValid){
+      console.log(isValid);
+    };
   }
 ]);
