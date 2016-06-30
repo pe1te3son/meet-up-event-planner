@@ -20,15 +20,9 @@
     <![endif]-->
     <div class="wrapper">
       <!-- Add your site or application content here -->
-      <div class="header">
-        <h1 class="site-title">Event Planer</h1>
-      </div>
 
-        <ul class="list-unstyled text-center">
-          <li class="nav-item"><button ui-sref="addEventForm" id="add-event" type="button" name="button">Add</button></li>
-          <li class="nav-item"><button ui-sref="allEvents" id="display-events" type="button" name="button">Events</button></li>
-        </ul>
-      </nav>
+
+      <header ng-include="'views/controlpanel.html'" ng-controller="ControlpanelCtrl" ng-show="isUser"></header>
 
       <div class="container page-wrapper">
 
@@ -74,6 +68,7 @@
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/controlpanel.js"></script>
         <script src="scripts/controllers/addeventform.js"></script>
         <script src="scripts/controllers/allevents.js"></script>
         <script src="scripts/controllers/login.js"></script>

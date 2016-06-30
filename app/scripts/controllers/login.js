@@ -12,6 +12,6 @@ angular.module('eventPlannerApp')
     var ref = new Firebase(firebaseHelpers.firebaseUrl());
     var auth = $firebaseAuth(ref);
     console.log(auth);
-    console.log(this.authObj);
+
   }
 ]);
