@@ -2,67 +2,86 @@
 
   <div class="form-belt">
     <div class="form-switch-btns">
-        <button ui-sref="login" type="button" ng-class="{ 'active-form-btn': userForm.$state=='login' }">Log in</button>
-        <button ui-sref="register" type="button" ng-class="{ 'active-form-btn': userForm.$state=='register' }">Register</button>
+        <button ui-sref="login" class="login-btn-select" type="button" ng-class="{ 'active-form-btn': currentUser.$state=='login' }">Log in</button>
+        <button ui-sref="register" class="login-btn-select" type="button" ng-class="{ 'active-form-btn': currentUser.$state=='register' }">Register</button>
     </div>
-    <form name="siteForm" class="text-left form" ng-submit="userForm.submit(siteForm.$valid)" novalidate>
 
-      <div class="form-group" ng-if="userForm.$state == 'register'">
-        <label class="sr-only" for="user-name">Your name</label>
-        <input type="text"
-                class="form-control"
-                id="user-name"
-                placeholder="Your Name"
-                ng-model="userForm.userDetails.name"
-                ng-value="userForm.userDetails.name"
-                required>
+    <form name="loginForm" class="text-left login-form animated fadeIn" ng-submit="currentUser.submit(loginForm.$valid)">
+
+      <div class="form-group form-label">
+        <label class="label-default-pos" for="test" ng-class="test.labelOn ? 'label-animated' : 'label-animated-off'">
+          Test label
+        </label>
+        <input type="text" class="form-control" id="test"  ng-focus="test.labelOn=true" name="test.test" ng-blur="test.labelOn=false" required>
       </div>
 
-      <div class="form-group">
-        <label class="sr-only" for="user-email">Email address</label>
+      <div class="form-group form-label" ng-if="currentUser.$state == 'register'">
+        <label class="label-default-pos" for="user-name" ng-class="userName.labelOn ? 'label-animated' : 'label-animated-off'">Your name</label>
+        <input type="text"
+                class="form-control"
+                name="userName"
+                id="user-name"
+                ng-focus="userName.labelOn=true"
+                ng-blur="userName.labelOn=false"
+                ng-model="currentUser.details.name"
+                ng-value="currentUser.details.name"
+                ng-minlength="1"
+                required>
+
+      </div>
+
+      <div class="form-group form-label">
+        <label class="label-default-pos" for="user-email" ng-class="userEmail.labelOn ? 'label-animated' : 'label-animated-off'">Email address</label>
         <input type="email"
                 class="form-control"
                 id="user-email"
-                placeholder="Email"
-                ng-model="userForm.userDetails.email"
-                ng-value="userForm.userDetails.email"
+                name="userEmail"
+                ng-focus="userEmail.labelOn=true"
+                ng-blur="userEmail.labelOn=false"
+                ng-model="currentUser.details.email"
+                ng-value="currentUser.details.email"
                 required>
       </div>
 
-      <div class="form-group">
-        <label class="sr-only" for="user-password">Password</label>
+      <div class="form-group form-label">
+        <label class="label-default-pos" for="user-password" ng-class="userPassword.labelOn ? 'label-animated' : 'label-animated-off'">Password</label>
         <input type="password"
                 class="form-control"
                 id="user-password"
-                placeholder="Password"
-                ng-model="userForm.userDetails.password"
-                ng-value="userForm.userDetails.password"
+                name="userPassword"
+                ng-focus="userPassword.labelOn=true"
+                ng-blur="userPassword.labelOn=false"
+                ng-model="currentUser.details.password"
+                ng-value="currentUser.details.password"
                 ng-minlength="8"
                 required>
+        <span ng-show="loginForm.userPassword.$error.minlength" class="form-input-invalid">* Please enter name</span>
       </div>
 
-      <div class="form-group" ng-if="userForm.$state == 'register'">
-        <label class="sr-only" for="user-confirm-password">Confirm password</label>
+      <div class="form-group form-label" ng-if="currentUser.$state == 'register'">
+        <label class="label-default-pos" for="user-confirm-password" ng-class="confirmPassword.labelOn ? 'label-animated' : 'label-animated-off'">Confirm password</label>
         <input type="password"
                 class="form-control"
                 id="user-confirm-password"
-                placeholder="Confirm password"
-                ng-model="userForm.userDetails.confirmPassword"
-                ng-value="userForm.userDetails.confirmPassword"
+                name="confirmPassword"
+                ng-focus="confirmPassword.labelOn=true"
+                ng-blur="confirmPassword.labelOn=false"
+                ng-model="currentUser.details.confirmPassword"
+                ng-value="currentUser.details.confirmPassword"
                 ng-minlength="8"
                 required>
       </div>
 
-      <div class="checkbox" ng-if="userForm.$state == 'login'">
+      <div class="checkbox" ng-if="currentUser.$state == 'login'">
         <label>
-          <input type="checkbox" ng-model="userForm.userDetails.rememberMe"> Remember me
+          <input type="checkbox" ng-model="currentUser.details.rememberMe"> Remember me
         </label>
     </div>
 
-    <button type="submit" class="btn btn-default" ng-if="userForm.$state == 'login'">Sign in</button>
-    <button type="submit" class="btn btn-default" ng-if="userForm.$state == 'register'">Register</button>
+    <button type="submit" class="btn btn-custom" ng-if="currentUser.$state == 'login'">Sign in</button>
+    <button type="submit" class="btn btn-custom" ng-if="currentUser.$state == 'register'">Register</button>
   </form>
   </div>
-  <p>{{userForm.userDetails.email}}</p>
-  <p>{{userForm.userDetails.password}}</p>
+  <p>{{currentUser.details.email}}</p>
+  <p>{{currentUser.details.password}}</p>
 </div>

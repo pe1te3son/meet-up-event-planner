@@ -7,8 +7,66 @@
 .form-belt
   max-width: 450px
   margin: 0 auto
-  form
-    margin-top: 20px
+
+
+.login-form
+  box-shadow: 1px 1px 10px $color1
+  padding: 35px 20px
+  border-radius: 0 0 5px 5px
+
+
+.login-btn-select
+  background: $color1
+  color: $color5
+  border: none
+  padding: 5px 15px
+  z-index: 10
+  outline: none
+
 
 .active-form-btn
-  background: tomato
+  background: $color2
+  box-shadow: 0px 0px 2px $color1
+
+.form-label
+  position: relative
+
+.form-control:focus
+  border: none
+  box-shadow: none
+  border-bottom: 2px solid $color2
+
+.form-group
+  margin-bottom: 30px
+  input
+    border: none
+    outline: none
+    box-shadow: none
+    border-bottom: 2px solid $color1
+    transition: none
+    &:focus
+      .label-default-pos
+        color: $color2
+
+.label-default-pos
+  +position(absolute, 6px 0 0 12px)
+  margin: 0
+  color: #999
+  font-weight: normal
+
+.label-animated
+  transition: all 0.1s ease
+  transform: translateY(-25px)
+
+
+
+.label-animated-off
+  transition: all 0.1s ease
+  transform: translateY(0)
+
+.btn-custom
+  background-color: $color2
+  color: $color5
+  &:hover
+    color: $color5
+    background-color: lighten($color2, 5%)

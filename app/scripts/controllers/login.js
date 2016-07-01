@@ -16,7 +16,7 @@ angular.module('eventPlannerApp')
     console.log(this.$state);
     console.log(auth, $state);
 
-    this.userDetails = {
+    this.details = {
       /**
         name: '',
         email: '',
@@ -28,6 +28,11 @@ angular.module('eventPlannerApp')
 
     this.submit = function(isValid){
       console.log(isValid);
+      console.log(this.details);
+    };
+
+    this.testFun = function(e){
+      console.log(e);
     };
   }
 ]);
