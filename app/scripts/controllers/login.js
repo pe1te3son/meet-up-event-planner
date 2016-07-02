@@ -8,13 +8,13 @@
  * Controller of the eventPlannerApp
  */
 angular.module('eventPlannerApp')
-  .controller('LoginCtrl', ['$firebaseAuth', 'firebaseHelpers', '$state', function ($firebaseAuth, firebaseHelpers, $state) {
+  .controller('LoginCtrl', ['$firebaseAuth', 'firebaseHelpers', '$state', '$rootScope', function ($firebaseAuth, firebaseHelpers, $state, $rootScope) {
     var ref = new Firebase(firebaseHelpers.firebaseUrl());
     var auth = $firebaseAuth(ref);
-
+    this.$root = $rootScope;
     this.$state = $state.current.name;
     console.log(this.$state);
-    console.log(auth, $state);
+    console.log(auth);
 
     this.details = {
       /**
@@ -28,11 +28,7 @@ angular.module('eventPlannerApp')
 
     this.submit = function(isValid){
       console.log(isValid);
-      console.log(this.details);
     };
 
-    this.testFun = function(e){
-      console.log(e);
-    };
   }
 ]);

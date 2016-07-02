@@ -6,82 +6,65 @@
         <button ui-sref="register" class="login-btn-select" type="button" ng-class="{ 'active-form-btn': currentUser.$state=='register' }">Register</button>
     </div>
 
-    <form name="loginForm" class="text-left login-form animated fadeIn" ng-submit="currentUser.submit(loginForm.$valid)">
-
-      <div class="form-group form-label">
-        <label class="label-default-pos" for="test" ng-class="test.labelOn ? 'label-animated' : 'label-animated-off'">
-          Test label
-        </label>
-        <input type="text" class="form-control" id="test"  ng-focus="test.labelOn=true" name="test.test" ng-blur="test.labelOn=false" required>
-      </div>
+    <form name="loginForm" class="text-left login-form animated fadeIn" ng-submit="currentUser.submit(loginForm.$valid)" novalidate>
 
       <div class="form-group form-label" ng-if="currentUser.$state == 'register'">
-        <label class="label-default-pos" for="user-name" ng-class="userName.labelOn ? 'label-animated' : 'label-animated-off'">Your name</label>
+        <label class="label-default-pos" for="user-name">Your name</label>
         <input type="text"
                 class="form-control"
                 name="userName"
                 id="user-name"
-                ng-focus="userName.labelOn=true"
-                ng-blur="userName.labelOn=false"
                 ng-model="currentUser.details.name"
-                ng-value="currentUser.details.name"
                 ng-minlength="1"
+                cu-label
                 required>
 
       </div>
 
       <div class="form-group form-label">
-        <label class="label-default-pos" for="user-email" ng-class="userEmail.labelOn ? 'label-animated' : 'label-animated-off'">Email address</label>
+        <label class="label-default-pos" for="user-email">Email address</label>
         <input type="email"
                 class="form-control"
                 id="user-email"
                 name="userEmail"
-                ng-focus="userEmail.labelOn=true"
-                ng-blur="userEmail.labelOn=false"
                 ng-model="currentUser.details.email"
-                ng-value="currentUser.details.email"
+                cu-label
                 required>
       </div>
 
       <div class="form-group form-label">
-        <label class="label-default-pos" for="user-password" ng-class="userPassword.labelOn ? 'label-animated' : 'label-animated-off'">Password</label>
+        <label class="label-default-pos" for="user-password">Password<span ng-show="loginForm.userPassword.$error.minlength"> should have 8 or more characters!</span></label>
         <input type="password"
                 class="form-control"
                 id="user-password"
                 name="userPassword"
-                ng-focus="userPassword.labelOn=true"
-                ng-blur="userPassword.labelOn=false"
                 ng-model="currentUser.details.password"
-                ng-value="currentUser.details.password"
                 ng-minlength="8"
+                cu-label
                 required>
-        <span ng-show="loginForm.userPassword.$error.minlength" class="form-input-invalid">* Please enter name</span>
+
       </div>
 
       <div class="form-group form-label" ng-if="currentUser.$state == 'register'">
-        <label class="label-default-pos" for="user-confirm-password" ng-class="confirmPassword.labelOn ? 'label-animated' : 'label-animated-off'">Confirm password</label>
+        <label class="label-default-pos" for="user-confirm-password">Confirm password</label>
         <input type="password"
                 class="form-control"
                 id="user-confirm-password"
                 name="confirmPassword"
-                ng-focus="confirmPassword.labelOn=true"
-                ng-blur="confirmPassword.labelOn=false"
                 ng-model="currentUser.details.confirmPassword"
-                ng-value="currentUser.details.confirmPassword"
-                ng-minlength="8"
+                cu-label
                 required>
       </div>
 
-      <div class="checkbox" ng-if="currentUser.$state == 'login'">
+      <div class="checkbox text-muted" ng-if="currentUser.$state == 'login'">
         <label>
           <input type="checkbox" ng-model="currentUser.details.rememberMe"> Remember me
         </label>
-    </div>
+      </div>
 
     <button type="submit" class="btn btn-custom" ng-if="currentUser.$state == 'login'">Sign in</button>
     <button type="submit" class="btn btn-custom" ng-if="currentUser.$state == 'register'">Register</button>
   </form>
   </div>
-  <p>{{currentUser.details.email}}</p>
-  <p>{{currentUser.details.password}}</p>
+
 </div>

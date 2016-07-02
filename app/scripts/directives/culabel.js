@@ -10,22 +10,32 @@ angular.module('eventPlannerApp')
   .directive('cuLabel', function () {
     return {
       restrict: 'A',
-      scope : {
-        cuLabel: "="
-      },
-      link: function(scope, element, attrs) {
-        console.log(attrs);
-         //console.log(element);
-        console.log(scope);
-
+      //scope, element, attrs
+      link: function(scope, element) {
 
         element.on('focus', function(){
-          console.log(element.parent().find('label'));
+          var el = element.parent().find('label');
+
+          if(el.hasClass('label-animated-off')){
+            el.removeClass('label-animated-off');
+          }
+
+          el.addClass('label-animated highlight');
+
         });
 
-        // attrs.$observe('cuLabel', function(val){
-        //   console.log(val);
-        // });
+        element.on('blur', function(){
+          var el = element.parent().find('label');
+
+          if(!element.val().length){
+            el.removeClass('label-animated');
+            el.addClass('label-animated-off');
+          }
+
+          el.removeClass('highlight');
+
+        });
+
       }
     };
   });

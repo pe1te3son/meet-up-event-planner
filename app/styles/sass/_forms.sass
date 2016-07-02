@@ -8,7 +8,6 @@
   max-width: 450px
   margin: 0 auto
 
-
 .login-form
   box-shadow: 1px 1px 10px $color1
   padding: 35px 20px
@@ -37,28 +36,26 @@
   border-bottom: 2px solid $color2
 
 .form-group
-  margin-bottom: 30px
+  margin-bottom: 32px
   input
     border: none
     outline: none
     box-shadow: none
     border-bottom: 2px solid $color1
     transition: none
-    &:focus
-      .label-default-pos
-        color: $color2
+    padding: 0 16px 3px
 
 .label-default-pos
-  +position(absolute, 6px 0 0 12px)
+  +position(absolute, 6px 0 0 3px)
   margin: 0
   color: #999
   font-weight: normal
+  font-size: 0.95em
+  font-style: italic
 
 .label-animated
   transition: all 0.1s ease
-  transform: translateY(-25px)
-
-
+  transform: translateY(-24px)
 
 .label-animated-off
   transition: all 0.1s ease
@@ -70,3 +67,15 @@
   &:hover
     color: $color5
     background-color: lighten($color2, 5%)
+
+.highlight
+  color: $color2
+
+.checkbox
+  margin-bottom: 20px
+
+.error-msg
+  label
+    color: $color6
+  input
+    border-color: $color6 !important
