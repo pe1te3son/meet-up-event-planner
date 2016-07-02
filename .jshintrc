@@ -13,6 +13,7 @@
   "globals": {
     "angular": false,
     "Firebase": false,
-    "moment": false
+    "moment": false,
+    "$": false
   }
 }
