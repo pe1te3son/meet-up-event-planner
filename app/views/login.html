@@ -8,7 +8,7 @@
 
     <form name="loginForm" class="text-left login-form animated fadeIn" ng-submit="currentUser.submit(loginForm.$valid)" novalidate>
 
-      <div class="form-group form-label" ng-if="currentUser.$state == 'register'">
+      <div class="form-group form-label" ng-if="currentUser.$state == 'register'" ng-class="loginForm.userName.$invalid && loginForm.userName.$dirty ? 'error-msg-input' : '' ">
         <label class="label-default-pos" for="user-name">Your name</label>
         <input type="text"
                 class="form-control"
@@ -18,10 +18,13 @@
                 ng-minlength="1"
                 cu-label
                 required>
+        <div ng-messages="loginForm.userName.$error" ng-if="loginForm.userName.$dirty">
+          <div ng-messages-include="views/messages.html"></div>
+        </div>
 
       </div>
 
-      <div class="form-group form-label">
+      <div class="form-group form-label" ng-class="loginForm.userEmail.$invalid && loginForm.userEmail.$dirty ? 'error-msg-input' : '' ">
         <label class="label-default-pos" for="user-email">Email address</label>
         <input type="email"
                 class="form-control"
@@ -30,32 +33,41 @@
                 ng-model="currentUser.details.email"
                 cu-label
                 required>
+        <div ng-messages="loginForm.userEmail.$error" ng-if="loginForm.userEmail.$dirty">
+          <div ng-messages-include="views/messages.html"></div>
+        </div>
       </div>
 
-      <div class="form-group form-label">
-        <label class="label-default-pos" for="user-password">Password
-
-        </label>
+      <div class="form-group form-label" ng-class="loginForm.userPassword.$invalid && loginForm.userPassword.$dirty ? 'error-msg-input' : '' ">
+        <label class="label-default-pos" for="user-password">Password</label>
         <input type="password"
                 class="form-control"
                 id="user-password"
                 name="userPassword"
                 ng-model="currentUser.details.password"
                 ng-pattern="/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/"
+                ng-minlength="8"
                 cu-label
                 required>
-            <span ng-show="loginForm.userPassword.$error.pattern"> too short! (8 characters, 1 uppercase, 1 digit)</span>
+        <div ng-messages="loginForm.userPassword.$error" ng-if="loginForm.userPassword.$dirty">
+          <div ng-messages-include="views/messages.html"></div>
+        </div>
+
       </div>
 
-      <div class="form-group form-label" ng-if="currentUser.$state == 'register'">
+      <div class="form-group form-label" ng-if="currentUser.$state == 'register'" ng-class="loginForm.confirmPassword.$invalid && loginForm.confirmPassword.$dirty ? 'error-msg-input' : '' ">
         <label class="label-default-pos" for="user-confirm-password">Confirm password</label>
         <input type="password"
                 class="form-control"
                 id="user-confirm-password"
                 name="confirmPassword"
                 ng-model="currentUser.details.confirmPassword"
+                compare-to="currentUser.details.password"
                 cu-label
                 required>
+        <div ng-messages="loginForm.confirmPassword.$error" ng-if="loginForm.confirmPassword.$dirty">
+          <div ng-messages-include="views/messages.html"></div>
+        </div>
       </div>
 
       <div class="checkbox text-muted" ng-if="currentUser.$state == 'login'">
