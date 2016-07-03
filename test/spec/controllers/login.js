@@ -18,7 +18,7 @@ describe('Controller: LoginCtrl', function () {
   }));
 
   it('should be an object', function () {
-    expect(LoginCtrl.userDetails).toEqual(jasmine.any(Object));
+    expect(LoginCtrl.details).toEqual(jasmine.any(Object));
   });
 
   it('$state must be defined', function(){
