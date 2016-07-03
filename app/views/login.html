@@ -33,16 +33,18 @@
       </div>
 
       <div class="form-group form-label">
-        <label class="label-default-pos" for="user-password">Password<span ng-show="loginForm.userPassword.$error.minlength"> should have 8 or more characters!</span></label>
+        <label class="label-default-pos" for="user-password">Password
+
+        </label>
         <input type="password"
                 class="form-control"
                 id="user-password"
                 name="userPassword"
                 ng-model="currentUser.details.password"
-                ng-minlength="8"
+                ng-pattern="/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/"
                 cu-label
                 required>
-
+            <span ng-show="loginForm.userPassword.$error.pattern"> too short! (8 characters, 1 uppercase, 1 digit)</span>
       </div>
 
       <div class="form-group form-label" ng-if="currentUser.$state == 'register'">
