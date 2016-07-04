@@ -11,6 +11,7 @@ angular.module('eventPlannerApp')
   .controller('LoginCtrl', ['$firebaseAuth', 'firebaseHelpers', '$state', '$rootScope', function ($firebaseAuth, firebaseHelpers, $state, $rootScope) {
     var ref = new Firebase(firebaseHelpers.firebaseUrl());
     var auth = $firebaseAuth(ref);
+    var vm = this;
     this.$root = $rootScope;
     this.$state = $state.current.name;
     console.log(this.$state);
@@ -26,8 +27,18 @@ angular.module('eventPlannerApp')
       */
     };
 
-    this.submit = function(isValid){
+    this.loginUser = function(isValid){
       console.log(isValid);
+      ref.authWithPassword({
+        email    : vm.details.email,
+        password : vm.details.password
+      }, function(error, authData) {
+        if (error) {
+          console.log('Login Failed!', error);
+        } else {
+          console.log('Authenticated successfully with payload:', authData);
+        }
+      });
     };
 
   }
