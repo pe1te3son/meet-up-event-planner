@@ -6,7 +6,7 @@
         <button ui-sref="register" class="login-btn-select" type="button" ng-class="{ 'active-form-btn': currentUser.$state=='register' }">Register</button>
     </div>
 
-    <form name="loginForm" class="text-left login-form animated fadeIn" ng-submit="currentUser.submit(loginForm.$valid)" novalidate>
+    <form name="loginForm" class="text-left login-form animated fadeIn" novalidate>
 
       <div class="form-group form-label" ng-if="currentUser.$state == 'register'" ng-class="loginForm.userName.$invalid && loginForm.userName.$dirty ? 'error-msg-input' : '' ">
         <label class="label-default-pos" for="user-name">Your name</label>
@@ -24,7 +24,7 @@
 
       </div>
 
-      <div class="form-group form-label" ng-class="loginForm.userEmail.$invalid && loginForm.userEmail.$dirty ? 'error-msg-input' : '' ">
+      <div class="form-group form-label" ng-class="loginForm.userEmail.$invalid && loginForm.userEmail.$dirty && currentUser.$state != 'login' ? 'error-msg-input' : '' ">
         <label class="label-default-pos" for="user-email">Email address</label>
         <input type="email"
                 class="form-control"
@@ -33,23 +33,23 @@
                 ng-model="currentUser.details.email"
                 cu-label
                 required>
-        <div ng-messages="loginForm.userEmail.$error" ng-if="loginForm.userEmail.$dirty">
+        <div ng-messages="loginForm.userEmail.$error" ng-if="loginForm.userEmail.$dirty && currentUser.$state != 'login'">
           <div ng-messages-include="views/messages.html"></div>
         </div>
       </div>
 
-      <div class="form-group form-label" ng-class="loginForm.userPassword.$invalid && loginForm.userPassword.$dirty ? 'error-msg-input' : '' ">
+      <div class="form-group form-label" ng-class="loginForm.userPassword.$invalid && loginForm.userPassword.$dirty && currentUser.$state != 'login' ? 'error-msg-input' : '' ">
         <label class="label-default-pos" for="user-password">Password</label>
         <input type="password"
                 class="form-control"
                 id="user-password"
                 name="userPassword"
                 ng-model="currentUser.details.password"
-                ng-pattern="/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/"
+                ng-pattern="/^.*(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/"
                 ng-minlength="8"
                 cu-label
                 required>
-        <div ng-messages="loginForm.userPassword.$error" ng-if="loginForm.userPassword.$dirty">
+        <div ng-messages="loginForm.userPassword.$error" ng-if="loginForm.userPassword.$dirty && currentUser.$state != 'login'">
           <div ng-messages-include="views/messages.html"></div>
         </div>
 
@@ -76,8 +76,10 @@
         </label>
       </div>
 
-    <button type="submit" class="btn btn-custom" ng-if="currentUser.$state == 'login'">Sign in</button>
-    <button type="submit" class="btn btn-custom" ng-if="currentUser.$state == 'register'">Register</button>
+    <button type="submit" class="btn btn-custom" ng-if="currentUser.$state == 'login'" ng-click="currentUser.loginUser(loginForm.$valid)">Sign in</button>
+    <button type="submit" class="btn btn-custom" ng-if="currentUser.$state == 'register'" ng-click="currentUser.registerUser(loginForm.$valid)">Register</button>
+
+    <button type="submit" class="btn btn-custom" ng-click="currentUser.logOut()">Log out</button>
   </form>
   </div>
 
