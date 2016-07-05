@@ -78,8 +78,6 @@
 
     <button type="submit" class="btn btn-custom" ng-if="currentUser.$state == 'login'" ng-click="currentUser.loginUser(loginForm.$valid)">Sign in</button>
     <button type="submit" class="btn btn-custom" ng-if="currentUser.$state == 'register'" ng-click="currentUser.registerUser(loginForm.$valid)">Register</button>
-
-    <button type="submit" class="btn btn-custom" ng-click="currentUser.logOut()">Log out</button>
   </form>
   </div>
 

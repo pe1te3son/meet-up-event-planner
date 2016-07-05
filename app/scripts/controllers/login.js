@@ -33,13 +33,19 @@ angular.module('eventPlannerApp')
         email    : vm.details.email,
         password : vm.details.password
       }, function(error, authData) {
+
         if (error) {
           console.log('Login Failed!', error);
         } else {
           console.log('Authenticated successfully with payload:', authData);
-          $state.go('user', { userId: 'peter'});
+
+          $state.go('user', { userId: 'peter'}).then(function(){
+            $state.go('allEvents');
+          });
+
         }
-      });
+
+      }); //authWithPassword
     };
 
   }

@@ -40,7 +40,8 @@ angular
     .state('user', {
       url: '/:userId',
       templateUrl: 'views/user.html',
-      controller: 'ControlpanelCtrl as user'
+      controller: 'ControlpanelCtrl as user',
+      redirectTo: 'user.allEvents'
     })
     .state('addEventForm', {
       url: '/add-new',

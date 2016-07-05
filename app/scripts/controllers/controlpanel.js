@@ -9,21 +9,18 @@
  */
 
 angular.module('eventPlannerApp')
-  .controller('ControlpanelCtrl', [ '$firebaseAuth', 'firebaseHelpers', '$rootScope', function ($firebaseAuth, firebaseHelpers, $rootScope) {
-    var ref1 = new Firebase(firebaseHelpers.firebaseUrl());
-    this.authObj = $firebaseAuth(ref1);
-    console.log($firebaseAuth(ref1));
-    var vm = this;
-    // this.authObj.$authWithPassword({
-    //   email: 'mate@mate.com',
-    //   password: 'peterjan'
-    // }).then(function(){
-    //   console.log(vm.authObj.$getAuth());
-    // });
+  .controller('ControlpanelCtrl', [ '$firebaseAuth', 'firebaseHelpers', '$state',  function ($firebaseAuth, firebaseHelpers, $state) {
+    var ref = new Firebase(firebaseHelpers.firebaseUrl());
+    this.authObj = $firebaseAuth(ref);
+    console.log($firebaseAuth(ref));
 
-    vm.authObj.$unauth();
-    console.log(vm.authObj.$getAuth());
-    $rootScope.isUser = false;
 
+
+    console.log(this.authObj.$getAuth());
+
+    this.logOut = function(){
+      this.authObj.$unauth();
+      $state.go('login');
+    };
   }
 ]);
