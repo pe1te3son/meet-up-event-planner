@@ -21,3 +21,11 @@ angular.module('eventPlannerApp')
       }
     };
   });
+
+angular.module('eventPlannerApp')
+  .factory('Auth', ['$firebaseAuth',
+    function($firebaseAuth) {
+      var ref = new Firebase('https://event-planner-janak.firebaseio.com/');
+      return $firebaseAuth(ref);
+    }
+  ]);

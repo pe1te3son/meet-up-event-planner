@@ -8,14 +8,25 @@
  * Controller of the eventPlannerApp
  */
 angular.module('eventPlannerApp')
-  .controller('LoginCtrl', ['$firebaseAuth', 'firebaseHelpers', '$state', '$stateParams', '$rootScope', function ($firebaseAuth, firebaseHelpers, $state, $stateParams, $rootScope) {
+  .controller('LoginCtrl', ['$firebaseAuth', 'firebaseHelpers', '$state', '$stateParams', 'currentAuth', function ($firebaseAuth, firebaseHelpers, $state, $stateParams, currentAuth) {
     var ref = new Firebase(firebaseHelpers.firebaseUrl());
-    var auth = $firebaseAuth(ref);
     var vm = this;
-    this.$root = $rootScope;
+    var auth = $firebaseAuth(ref);
+
     this.$state = $state.current.name;
-    console.log(this.$state);
+    console.log(currentAuth);
     console.log(auth);
+
+    // any time auth status updates, add the user data to scope
+    auth.$onAuth(function(authData) {
+      vm.authData = authData;
+    });
+
+    if(currentAuth){
+      $state.go('user', { userId: 'petejanak'}).then(function(){
+        $state.go('allEvents');
+      });
+    }
 
     this.details = {
       /**
@@ -38,14 +49,18 @@ angular.module('eventPlannerApp')
           console.log('Login Failed!', error);
         } else {
           console.log('Authenticated successfully with payload:', authData);
-
-          $state.go('user', { userId: 'peter'}).then(function(){
-            $state.go('allEvents');
-          });
+          vm.userLoggedIn('peter');
 
         }
 
       }); //authWithPassword
+    };
+
+    this.userLoggedIn = function(userName){
+
+      $state.go('user', { userId: userName}).then(function(){
+        $state.go('allEvents');
+      });
     };
 
   }

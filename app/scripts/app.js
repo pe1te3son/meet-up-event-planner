@@ -20,6 +20,15 @@ angular
     'ui.router',
     'firebase'
   ])
+  .run(['$rootScope', '$state', function($rootScope, $state) {
+    $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
+      // We can catch the error thrown when the $requireAuth promise is rejected
+      // and redirect the user back to the home page
+      if (error === 'AUTH_REQUIRED') {
+        $state.go('login');
+      }
+    });
+  }])
   .config(function($stateProvider, $urlRouterProvider) {
   // For any unmatched url, redirect to /state1
   $urlRouterProvider.otherwise('/login');
@@ -30,18 +39,42 @@ angular
     .state('login', {
       url: '/login',
       templateUrl: 'views/login.html',
-      controller: 'LoginCtrl as currentUser'
+      controller: 'LoginCtrl as currentUser',
+      resolve: {
+       // controller will not be loaded until $waitForAuth resolves
+       // Auth refers to our $firebaseAuth wrapper in the example above
+       "currentAuth": ["Auth", function(Auth) {
+         // $waitForAuth returns a promise so the resolve waits for it to complete
+         return Auth.$waitForAuth();
+       }]
+     }
     })
     .state('register', {
       url: '/register',
       templateUrl: 'views/login.html',
-      controller: 'LoginCtrl as currentUser'
+      controller: 'LoginCtrl as currentUser',
+      resolve: {
+         // controller will not be loaded until $waitForAuth resolves
+         // Auth refers to our $firebaseAuth wrapper in the example above
+         "currentAuth": ["Auth", function(Auth) {
+           // $waitForAuth returns a promise so the resolve waits for it to complete
+           return Auth.$waitForAuth();
+         }]
+       }
     })
     .state('user', {
       url: '/:userId',
       templateUrl: 'views/user.html',
       controller: 'ControlpanelCtrl as user',
-      redirectTo: 'user.allEvents'
+      redirectTo: 'user.allEvents',
+      resolve: {
+       // controller will not be loaded until $waitForAuth resolves
+       // Auth refers to our $firebaseAuth wrapper in the example above
+       "currentAuth": ["Auth", function(Auth) {
+         // $waitForAuth returns a promise so the resolve waits for it to complete
+         return Auth.$waitForAuth();
+       }]
+     }
     })
     .state('addEventForm', {
       url: '/add-new',
