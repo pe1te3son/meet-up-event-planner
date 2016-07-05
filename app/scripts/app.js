@@ -25,6 +25,7 @@ angular
   $urlRouterProvider.otherwise('/login');
   //
   // Now set up the states
+
   $stateProvider
     .state('login', {
       url: '/login',
@@ -36,15 +37,24 @@ angular
       templateUrl: 'views/login.html',
       controller: 'LoginCtrl as currentUser'
     })
+    .state('user', {
+      url: '/:userId',
+      templateUrl: 'views/user.html',
+      controller: 'ControlpanelCtrl as user'
+    })
     .state('addEventForm', {
       url: '/add-new',
-      templateUrl: 'views/addformview.html',
-      controller: 'AddeventformCtrl as form'
+      templateUrl: 'views/user.addFormView.html',
+      controller: 'AddeventformCtrl as form',
+      parent: 'user'
+
     })
     .state('allEvents', {
       url: '/events',
-      templateUrl: 'views/allevents.html',
-      controller: 'AlleventsCtrl as events'
+      templateUrl: 'views/user.allevents.html',
+      controller: 'AlleventsCtrl as events',
+      parent: 'user'
+
     });
     // .state('state1.list', {
     //   url: '/list',
