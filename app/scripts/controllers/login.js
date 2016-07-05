@@ -8,25 +8,13 @@
  * Controller of the eventPlannerApp
  */
 angular.module('eventPlannerApp')
-  .controller('LoginCtrl', ['$firebaseAuth', 'firebaseHelpers', '$state', '$stateParams', 'currentAuth', function ($firebaseAuth, firebaseHelpers, $state, $stateParams, currentAuth) {
-    var ref = new Firebase(firebaseHelpers.firebaseUrl());
+  .controller('LoginCtrl', ['$firebaseAuth', 'FireBase', '$state', '$stateParams', '$rootScope', 'currentAuth', function ($firebaseAuth, FireBase, $state, $stateParams, $rootScope, currentAuth) {
+    var ref = new Firebase(FireBase.link);
     var vm = this;
-    var auth = $firebaseAuth(ref);
+
 
     this.$state = $state.current.name;
-    console.log(currentAuth);
-    console.log(auth);
-
-    // any time auth status updates, add the user data to scope
-    auth.$onAuth(function(authData) {
-      vm.authData = authData;
-    });
-
-    if(currentAuth){
-      $state.go('user', { userId: 'petejanak'}).then(function(){
-        $state.go('allEvents');
-      });
-    }
+    console.log($rootScope);
 
     this.details = {
       /**
@@ -62,6 +50,13 @@ angular.module('eventPlannerApp')
         $state.go('allEvents');
       });
     };
+
+    if(currentAuth){
+      console.log('i ran');
+      $state.go('user', { userId: 'petejanak'}).then(function(){
+        $state.go('allEvents');
+      });
+    }
 
   }
 ]);

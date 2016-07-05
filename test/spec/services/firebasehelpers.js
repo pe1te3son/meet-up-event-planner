@@ -1,18 +1,18 @@
 'use strict';
 
-describe('Service: firebaseHelpers', function () {
+describe('Service: FireBase', function () {
 
   // load the service's module
   beforeEach(module('eventPlannerApp'));
 
   // instantiate service
-  var firebaseHelpers;
-  beforeEach(inject(function (_firebaseHelpers_) {
-    firebaseHelpers = _firebaseHelpers_;
+  var FireBase;
+  beforeEach(inject(function (_FireBase_) {
+    FireBase = _FireBase_;
   }));
 
   it('should do something', function () {
-    expect(!!firebaseHelpers).toBe(true);
+    expect(!!FireBase).toBe(true);
   });
 
   it('should have a correct url', function(){
@@ -20,7 +20,7 @@ describe('Service: firebaseHelpers', function () {
       return this.indexOf(prefix) === 0;
     };
 
-    expect(firebaseHelpers.firebaseUrl().startsWith('https://')).toBe(true);
+    expect(FireBase.link.startsWith('https://')).toBe(true);
   });
 
 });

@@ -9,9 +9,9 @@
  */
 
 angular.module('eventPlannerApp')
-  .controller('AddeventformCtrl', ['$firebaseArray', 'firebaseHelpers', function ($firebaseArray, firebaseHelpers) {
+  .controller('AddeventformCtrl', ['$firebaseArray', 'FireBase', function ($firebaseArray, FireBase) {
 
-    var ref = new Firebase(firebaseHelpers.firebaseUrl() + '/events');
+    var ref = new Firebase(FireBase.link + '/events');
     var vm = this;
     var date = moment().format('YYYY-MM-DD');
     var time = moment().format('hh:mm');

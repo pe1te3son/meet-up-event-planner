@@ -43,9 +43,10 @@ angular
       resolve: {
        // controller will not be loaded until $waitForAuth resolves
        // Auth refers to our $firebaseAuth wrapper in the example above
-       "currentAuth": ["Auth", function(Auth) {
+       'currentAuth': ['FireBase', function(FireBase) {
          // $waitForAuth returns a promise so the resolve waits for it to complete
-         return Auth.$waitForAuth();
+         var auth = FireBase.auth();
+         return auth.$waitForAuth();
        }]
      }
     })
@@ -56,9 +57,10 @@ angular
       resolve: {
          // controller will not be loaded until $waitForAuth resolves
          // Auth refers to our $firebaseAuth wrapper in the example above
-         "currentAuth": ["Auth", function(Auth) {
+         'currentAuth': ['FireBase', function(FireBase) {
            // $waitForAuth returns a promise so the resolve waits for it to complete
-           return Auth.$waitForAuth();
+           var auth = FireBase.auth();
+           return auth.$waitForAuth();
          }]
        }
     })
@@ -70,9 +72,10 @@ angular
       resolve: {
        // controller will not be loaded until $waitForAuth resolves
        // Auth refers to our $firebaseAuth wrapper in the example above
-       "currentAuth": ["Auth", function(Auth) {
+       'currentAuth': ['FireBase', function(FireBase) {
          // $waitForAuth returns a promise so the resolve waits for it to complete
-         return Auth.$waitForAuth();
+         var auth = FireBase.auth();
+         return auth.$waitForAuth();
        }]
      }
     })
