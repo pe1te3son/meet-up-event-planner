@@ -1,5 +1,9 @@
 #add-event-form
   max-width: 450px
+  box-shadow: 0 0 8px darken($color7, 10%)
+  padding: 30px 15px
+  background: $color1
+  position: relative
 
 .forms-cont
   margin-top: 150px
@@ -7,25 +11,29 @@
 .form-belt
   max-width: 450px
   margin: 0 auto
+  background: $color1
+  box-shadow: 1px 1px 10px darken($color7, 10%)
+  padding: 0 20px 35px
+  border-radius: 0 0 5px 5px
 
 .login-form
-  box-shadow: 1px 1px 10px $color1
-  padding: 35px 20px
-  border-radius: 0 0 5px 5px
+  margin-top: 30px
+
 
 
 .login-btn-select
   background: $color1
   color: $color5
   border: none
-  padding: 5px 15px
+  padding: 10px 25px 5px
+  margin-right: 20px
   z-index: 10
   outline: none
 
 
 .active-form-btn
-  background: $color2
-  box-shadow: 0px 0px 2px $color1
+  background: $color4
+  box-shadow: 0px 0px 2px darken($color7, 10%)
 
 .form-label
   position: relative
@@ -33,7 +41,7 @@
 .form-control:focus
   border: none
   box-shadow: none
-  border-bottom: 2px solid $color2
+  border-bottom: 2px solid $color4
 
 .form-group
   margin-bottom: 32px
@@ -41,24 +49,27 @@
     border: none
     outline: none
     box-shadow: none
-    border-bottom: 2px solid $color1
+    border-bottom: 2px solid $color3
     border-radius: 0
     transition: none
     padding: 0 16px 3px
+    background: $color1
+    color: $color5
 
 .cover
-  background: $color5
+  background: $color1
   height: 24px
   width: 70%
 
 .form-textarea
   width: 100%
-  border: 1px solid $color1
+  border: 1px solid $color3
+  background: $color1
   border-radius: 2px
   padding: 10px
   outline: none
   &:focus
-    border-bottom: 2px solid $color2
+    border-bottom: 2px solid $color4
 
 .label-default-pos
   +position(absolute, 6px 0 0 3px)
@@ -76,15 +87,8 @@
   transition: all 0.1s ease
   transform: translateY(0)
 
-.btn-custom
-  background-color: $color2
-  color: $color5
-  &:hover, &:focus
-    color: $color5
-    background-color: lighten($color2, 5%)
-
 .highlight
-  color: $color2
+  color: $color4
 
 .checkbox
   margin-bottom: 20px
