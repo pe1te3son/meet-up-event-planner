@@ -1,69 +1,113 @@
 
-<form name="addEventForm" id="add-event-form" ng-submit="form.submit(addEventForm.$valid)" class="col-sm-6 css-form">
+<div class="col-sm-8 ">
+  <form name="addEventForm" id="add-event-form" ng-submit="form.submit(addEventForm.$valid)" class="css-form" novalidate>
 
-  <div class="form-group" ng-class="{ 'has-error' : addEventForm.eventName.$invalid && !addEventForm.eventName.$pristine, 'has-success': addEventForm.eventName.$valid }">
-    <label for="event-name">Event Name</label>
-    <input type="text"
-          class="form-control"
-          id="event-name"
-          name="eventName"
-          placeholder="Event name"
-          ng-value="form.event.name"
-          ng-model="form.event.name"
-          ng-minlength="3"
-          required>
-    <span ng-show="addEventForm.eventName.$error.minlength" class="form-input-invalid">Username is too short!</span>
-  </div>
-
-  <fieldset class="form-group" ng-class="{ 'has-error' : addEventForm.eventCategory.$invalid && !addEventForm.eventCategory.$pristine, 'has-success': addEventForm.eventCategory.$valid }">
-    <label for="category">Category</label>
-    <input  list="selectCategory"
-            id="category"
-            name="eventCategory"
+    <div class="form-group form-label" ng-class="addEventForm.eventName.$invalid && addEventForm.eventName.$dirty ? 'error-msg-input' : '' ">
+      <label class="label-default-pos" for="event-name">Event Name</label>
+      <input type="text"
             class="form-control"
-            ng-value="form.event.category"
-            ng-model="form.event.category"
-            placeholder="Select category"
-            ng-minlength="3"
+            id="event-name"
+            name="eventName"
+            ng-model="form.event.name"
+            cu-label
             required>
-    <span ng-show="addEventForm.eventCategory.$error.minlength" class="form-input-invalid">Please select Category or set custom!</span>
+      <div ng-messages="addEventForm.eventName.$error" ng-if="addEventForm.eventName.$dirty">
+        <div ng-messages-include="views/messages.html"></div>
+      </div>
 
-    <datalist id="selectCategory">
-      <option value="Party"></option>
-      <option value="Meeting"></option>
-      <option value="Important"></option>
-    </datalist>
-  </fieldset>
+    </div>
 
-  <div class="form-group">
-    <label for="start-date">Start date</label>
-    <input type="datetime-local" class="form-control" id="start-date" ng-model="form.selectedStartDate" ng-value="form.selectedStartDate" name="selectedStartDate" min="{{form.setDate}}" ng-change="form.updateEndDate()">
-  </div>
+    <fieldset class="form-group form-label">
+      <label class="label-default-pos" for="category">Select category</label>
+      <input  list="selectCategory"
+              id="category"
+              name="eventCategory"
+              class="form-control"
+              ng-model="form.event.category"
+              cu-label
+              required>
 
-  <div class="form-group">
-    <label for="end-date">End date</label>
-    <input type="datetime-local" name="selectedEndDate" class="form-control" id="end-date" ng-model="form.selectedEndDate" ng-value="form.selectedEndDate" min="{{form.setDate}}">
-  </div>
+      <div ng-messages="addEventForm.eventCategory.$error" ng-if="addEventForm.eventCategory.$dirty">
+        <div ng-messages-include="views/messages.html"></div>
+      </div>
 
-  <div class="form-group">
-    <label for="event-host">Event host</label>
-    <input class="form-control" type="text" name="eventHost" placeholder="Event host" id="event-host" ng-model="form.event.host" ng-value="form.event.host">
-  </div>
+      <datalist id="selectCategory">
+        <option value="Party"></option>
+        <option value="Meeting"></option>
+        <option value="Important"></option>
+      </datalist>
+    </fieldset>
 
-  <div class="form-group">
-    <label for="event-guests">Event guests</label>
-    <input class="form-control" type="text" name="eventGuests" placeholder="Event guests" id="event-guests" ng-model="form.event.guests" ng-value="form.event.guests">
-  </div>
+    <div class="form-group form-label">
+      <label class="label-default-pos cover" for="start-date">Start date</label>
+      <input type="datetime-local"
+        class="form-control" id="start-date"
+        ng-model="form.selectedStartDate"
+        name="selectedStartDate"
+        min="{{form.setDate}}"
+        ng-change="form.updateEndDate()"
+        cu-label>
+    </div>
 
-  <div class="form-group">
-    <label for="location-input">Location</label>
-    <input type="text" name="location" id="location-input" class="form-control" placeholder="Location" ng-model="form.event.eventLocation" ng-value="form.event.eventLocation">
-  </div>
+    <div class="form-group form-label">
+      <label class="label-default-pos cover" for="end-date">End date</label>
+      <input type="datetime-local"
+        name="selectedEndDate"
+        class="form-control"
+        id="end-date"
+        ng-model="form.selectedEndDate"
+        min="{{form.setDate}}"
+        cu-label>
 
-  <div class="form-group">
-    <label for="optional-info">Additional information</label>
-    <textarea class="form-control" id="optional-info" rows="2" ng-model="form.event.additionalInfo" ng-value="event.additionalInfo" placeholder="Additional informations"></textarea>
-  </div>
+    </div>
 
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+    <div class="form-group form-label">
+      <label class="label-default-pos" for="event-host">Event host</label>
+      <input class="form-control"
+        type="text"
+        name="eventHost"
+        id="event-host"
+        ng-model="form.event.host"
+        cu-label
+        required>
+
+
+      <div ng-messages="addEventForm.eventHost.$error" ng-if="addEventForm.eventHost.$dirty">
+        <div ng-messages-include="views/messages.html"></div>
+      </div>
+    </div>
+
+    <div class="form-group form-label">
+      <label class="label-default-pos" for="event-guests">Event guests</label>
+      <input class="form-control"
+        type="text"
+        name="eventGuests"
+        id="event-guests"
+        ng-model="form.event.guests"
+        cu-label>
+    </div>
+
+    <div class="form-group form-label">
+      <label class="label-default-pos" for="location-input">Location</label>
+      <input
+        type="text"
+        name="location"
+        id="location-input"
+        class="form-control"
+        ng-model="form.event.eventLocation"
+        cu-label
+        required>
+
+      <div ng-messages="addEventForm.location.$error" ng-if="addEventForm.location.$dirty">
+        <div ng-messages-include="views/messages.html"></div>
+      </div>
+    </div>
+
+    <div class="form-group form-label">
+      <label class="sr-only" for="optional-info">Additional information</label>
+      <textarea class="form-textarea" id="optional-info" rows="3" ng-model="form.event.additionalInfo" placeholder="Additional informations"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-custom">Submit</button>
+  </form>
+</div>

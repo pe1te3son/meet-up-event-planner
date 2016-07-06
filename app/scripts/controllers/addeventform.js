@@ -28,7 +28,7 @@ angular.module('eventPlannerApp')
         endDate: '',
         endTime: '',
         host: '',
-        guests: ['first', 'second'],
+        guests: [],
         eventLocation: '',
         additionalInfo: ''
       };
