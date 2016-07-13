@@ -1,84 +1,98 @@
-<div class="forms-cont col-xs-12">
+<div class="container-fluid">
 
-  <div class="form-belt">
-    <div class="form-switch-btns">
-        <button ui-sref="login" class="login-btn-select" type="button" ng-class="{ 'active-form-btn': currentUser.$state=='login' }">Log in</button>
-        <button ui-sref="register" class="login-btn-select" type="button" ng-class="{ 'active-form-btn': currentUser.$state=='register' }">Register</button>
+<div class="row">
+  <div class="header col-xs-12 text-center">
+    <h1 class="site-title">Event Planer</h1>
+  </div>
+</div>
+
+<div class="row">
+
+    <div class="forms-cont col-xs-12">
+
+      <div class="form-belt">
+        <div class="form-switch-btns">
+            <button ui-sref="login" class="login-btn-select" type="button" ng-class="{ 'active-form-btn': currentUser.$state=='login' }">Log in</button>
+            <button ui-sref="register" class="login-btn-select" type="button" ng-class="{ 'active-form-btn': currentUser.$state=='register' }">Register</button>
+        </div>
+
+        <form name="loginForm" class="text-left login-form animated fadeIn" novalidate>
+
+          <div class="form-group form-label" ng-if="currentUser.$state == 'register'" ng-class="loginForm.userName.$invalid && loginForm.userName.$dirty ? 'error-msg-input' : '' ">
+            <label class="label-default-pos" for="user-name">Your name</label>
+            <input type="text"
+                    class="form-control"
+                    name="userName"
+                    id="user-name"
+                    ng-model="currentUser.details.name"
+                    ng-minlength="1"
+                    cu-label
+                    required>
+            <div ng-messages="loginForm.userName.$error" ng-if="loginForm.userName.$dirty">
+              <div ng-messages-include="views/messages.html"></div>
+            </div>
+
+          </div>
+
+          <div class="form-group form-label" ng-class="loginForm.userEmail.$invalid && loginForm.userEmail.$dirty && currentUser.$state != 'login' ? 'error-msg-input' : '' ">
+            <label class="label-default-pos" for="user-email">Email address</label>
+            <input type="email"
+                    class="form-control"
+                    id="user-email"
+                    name="userEmail"
+                    ng-model="currentUser.details.email"
+                    cu-label
+                    required>
+            <div ng-messages="loginForm.userEmail.$error" ng-if="loginForm.userEmail.$dirty && currentUser.$state != 'login'">
+              <div ng-messages-include="views/messages.html"></div>
+            </div>
+          </div>
+
+          <div class="form-group form-label" ng-class="loginForm.userPassword.$invalid && loginForm.userPassword.$dirty && currentUser.$state != 'login' ? 'error-msg-input' : '' ">
+            <label class="label-default-pos" for="user-password">Password</label>
+            <input type="password"
+                    class="form-control"
+                    id="user-password"
+                    name="userPassword"
+                    ng-model="currentUser.details.password"
+                    ng-pattern="/^.*(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/"
+                    ng-minlength="8"
+                    cu-label
+                    required>
+            <div ng-messages="loginForm.userPassword.$error" ng-if="loginForm.userPassword.$dirty && currentUser.$state != 'login'">
+              <div ng-messages-include="views/messages.html"></div>
+            </div>
+
+          </div>
+
+          <div class="form-group form-label" ng-if="currentUser.$state == 'register'" ng-class="loginForm.confirmPassword.$invalid && loginForm.confirmPassword.$dirty ? 'error-msg-input' : '' ">
+            <label class="label-default-pos" for="user-confirm-password">Confirm password</label>
+            <input type="password"
+                    class="form-control"
+                    id="user-confirm-password"
+                    name="confirmPassword"
+                    ng-model="currentUser.details.confirmPassword"
+                    compare-to="currentUser.details.password"
+                    cu-label
+                    required>
+            <div ng-messages="loginForm.confirmPassword.$error" ng-if="loginForm.confirmPassword.$dirty">
+              <div ng-messages-include="views/messages.html"></div>
+            </div>
+          </div>
+
+          <div class="checkbox text-muted" ng-if="currentUser.$state == 'login'">
+            <label>
+              <input type="checkbox" ng-model="currentUser.details.rememberMe"> Remember me
+            </label>
+          </div>
+
+        <button type="submit" class="btn btn-custom" ng-if="currentUser.$state == 'login'" ng-click="currentUser.loginUser(loginForm.$valid)">Sign in</button>
+        <button type="submit" class="btn btn-custom" ng-if="currentUser.$state == 'register'" ng-click="currentUser.registerUser(loginForm.$valid)">Register</button>
+      </form>
+      </div>
+
     </div>
 
-    <form name="loginForm" class="text-left login-form animated fadeIn" novalidate>
 
-      <div class="form-group form-label" ng-if="currentUser.$state == 'register'" ng-class="loginForm.userName.$invalid && loginForm.userName.$dirty ? 'error-msg-input' : '' ">
-        <label class="label-default-pos" for="user-name">Your name</label>
-        <input type="text"
-                class="form-control"
-                name="userName"
-                id="user-name"
-                ng-model="currentUser.details.name"
-                ng-minlength="1"
-                cu-label
-                required>
-        <div ng-messages="loginForm.userName.$error" ng-if="loginForm.userName.$dirty">
-          <div ng-messages-include="views/messages.html"></div>
-        </div>
-
-      </div>
-
-      <div class="form-group form-label" ng-class="loginForm.userEmail.$invalid && loginForm.userEmail.$dirty && currentUser.$state != 'login' ? 'error-msg-input' : '' ">
-        <label class="label-default-pos" for="user-email">Email address</label>
-        <input type="email"
-                class="form-control"
-                id="user-email"
-                name="userEmail"
-                ng-model="currentUser.details.email"
-                cu-label
-                required>
-        <div ng-messages="loginForm.userEmail.$error" ng-if="loginForm.userEmail.$dirty && currentUser.$state != 'login'">
-          <div ng-messages-include="views/messages.html"></div>
-        </div>
-      </div>
-
-      <div class="form-group form-label" ng-class="loginForm.userPassword.$invalid && loginForm.userPassword.$dirty && currentUser.$state != 'login' ? 'error-msg-input' : '' ">
-        <label class="label-default-pos" for="user-password">Password</label>
-        <input type="password"
-                class="form-control"
-                id="user-password"
-                name="userPassword"
-                ng-model="currentUser.details.password"
-                ng-pattern="/^.*(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/"
-                ng-minlength="8"
-                cu-label
-                required>
-        <div ng-messages="loginForm.userPassword.$error" ng-if="loginForm.userPassword.$dirty && currentUser.$state != 'login'">
-          <div ng-messages-include="views/messages.html"></div>
-        </div>
-
-      </div>
-
-      <div class="form-group form-label" ng-if="currentUser.$state == 'register'" ng-class="loginForm.confirmPassword.$invalid && loginForm.confirmPassword.$dirty ? 'error-msg-input' : '' ">
-        <label class="label-default-pos" for="user-confirm-password">Confirm password</label>
-        <input type="password"
-                class="form-control"
-                id="user-confirm-password"
-                name="confirmPassword"
-                ng-model="currentUser.details.confirmPassword"
-                compare-to="currentUser.details.password"
-                cu-label
-                required>
-        <div ng-messages="loginForm.confirmPassword.$error" ng-if="loginForm.confirmPassword.$dirty">
-          <div ng-messages-include="views/messages.html"></div>
-        </div>
-      </div>
-
-      <div class="checkbox text-muted" ng-if="currentUser.$state == 'login'">
-        <label>
-          <input type="checkbox" ng-model="currentUser.details.rememberMe"> Remember me
-        </label>
-      </div>
-
-    <button type="submit" class="btn btn-custom" ng-if="currentUser.$state == 'login'" ng-click="currentUser.loginUser(loginForm.$valid)">Sign in</button>
-    <button type="submit" class="btn btn-custom" ng-if="currentUser.$state == 'register'" ng-click="currentUser.registerUser(loginForm.$valid)">Register</button>
-  </form>
-  </div>
-
-</div>
+</div><!-- /row -->
+</div><!-- /container -->
