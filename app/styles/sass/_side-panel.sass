@@ -1,6 +1,7 @@
 .side-panel
+  width: 100px
   +position(absolute, 0 null 0 0)
-  background: lighten($color3, 10%)
+  background: $color1
   color: $color5
   box-shadow: 5px 0 30px darken($color7, 10%)
   ul
@@ -8,6 +9,18 @@
 
 .nav-item
   padding-top: 20px
-  button
-    width: 100%
-    color: $color7
+
+.side-panel-btn
+  border-radius: 30px !important
+  width: 100%
+  background: $color4
+  border: none
+  height: 50px
+  font-size: 1.1em
+  outline: none
+  &:hover
+    background: $color3
+
+.active-side-btn
+  background: $color3
+  box-shadow: inset 1px 1px 2px $color7
