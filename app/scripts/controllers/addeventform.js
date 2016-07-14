@@ -55,6 +55,35 @@ angular.module('eventPlannerApp')
       vm.selectedEndDate = vm.selectedStartDate;
     };
 
+
+
+    this.addGuest = function(e){
+      var duplicate = false;
+      console.log(e);
+      for(var i = 0; i<vm.event.guests.length && !duplicate; i++){
+        if(vm.guest === vm.event.guests[i]){
+          duplicate = true;
+          console.log(duplicate);
+        }
+      }
+
+      if(e.which === 13 || e === 'click'){
+
+        if(!duplicate){
+          vm.event.guests.push(vm.guest);
+          console.log(vm.guest.length);
+          vm.guest = ' ';
+
+        }
+
+      }
+    };
+
+    this.removeGuest = function(index){
+      console.log(index);
+      vm.event.guests.splice(index, 1);
+    };
+
   }
 
 ]);
