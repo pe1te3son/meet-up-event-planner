@@ -18,7 +18,7 @@
 
         <form name="loginForm" class="text-left login-form animated fadeIn" novalidate>
 
-          <div class="form-group form-label" ng-if="currentUser.$state == 'register'" ng-class="loginForm.userName.$invalid && loginForm.userName.$dirty ? 'error-msg-input' : '' ">
+          <div class="form-group form-label-animated" ng-if="currentUser.$state == 'register'" ng-class="loginForm.userName.$invalid && loginForm.userName.$dirty ? 'error-msg-input' : '' ">
             <label class="label-default-pos" for="user-name">Your name</label>
             <input type="text"
                     class="form-control"
@@ -34,7 +34,7 @@
 
           </div>
 
-          <div class="form-group form-label" ng-class="loginForm.userEmail.$invalid && loginForm.userEmail.$dirty && currentUser.$state != 'login' ? 'error-msg-input' : '' ">
+          <div class="form-group form-label-animated" ng-class="loginForm.userEmail.$invalid && loginForm.userEmail.$dirty && currentUser.$state != 'login' ? 'error-msg-input' : '' ">
             <label class="label-default-pos" for="user-email">Email address</label>
             <input type="email"
                     class="form-control"
@@ -48,7 +48,7 @@
             </div>
           </div>
 
-          <div class="form-group form-label" ng-class="loginForm.userPassword.$invalid && loginForm.userPassword.$dirty && currentUser.$state != 'login' ? 'error-msg-input' : '' ">
+          <div class="form-group form-label-animated" ng-class="loginForm.userPassword.$invalid && loginForm.userPassword.$dirty && currentUser.$state != 'login' ? 'error-msg-input' : '' ">
             <label class="label-default-pos" for="user-password">Password</label>
             <input type="password"
                     class="form-control"
@@ -65,7 +65,7 @@
 
           </div>
 
-          <div class="form-group form-label" ng-if="currentUser.$state == 'register'" ng-class="loginForm.confirmPassword.$invalid && loginForm.confirmPassword.$dirty ? 'error-msg-input' : '' ">
+          <div class="form-group form-label-animated" ng-if="currentUser.$state == 'register'" ng-class="loginForm.confirmPassword.$invalid && loginForm.confirmPassword.$dirty ? 'error-msg-input' : '' ">
             <label class="label-default-pos" for="user-confirm-password">Confirm password</label>
             <input type="password"
                     class="form-control"

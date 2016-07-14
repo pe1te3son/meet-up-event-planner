@@ -2,7 +2,7 @@
 <div class="col-sm-8 ">
   <form name="addEventForm" id="add-event-form" ng-submit="form.submit(addEventForm.$valid)" class="css-form" novalidate>
 
-    <div class="form-group form-label" ng-class="addEventForm.eventName.$invalid && addEventForm.eventName.$dirty ? 'error-msg-input' : '' ">
+    <div class="form-group form-label-animated" ng-class="addEventForm.eventName.$invalid && addEventForm.eventName.$dirty ? 'error-msg-input' : '' ">
       <label class="label-default-pos" for="event-name">Event Name</label>
       <input type="text"
             class="form-control"
@@ -17,7 +17,7 @@
 
     </div>
 
-    <fieldset class="form-group form-label">
+    <fieldset class="form-group form-label-animated">
       <label class="label-default-pos" for="category">Select category</label>
       <input  list="selectCategory"
               id="category"
@@ -38,7 +38,7 @@
       </datalist>
     </fieldset>
 
-    <div class="form-group form-label">
+    <div class="form-group form-label-animated">
       <label class="label-default-pos cover" for="start-date">Start date</label>
       <input type="datetime-local"
         class="form-control" id="start-date"
@@ -49,7 +49,7 @@
         cu-label>
     </div>
 
-    <div class="form-group form-label">
+    <div class="form-group form-label-animated">
       <label class="label-default-pos cover" for="end-date">End date</label>
       <input type="datetime-local"
         name="selectedEndDate"
@@ -61,7 +61,7 @@
 
     </div>
 
-    <div class="form-group form-label">
+    <div class="form-group form-label-animated no-margin">
       <label class="label-default-pos" for="event-host">Event host</label>
       <input class="form-control"
         type="text"
@@ -77,17 +77,23 @@
       </div>
     </div>
 
-    <div class="form-group form-label">
+    <div class="guests-cont">
+      <span ng-repeat="guest in form.event.guests" class="guest" ng-click="form.removeGuest($index)">{{guest}}</span>
+    </div>
+
+    <div class="form-group form-label-animated">
       <label class="label-default-pos" for="event-guests">Event guests</label>
+      <button type="button" name="addGuest" id="add-guest-btn" ng-show="form.guest.length > 1" ng-click="form.addGuest('click')">Add</button>
       <input class="form-control"
         type="text"
         name="eventGuests"
         id="event-guests"
-        ng-model="form.event.guests"
+        ng-model="form.guest"
+        ng-keypress="form.addGuest($event)"
         cu-label>
     </div>
 
-    <div class="form-group form-label">
+    <div class="form-group form-label-animated">
       <label class="label-default-pos" for="location-input">Location</label>
       <input
         type="text"
@@ -103,7 +109,7 @@
       </div>
     </div>
 
-    <div class="form-group form-label">
+    <div class="form-group form-label-animated">
       <label class="sr-only" for="optional-info">Additional information</label>
       <textarea class="form-textarea" id="optional-info" rows="3" ng-model="form.event.additionalInfo" placeholder="Additional informations"></textarea>
     </div>

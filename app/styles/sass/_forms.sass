@@ -30,7 +30,7 @@
   background: $color4
   box-shadow: 0px 0px 2px darken($color7, 10%)
 
-.form-label
+.form-label-animated
   position: relative
 
 .form-control:focus
@@ -50,6 +50,31 @@
     padding: 0 16px 3px
     background: $color1
     color: $color5
+
+.no-margin
+  margin: 0
+
+.guests-cont
+  display: block
+  margin: 18px 0 14px
+  min-height: 1px
+
+.guest
+  display: inline-block
+  background: lighten($color1, 5%)
+  padding: 3px 6px
+  border-radius: 5px
+  margin-right: 6px
+  margin-bottom: 6px
+  &:hover
+    cursor: pointer
+
+#add-guest-btn
+  +position(absolute, 0 0 null null)
+  background: $color4
+  border-radius: 5px !important
+  border: none
+  outline: none
 
 .cover
   background: $color1
