@@ -10,7 +10,7 @@
         <li>{{event.host}}</li>
         <li>{{event.guests}}</li>
         <li>{{event.eventLocation}}</li>
-        <li>{{event.additionalInfo}}</li>
+        <li ng-show="event.additionalInfo.length > 0">{{event.additionalInfo}}</li>
       </ul>
 
     </li>
