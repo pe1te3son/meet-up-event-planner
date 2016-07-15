@@ -10,11 +10,12 @@
 angular.module('eventPlannerApp')
   .controller('LoginCtrl', ['$firebaseAuth', 'FireBase', '$state', '$stateParams', '$rootScope', 'currentAuth', function ($firebaseAuth, FireBase, $state, $stateParams, $rootScope, currentAuth) {
     var ref = new Firebase(FireBase.link);
+    var auth = $firebaseAuth(ref);
     var vm = this;
 
-
     this.$state = $state.current.name;
-    console.log($rootScope);
+    this.invalidPassword = false;
+    this.rememberMe = true;
 
     this.details = {
       /**
@@ -22,26 +23,55 @@ angular.module('eventPlannerApp')
         email: '',
         password: '',
         confirmPassword: '',
-        rememberMe: true
       */
     };
 
     this.loginUser = function(isValid){
-      console.log(isValid);
-      ref.authWithPassword({
-        email    : vm.details.email,
-        password : vm.details.password
-      }, function(error, authData) {
+      //console.log(vm);
+      if(isValid){
+        vm.spinner = true;
+        auth.$authWithPassword({
+          email: vm.details.email,
+          password: vm.details.password
+        }, { remember: vm.rememberMeFunc(vm.rememberMe) }).then(function(authData) {
 
-        if (error) {
-          console.log('Login Failed!', error);
-        } else {
-          console.log('Authenticated successfully with payload:', authData);
+          console.log('Logged in as:', authData.uid);
           vm.userLoggedIn('peter');
+          vm.spinner = false;
 
-        }
+        }).catch(function(error) {
+          switch (error.code) {
+            case 'INVALID_PASSWORD':
+                //errorMsg += '* The specified user account or password is incorrect.';
+                console.log('The specified user account or password is incorrect.');
+                vm.invalidPassword = true;
+                vm.details.password = '';
+                break;
+            case 'INVALID_USER':
+                //errorMsg += '* The specified user account does not exist.';
+                console.log('The specified user account does not exist.');
+                vm.invalidUser = true;
+                break;
+            default:
+                vm.logInError = true;
+                //errorMsg = 'Error logging user in: ' + error;
+          }
 
-      }); //authWithPassword
+          vm.spinner = false;
+
+        });
+      }
+
+    };
+
+    this.rememberMeFunc = function(value){
+      if(!value){
+        console.log('sesion');
+        return 'sessionOnly';
+      } else {
+        console.log('def');
+        return 'default';
+      }
     };
 
     this.userLoggedIn = function(userName){

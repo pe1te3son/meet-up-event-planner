@@ -34,7 +34,7 @@
 
           </div>
 
-          <div class="form-group form-label-animated" ng-class="loginForm.userEmail.$invalid && loginForm.userEmail.$dirty && currentUser.$state != 'login' ? 'error-msg-input' : '' ">
+          <div class="form-group form-label-animated" ng-class="loginForm.userEmail.$invalid && loginForm.userEmail.$dirty ? 'error-msg-input' : '' ">
             <label class="label-default-pos" for="user-email">Email address</label>
             <input type="email"
                     class="form-control"
@@ -43,9 +43,14 @@
                     ng-model="currentUser.details.email"
                     cu-label
                     required>
-            <div ng-messages="loginForm.userEmail.$error" ng-if="loginForm.userEmail.$dirty && currentUser.$state != 'login'">
+            <div ng-messages="loginForm.userEmail.$error" ng-if="loginForm.userEmail.$dirty">
               <div ng-messages-include="views/messages.html"></div>
             </div>
+
+            <div class="firebase-error">
+              <span class="error-msg error-block" ng-show="currentUser.invalidUser">The specified user account does not exist.</span>
+            </div>
+
           </div>
 
           <div class="form-group form-label-animated" ng-class="loginForm.userPassword.$invalid && loginForm.userPassword.$dirty && currentUser.$state != 'login' ? 'error-msg-input' : '' ">
@@ -61,6 +66,10 @@
                     required>
             <div ng-messages="loginForm.userPassword.$error" ng-if="loginForm.userPassword.$dirty && currentUser.$state != 'login'">
               <div ng-messages-include="views/messages.html"></div>
+            </div>
+
+            <div class="firebase-error">
+              <span class="error-msg error-block" ng-show="currentUser.invalidPassword">The specified user account or password is incorrect.</span>
             </div>
 
           </div>
@@ -80,14 +89,19 @@
             </div>
           </div>
 
-          <div class="checkbox text-muted" ng-if="currentUser.$state == 'login'">
-            <label>
-              <input type="checkbox" ng-model="currentUser.details.rememberMe"> Remember me
-            </label>
+          <div class="checkbox" ng-if="currentUser.$state == 'login'">
+             <label>
+               <input type="checkbox" ng-model="currentUser.rememberMe"> Remember me
+             </label>
+           </div>
+
+          <button type="submit" class="btn btn-custom" ng-if="currentUser.$state == 'login'" ng-click="currentUser.loginUser(loginForm.$valid)">Sign in</button>
+          <button type="submit" class="btn btn-custom" ng-if="currentUser.$state == 'register'" ng-click="currentUser.registerUser(loginForm.$valid)">Register</button>
+          <div class="spinner-cont" ng-show="currentUser.spinner">
+            <i class="fa fa-spinner fa-spin fa-fw"></i>
+            <span class="sr-only">Loading...</span>
           </div>
 
-        <button type="submit" class="btn btn-custom" ng-if="currentUser.$state == 'login'" ng-click="currentUser.loginUser(loginForm.$valid)">Sign in</button>
-        <button type="submit" class="btn btn-custom" ng-if="currentUser.$state == 'register'" ng-click="currentUser.registerUser(loginForm.$valid)">Register</button>
       </form>
       </div>
 
