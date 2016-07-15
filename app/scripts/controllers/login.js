@@ -20,6 +20,10 @@ angular.module('eventPlannerApp')
     this.invalidUser = false;
     this.invalidPassword = false;
     this.logInError = false;
+    this.regSuccess = false;
+    this.emailTaken = false;
+    this.registerFailed = false;
+    this.regError = '';
 
     this.details = {
       /**
@@ -88,10 +92,19 @@ angular.module('eventPlannerApp')
           password: vm.details.password
         }).then(function(userData) {
           console.log("User created with uid: " + userData.uid);
-          $state.go('login');
+          $('#loginForm').slideUp('fast');
+          vm.regSuccess = true;
 
         }).catch(function(error) {
           console.log(error);
+          if(error.code === 'EMAIL_TAKEN'){
+            vm.emailTaken = true;
+          } else {
+            vm.regError = '' + error+ '.';
+            vm.registerFailed = true;
+          }
+
+          vm.spinner = false;
         });
       }
 
