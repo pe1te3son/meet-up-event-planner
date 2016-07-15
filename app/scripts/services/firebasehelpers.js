@@ -11,7 +11,7 @@
 
 
 angular.module('eventPlannerApp')
-  .service('FireBase', [ '$firebaseAuth' , function($firebaseAuth){
+  .service('FirebaseService', [ '$firebaseAuth' , function($firebaseAuth){
 
       this.link = 'https://event-planner-janak.firebaseio.com/';
 

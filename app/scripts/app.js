@@ -20,7 +20,20 @@ angular
     'ui.router',
     'firebase'
   ])
-  .run(['$rootScope', '$state', function($rootScope, $state) {
+  .run(['$rootScope', '$state', 'FirebaseService', '$firebaseArray', function($rootScope, $state, FirebaseService, $firebaseArray) {
+
+    console.log(FirebaseService);
+    if(FirebaseService.auth().$getAuth()){
+      $state.go('user', { userId: 'petejanak'}).then(function(){
+          $state.go('allEvents');
+        });
+    } else {
+      $state.go('login');
+    }
+
+    var database = $firebaseArray(new Firebase(FirebaseService.link));
+    console.log(database);
+
     $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
       // We can catch the error thrown when the $requireAuth promise is rejected
       // and redirect the user back to the home page
@@ -29,10 +42,11 @@ angular
         $state.go('login');
       }
     });
+
   }])
-  .config(function($stateProvider, $urlRouterProvider) {
+  .config(function($stateProvider) {
   // For any unmatched url, redirect to /state1
-  $urlRouterProvider.otherwise('/login');
+  //$urlRouterProvider.otherwise('/login');
   //
   // Now set up the states
 
@@ -44,9 +58,9 @@ angular
       resolve: {
        // controller will not be loaded until $waitForAuth resolves
        // Auth refers to our $firebaseAuth wrapper in the example above
-       'currentAuth': ['FireBase', function(FireBase) {
+       'currentAuth': ['FirebaseService', function(FirebaseService) {
          // $waitForAuth returns a promise so the resolve waits for it to complete
-         var auth = FireBase.auth();
+         var auth = FirebaseService.auth();
          return auth.$waitForAuth();
        }]
      }
@@ -58,9 +72,9 @@ angular
       resolve: {
          // controller will not be loaded until $waitForAuth resolves
          // Auth refers to our $firebaseAuth wrapper in the example above
-         'currentAuth': ['FireBase', function(FireBase) {
+         'currentAuth': ['FirebaseService', function(FirebaseService) {
            // $waitForAuth returns a promise so the resolve waits for it to complete
-           var auth = FireBase.auth();
+           var auth = FirebaseService.auth();
            return auth.$waitForAuth();
          }]
        }
@@ -73,9 +87,9 @@ angular
       resolve: {
        // controller will not be loaded until $waitForAuth resolves
        // Auth refers to our $firebaseAuth wrapper in the example above
-       'currentAuth': ['FireBase', function(FireBase) {
+       'currentAuth': ['FirebaseService', function(FirebaseService) {
          // $waitForAuth returns a promise so the resolve waits for it to complete
-         var auth = FireBase.auth();
+         var auth = FirebaseService.auth();
          return auth.$waitForAuth();
        }]
      }
@@ -94,22 +108,5 @@ angular
       parent: 'user'
 
     });
-    // .state('state1.list', {
-    //   url: '/list',
-    //   templateUrl: 'partials/state1.list.html',
-    //   controller: function($scope) {
-    //     $scope.items = ['A', 'List', 'Of', 'Items'];
-    //   }
-    // })
-    // .state('state2', {
-    //   url: '/state2',
-    //   templateUrl: 'partials/state2.html'
-    // })
-    // .state('state2.list', {
-    //   url: '/list',
-    //   templateUrl: 'partials/state2.list.html',
-    //   controller: function($scope) {
-    //     $scope.things = ['A', 'Set', 'Of', 'Things'];
-    //   }
-    // });
+
 });

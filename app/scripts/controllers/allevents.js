@@ -8,9 +8,9 @@
  * Controller of the eventPlannerApp
  */
 angular.module('eventPlannerApp')
-  .controller('AlleventsCtrl', ['$firebaseArray', 'FireBase', function ($firebaseArray, FireBase) {
+  .controller('AlleventsCtrl', ['$firebaseArray', 'FirebaseService', function ($firebaseArray, FirebaseService) {
 
-    var ref = new Firebase( FireBase.link + '/events');
+    var ref = new Firebase( FirebaseService.link + '/events');
 
     this.allEvents = $firebaseArray(ref);
 

@@ -9,9 +9,9 @@
  */
 
 angular.module('eventPlannerApp')
-  .controller('ControlpanelCtrl', [ 'FireBase', '$state',  function (FireBase, $state) {
+  .controller('ControlpanelCtrl', [ 'FirebaseService', '$state',  function (FirebaseService, $state) {
     var vm = this;
-    this.auth = FireBase.auth();
+    this.auth = FirebaseService.auth();
 
     console.log(this.auth.$getAuth());
 

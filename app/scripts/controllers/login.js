@@ -8,10 +8,12 @@
  * Controller of the eventPlannerApp
  */
 angular.module('eventPlannerApp')
-  .controller('LoginCtrl', ['$firebaseAuth', 'FireBase', '$state', '$stateParams', '$rootScope', 'currentAuth', function ($firebaseAuth, FireBase, $state, $stateParams, $rootScope, currentAuth) {
-    var ref = new Firebase(FireBase.link);
+  .controller('LoginCtrl', ['$firebaseAuth', 'FirebaseService', '$state', '$stateParams', '$rootScope', function ($firebaseAuth, FirebaseService, $state, $stateParams, $rootScope) {
+    var ref = new Firebase(FirebaseService.link);
     var auth = $firebaseAuth(ref);
     var vm = this;
+
+    this.sc = $rootScope;
 
     this.$state = $state.current.name;
     this.invalidPassword = false;
@@ -24,6 +26,23 @@ angular.module('eventPlannerApp')
         password: '',
         confirmPassword: '',
       */
+    };
+
+    this.rememberMeFunc = function(value){
+      if(!value){
+        console.log('sesion');
+        return 'sessionOnly';
+      } else {
+        console.log('def');
+        return 'default';
+      }
+    };
+
+    this.userLoggedIn = function(userName){
+
+      $state.go('user', { userId: userName}).then(function(){
+        $state.go('allEvents');
+      });
     };
 
     this.loginUser = function(isValid){
@@ -63,30 +82,6 @@ angular.module('eventPlannerApp')
       }
 
     };
-
-    this.rememberMeFunc = function(value){
-      if(!value){
-        console.log('sesion');
-        return 'sessionOnly';
-      } else {
-        console.log('def');
-        return 'default';
-      }
-    };
-
-    this.userLoggedIn = function(userName){
-
-      $state.go('user', { userId: userName}).then(function(){
-        $state.go('allEvents');
-      });
-    };
-
-    if(currentAuth){
-      console.log('i ran');
-      $state.go('user', { userId: 'petejanak'}).then(function(){
-        $state.go('allEvents');
-      });
-    }
 
   }
 ]);
