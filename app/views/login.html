@@ -89,11 +89,15 @@
             </div>
           </div>
 
+          <div class="general-msg-cont text-center">
+            <span class="error-msg error-block" ng-show="currentUser.logInError">Failed to login! Please try later or reload the page.</span>
+          </div>
+
           <div class="checkbox" ng-if="currentUser.$state == 'login'">
-             <label>
-               <input type="checkbox" ng-model="currentUser.rememberMe"> Remember me
-             </label>
-           </div>
+            <label>
+              <input type="checkbox" ng-model="currentUser.rememberMe"> Remember me
+            </label>
+          </div>
 
           <button type="submit" class="btn btn-custom" ng-if="currentUser.$state == 'login'" ng-click="currentUser.loginUser(loginForm.$valid)">Sign in</button>
           <button type="submit" class="btn btn-custom" ng-if="currentUser.$state == 'register'" ng-click="currentUser.registerUser(loginForm.$valid)">Register</button>
