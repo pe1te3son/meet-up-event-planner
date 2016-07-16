@@ -3,28 +3,30 @@
 
     <div class="custom-input-group">
       <div class="form-group form-label-animated" ng-class="addEventForm.eventName.$invalid && addEventForm.eventName.$dirty ? 'error-msg-input' : '' ">
+        <i class="fa fa-book label-icon" aria-hidden="true"></i>
         <label class="label-default-pos" for="event-name">Event Name</label>
         <input type="text"
-              class="form-control"
-              id="event-name"
-              name="eventName"
-              ng-model="form.event.name"
-              cu-label
-              required>
+          class="form-control event-input"
+          id="event-name"
+          name="eventName"
+          ng-model="form.event.name"
+          cu-label
+          required>
         <div ng-messages="addEventForm.eventName.$error" ng-if="addEventForm.eventName.$dirty">
           <div ng-messages-include="views/messages.html"></div>
         </div>
       </div>
 
       <fieldset class="form-group form-label-animated">
+        <i class="fa fa-list-ul label-icon" aria-hidden="true"></i>
         <label class="label-default-pos" for="category">Select category</label>
-        <input  list="selectCategory"
-                id="category"
-                name="eventCategory"
-                class="form-control"
-                ng-model="form.event.category"
-                cu-label
-                required>
+        <input list="selectCategory"
+          id="category"
+          name="eventCategory"
+          class="form-control event-input"
+          ng-model="form.event.category"
+          cu-label
+          required>
 
         <div ng-messages="addEventForm.eventCategory.$error" ng-if="addEventForm.eventCategory.$dirty">
           <div ng-messages-include="views/messages.html"></div>
@@ -37,9 +39,11 @@
       </fieldset>
 
       <div class="form-group form-label-animated">
+        <i class="fa fa-play label-icon" aria-hidden="true"></i>
         <label class="label-default-pos cover" for="start-date">Start date</label>
         <input type="datetime-local"
-          class="form-control" id="start-date"
+          class="form-control event-input"
+          id="start-date"
           ng-model="form.selectedStartDate"
           name="selectedStartDate"
           min="{{form.setDate}}"
@@ -48,10 +52,11 @@
       </div>
 
       <div class="form-group form-label-animated">
+        <i class="fa fa-stop-circle label-icon" aria-hidden="true"></i>
         <label class="label-default-pos cover" for="end-date">End date</label>
         <input type="datetime-local"
           name="selectedEndDate"
-          class="form-control"
+          class="form-control event-input"
           id="end-date"
           ng-model="form.selectedEndDate"
           min="{{form.setDate}}"
@@ -61,30 +66,42 @@
     </div><!-- /custom-input-group -->
 
     <div class="custom-input-group">
-      <div class="form-group form-label-animated no-margin">
+      <div class="form-group form-label-animated">
+        <i class="fa fa-map-marker label-icon" aria-hidden="true"></i>
+        <label class="label-default-pos" for="location-input">Location</label>
+        <input
+          type="text"
+          name="location"
+          id="location-input"
+          class="form-control event-input"
+          ng-model="form.event.eventLocation"
+          cu-label
+          required>
+        <div ng-messages="addEventForm.location.$error" ng-if="addEventForm.location.$dirty">
+          <div ng-messages-include="views/messages.html"></div>
+        </div>
+      </div>
+
+      <div class="form-group form-label-animated">
+        <i class="fa fa-user label-icon" aria-hidden="true"></i>
         <label class="label-default-pos" for="event-host">Event host</label>
-        <input class="form-control"
+        <input class="form-control event-input"
           type="text"
           name="eventHost"
           id="event-host"
           ng-model="form.event.host"
           cu-label
           required>
-
-
         <div ng-messages="addEventForm.eventHost.$error" ng-if="addEventForm.eventHost.$dirty">
           <div ng-messages-include="views/messages.html"></div>
         </div>
       </div>
 
-      <div class="guests-cont">
-        <span ng-repeat="guest in form.event.guests" class="guest" ng-click="form.removeGuest($index)">{{guest}}</span>
-      </div>
-
-      <div class="form-group form-label-animated">
+      <div class="form-group form-label-animated no-margin">
+        <i class="fa fa-users label-icon" aria-hidden="true"></i>
         <label class="label-default-pos" for="event-guests">Event guests</label>
-        <button type="button" name="addGuest" id="add-guest-btn" ng-show="form.guest.length > 1" ng-click="form.addGuest('click')">Add</button>
-        <input class="form-control"
+        <button type="button" name="addGuest" id="add-guest-btn" ng-show="form.guest.length > 0" ng-click="form.addGuest('click')">Add</button>
+        <input class="form-control event-input"
           type="text"
           name="eventGuests"
           id="event-guests"
@@ -92,26 +109,15 @@
           ng-keypress="form.addGuest($event)"
           cu-label>
       </div>
-
-      <div class="form-group form-label-animated">
-        <label class="label-default-pos" for="location-input">Location</label>
-        <input
-          type="text"
-          name="location"
-          id="location-input"
-          class="form-control"
-          ng-model="form.event.eventLocation"
-          cu-label
-          required>
-
-        <div ng-messages="addEventForm.location.$error" ng-if="addEventForm.location.$dirty">
-          <div ng-messages-include="views/messages.html"></div>
-        </div>
+      <div class="guests-cont">
+        <span ng-repeat="guest in form.event.guests" class="guest" ng-click="form.removeGuest($index)">{{guest}}</span>
       </div>
+
     </div><!-- /custom-input-group -->
 
     <div class="custom-input-group">
       <div class="form-group form-label-animated">
+        <i class="fa fa-info-circle textarea-icon" aria-hidden="true"></i>
         <label class="textarea-label" for="optional-info">Additional information</label>
         <textarea class="form-textarea" id="optional-info" rows="3" ng-model="form.event.additionalInfo"></textarea>
       </div>

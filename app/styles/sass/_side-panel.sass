@@ -1,14 +1,15 @@
 .side-panel
   width: 100px
-  +position(absolute, 0 null 0 0)
+  +position(fixed, 180px null null 0)
   background: $color1
   color: $color5
-  box-shadow: 5px 0 30px darken($color7, 10%)
+  box-shadow: 0 0 15px darken($color7, 10%)
+  border-radius: 0 20px 20px 0
   ul
-    padding: 50px 15px 5px
+    padding: 50px 15px
 
 .nav-item
-  padding-top: 20px
+  padding: 10px 0
 
 .side-panel-btn
   border-radius: 30px !important

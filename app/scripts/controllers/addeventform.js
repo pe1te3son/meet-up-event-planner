@@ -82,7 +82,7 @@ angular.module('eventPlannerApp')
 
         if(!duplicate){
           vm.event.guests.push(vm.guest);
-          vm.guest = ' ';
+          vm.guest = '';
         }
 
       }

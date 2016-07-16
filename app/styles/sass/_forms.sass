@@ -1,6 +1,10 @@
 #add-event-form
   max-width: 450px
   position: relative
+  .form-group
+    position: relative
+  .label-default-pos
+    left: 25px
 
 .form-belt
   max-width: 450px
@@ -50,16 +54,23 @@
     border-bottom: 2px solid $color3
     border-radius: 0
     transition: none
-    padding: 0 16px 3px
+    padding: 0 5px 0 16px
     background: $color1
     color: $color5
+  .event-input
+    padding-left: 30px
+
+.label-icon
+  +position(absolute, 8px null null 2px)
+  font-size: 1.3em
+  color: #999
 
 .no-margin
   margin: 0
 
 .guests-cont
   display: block
-  margin: 18px 0 14px
+  margin: 10px 0 22px
   min-height: 1px
 
 .guest
@@ -97,11 +108,15 @@
 .textarea-label
   color: #999
   font-style: italic
-  padding: 5px
+  padding: 5px 5px 0 25px
   font-size: 0.9em
+.textarea-icon
+  +position(absolute, 4px null null 2px)
+  color: #999
+  font-size: 1.3em
 
 .label-default-pos
-  +position(absolute, 6px 0 0 3px)
+  +position(absolute, 6px 0 0 10px)
   margin: 0
   color: #999
   font-weight: normal
@@ -110,11 +125,11 @@
 
 .label-animated
   transition: all 0.1s ease
-  transform: translateY(-24px)
+  transform: translate(-10px, -24px)
 
 .label-animated-off
   transition: all 0.1s ease
-  transform: translateY(0)
+  transform: translate(0, 0)
 
 .highlight
   color: $color4
