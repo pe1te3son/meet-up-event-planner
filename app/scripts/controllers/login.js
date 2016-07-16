@@ -36,10 +36,8 @@ angular.module('eventPlannerApp')
 
     this.rememberMeFunc = function(value){
       if(!value){
-        console.log('sesion');
         return 'sessionOnly';
       } else {
-        console.log('def');
         return 'default';
       }
     };
