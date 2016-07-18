@@ -9,7 +9,7 @@
  */
 
 angular.module('eventPlannerApp')
-  .controller('AddeventformCtrl', ['$firebaseArray', 'FirebaseService', '$state', function ($firebaseArray, FirebaseService, $state) {
+  .controller('AddeventformCtrl', ['$firebaseArray', 'FirebaseService', '$state', '$http', function ($firebaseArray, FirebaseService, $state, $http) {
 
     var ref = new Firebase(FirebaseService.link + '/events');
     var vm = this;
@@ -92,6 +92,38 @@ angular.module('eventPlannerApp')
       vm.event.guests.splice(index, 1);
     };
 
-  }
+    this.componentForm = {
+      street_number: 'short_name',
+      route: 'long_name',
+      locality: 'long_name',
+      administrative_area_level_1: 'short_name',
+      country: 'long_name',
+      postal_code: 'short_name'
+    };
+
+    this.geolocate = function() {
+      // Bias the autocomplete object to the user's geographical location,
+      // as supplied by the browser's 'navigator.geolocation' object.
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          var geolocation = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
+          /* global google */
+          var circle = new google.maps.Circle({
+            center: geolocation,
+            radius: position.coords.accuracy
+          });
+          //autocomplete.setBounds(circle.getBounds());
+          console.log(circle);
+        });
+      }
+    };
+
+
+
+
+  }//controller
 
 ]);
