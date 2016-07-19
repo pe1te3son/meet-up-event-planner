@@ -1,5 +1,5 @@
 <div class="col-xs-12">
-  <form name="addEventForm" id="add-event-form" ng-submit="form.submit(addEventForm.$valid)" class="css-form" novalidate>
+  <form name="addEventForm" id="add-event-form" class="css-form" novalidate>
 
     <div class="custom-input-group">
       <div class="form-group form-label-animated" ng-class="addEventForm.eventName.$invalid && addEventForm.eventName.$dirty ? 'error-msg-input' : '' ">
@@ -46,9 +46,14 @@
           id="start-date"
           ng-model="form.selectedStartDate"
           name="selectedStartDate"
-          min="{{form.setDate}}"
+          min="{{form.setDatetime()}}"
+          ng-focus="form.fillStartDateInput()"
           ng-change="form.updateEndDate()"
+          required
           cu-label>
+        <div ng-messages="addEventForm.selectedStartDate.$error" ng-if="addEventForm.selectedStartDate.$dirty || form.isNotValid">
+          <div ng-messages-include="views/messages.html"></div>
+        </div>
       </div>
 
       <div class="form-group form-label-animated">
@@ -59,9 +64,13 @@
           class="form-control event-input"
           id="end-date"
           ng-model="form.selectedEndDate"
-          min="{{form.setDate}}"
+          ng-focus="form.fillEndDateInput()"
+          min="{{form.setDatetime()}}"
+          required
           cu-label>
-
+        <div ng-messages="addEventForm.selectedEndDate.$error" ng-if="addEventForm.selectedEndDate.$dirty || form.isNotValid">
+          <div ng-messages-include="views/messages.html"></div>
+        </div>
       </div>
     </div><!-- /custom-input-group -->
 
@@ -132,7 +141,7 @@
 
 
     <div class="text-right">
-      <button type="submit" class="btn btn-custom">Add new</button>
+      <button type="button" class="btn btn-custom" ng-click="form.submit(addEventForm.$valid)">Add new</button>
       <!-- <i class="fa fa-plus-circle btn-icon" aria-hidden="true"></i> -->
     </div>
 

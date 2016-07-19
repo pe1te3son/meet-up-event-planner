@@ -13,29 +13,17 @@ angular.module('eventPlannerApp')
 
     var ref = new Firebase(FirebaseService.link + '/events');
     var vm = this;
-    var date = moment().format('YYYY-MM-DD');
-    var time = moment().format('hh:mm');
 
-    // Formated date for html input field with attribute type=datetime-local
-    this.setDate = date + 'T' + time;
     this.collection = $firebaseArray(ref);
-
-    // Updated end event time and date base on start date and time selected
-    this.updateEndDate = function(){
-      vm.selectedEndDate = vm.selectedStartDate;
-    };
 
     // Returns all default values for add event form
     this.eventDefault = function(){
-      vm.selectedStartDate = new Date(vm.setDate);
-      vm.updateEndDate();
-
       // All values commented out are optional
       return {
         name: '',
         category: '',
-        startDate: date,
-        startTime: time,
+        startDate: '',
+        startTime: '',
         endDate: '',
         endTime: '',
         host: '',
@@ -58,6 +46,26 @@ angular.module('eventPlannerApp')
 
       // Save to database
       vm.collection.$add(vm.event);
+    };
+
+    // Formated date for html input field with attribute type=datetime-local
+    this.setDatetime = function(){
+      var date = moment().format('YYYY-MM-DD');
+      var time = moment().format('hh:mm');
+      return date + 'T' + time;
+    };
+
+    this.fillStartDateInput = function(){
+      vm.selectedStartDate = new Date(vm.setDatetime());
+    };
+
+    this.fillEndDateInput = function(){
+      vm.updateEndDate();
+    };
+
+    // Updated end event time and date base on start date and time selected
+    this.updateEndDate = function(){
+      vm.selectedEndDate = vm.selectedStartDate;
     };
 
     this.guestsRequired = false;
