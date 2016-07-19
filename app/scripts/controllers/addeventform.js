@@ -9,13 +9,17 @@
  */
 
 angular.module('eventPlannerApp')
-  .controller('AddeventformCtrl', ['$firebaseArray', 'FirebaseService', '$state', function ($firebaseArray, FirebaseService, $state) {
+  .controller('AddeventformCtrl', ['FirebaseService', '$state', 'currentAuth', function (FirebaseService, $state, currentAuth) {
 
-    var ref = new Firebase(FirebaseService.link + '/events');
+    if(currentAuth){
+      this.collection = FirebaseService.array('/events');
+    } else {
+      $state.go('login');
+    }
+
     var vm = this;
-
     // Store events
-    this.collection = $firebaseArray(ref);
+
 
     // Returns all default values for add event form
     this.eventDefault = function(){
@@ -28,8 +32,8 @@ angular.module('eventPlannerApp')
         endDate: '',
         endTime: '',
         host: '',
-        guests: [],
-        eventLocation: {},
+        guests: '',
+        eventLocation: ''
         //additionalInfo: ''
       };
     };
@@ -65,6 +69,7 @@ angular.module('eventPlannerApp')
 
     this.fillStartDateInput = function(){
       vm.selectedStartDate = new Date(vm.setDatetime());
+      console.log(this.collection);
     };
 
     this.fillEndDateInput = function(){
@@ -99,6 +104,7 @@ angular.module('eventPlannerApp')
 
     this.addGuest = function(e){
       var duplicate = false;
+      vm.event.guests = [];
 
       for(var i = 0; i<vm.event.guests.length && !duplicate; i++){
         if(vm.guest === vm.event.guests[i]){

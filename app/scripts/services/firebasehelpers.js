@@ -20,8 +20,13 @@ angular.module('eventPlannerApp')
         return $firebaseAuth(ref);
       };
 
+      this.userUid = function(){
+        var uid = this.auth().$getAuth().uid;
+        return uid;
+      };
+
       this.array = function($arg){
-        var ref = new Firebase(this.link + $arg);
+        var ref = new Firebase(this.link + this.userUid() + $arg);
         return $firebaseArray(ref);
       };
 

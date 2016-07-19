@@ -30,15 +30,6 @@ angular
       $state.go('login');
     }
 
-    $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
-      // We can catch the error thrown when the $requireAuth promise is rejected
-      // and redirect the user back to the home page
-      if (error === 'AUTH_REQUIRED') {
-        console.log('auth req');
-        $state.go('login');
-      }
-    });
-
   }])
   .config(function($stateProvider) {
   // For any unmatched url, redirect to /state1
@@ -93,6 +84,12 @@ angular
       templateUrl: 'views/user.addFormView.html',
       controller: 'AddeventformCtrl as form',
       parent: 'user',
+      resolve: {
+       'currentAuth': ['FirebaseService', function(FirebaseService) {
+         var auth = FirebaseService.auth();
+         return auth.$waitForAuth();
+       }]
+     }
 
     })
     .state('allEvents', {
