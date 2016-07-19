@@ -14,6 +14,7 @@ angular.module('eventPlannerApp')
     var ref = new Firebase(FirebaseService.link + '/events');
     var vm = this;
 
+    // Store events
     this.collection = $firebaseArray(ref);
 
     // Returns all default values for add event form
@@ -35,6 +36,13 @@ angular.module('eventPlannerApp')
 
     // Set defaults
     this.event = this.eventDefault();
+
+    /*
+      Temporaly store location input for purpose of validation with angular.
+      Input is processed with fillInAddress function and saved in event object
+      as an object with a key = address type.
+    */
+    this.tempLocation = '';
 
     this.addEvent = function(){
 
@@ -147,7 +155,7 @@ angular.module('eventPlannerApp')
     this.fillInAddress = function() {
       // Get the place details from the autocomplete object.
       var place = vm.autocomplete.getPlace();
-
+      vm.event.eventLocation = {};
       // Get each component of the address from the place details
       // and fill the corresponding field on the form.
       for (var i = 0; i < place.address_components.length; i++) {
@@ -159,6 +167,7 @@ angular.module('eventPlannerApp')
           vm.event.eventLocation[addressType] = val;
         }
       }
+      console.log(vm.event.eventLocation);
     };
 
     this.initAutocomplete = function() {
@@ -169,10 +178,10 @@ angular.module('eventPlannerApp')
           /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
           {types: ['geocode']});
 
+      vm.geolocate();
       // When the user selects an address from the dropdown, populate the address
       // fields in the form.
       vm.autocomplete.addListener('place_changed', vm.fillInAddress);
-      vm.geolocate();
     };
 
   }//controller

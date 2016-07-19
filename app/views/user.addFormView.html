@@ -19,7 +19,7 @@
 
       <fieldset class="form-group form-label-animated">
         <i class="fa fa-list-ul label-icon" aria-hidden="true"></i>
-        <label class="label-default-pos" for="category">Select category</label>
+        <label class="label-default-pos" for="category" style="width:80%">Select category</label>
         <input list="selectCategory"
           id="category"
           name="eventCategory"
@@ -84,7 +84,7 @@
           id="autocomplete"
           class="form-control event-input"
           ng-focus="form.initAutocomplete()"
-          ng-model="form.event.location"
+          ng-model="form.tempLocation"
           placeholder=""
           cu-label
           required>

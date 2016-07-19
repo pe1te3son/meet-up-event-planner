@@ -26,12 +26,10 @@ angular.module('eventPlannerApp')
     this.regError = '';
 
     this.details = {
-      /**
         name: '',
         email: '',
         password: '',
         confirmPassword: '',
-      */
     };
 
     this.rememberMeFunc = function(value){
@@ -58,9 +56,9 @@ angular.module('eventPlannerApp')
           password: vm.details.password
         }, { remember: vm.rememberMeFunc(vm.rememberMe) }).then(function(authData) {
           console.log(authData);
-          vm.userLoggedIn('peter');
-          vm.spinner = false;
+          vm.userLoggedIn(authData.uid);
 
+          vm.spinner = false;
         }).catch(function(error) {
           switch (error.code) {
             case 'INVALID_PASSWORD':
@@ -92,6 +90,12 @@ angular.module('eventPlannerApp')
           console.log("User created with uid: " + userData.uid);
           $('#loginForm').slideUp('fast');
           vm.regSuccess = true;
+
+          var data = FirebaseService.obj(userData.uid);
+          data.userDetails = {
+            name: vm.details.name
+          };
+          data.$save();
 
         }).catch(function(error) {
           console.log(error);

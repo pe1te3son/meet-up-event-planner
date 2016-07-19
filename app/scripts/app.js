@@ -20,19 +20,15 @@ angular
     'ui.router',
     'firebase'
   ])
-  .run(['$rootScope', '$state', 'FirebaseService', '$firebaseArray', function($rootScope, $state, FirebaseService, $firebaseArray) {
+  .run(['$rootScope', '$state', 'FirebaseService', function($rootScope, $state, FirebaseService) {
 
-    console.log(FirebaseService);
     if(FirebaseService.auth().$getAuth()){
-      $state.go('user', { userId: 'petejanak'}).then(function(){
+      $state.go('user', { userId: FirebaseService.auth().$getAuth().uid }).then(function(){
           $state.go('allEvents');
         });
     } else {
       $state.go('login');
     }
-
-    var database = $firebaseArray(new Firebase(FirebaseService.link));
-    console.log(database);
 
     $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
       // We can catch the error thrown when the $requireAuth promise is rejected
@@ -47,8 +43,6 @@ angular
   .config(function($stateProvider) {
   // For any unmatched url, redirect to /state1
   //$urlRouterProvider.otherwise('/login');
-  //
-  // Now set up the states
 
   $stateProvider
     .state('login', {
@@ -98,7 +92,7 @@ angular
       url: '/add-new',
       templateUrl: 'views/user.addFormView.html',
       controller: 'AddeventformCtrl as form',
-      parent: 'user'
+      parent: 'user',
 
     })
     .state('allEvents', {
