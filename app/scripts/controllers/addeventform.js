@@ -9,7 +9,7 @@
  */
 
 angular.module('eventPlannerApp')
-  .controller('AddeventformCtrl', ['$firebaseArray', 'FirebaseService', '$state', '$http', function ($firebaseArray, FirebaseService, $state, $http) {
+  .controller('AddeventformCtrl', ['$firebaseArray', 'FirebaseService', '$state', function ($firebaseArray, FirebaseService, $state) {
 
     var ref = new Firebase(FirebaseService.link + '/events');
     var vm = this;
@@ -40,7 +40,7 @@ angular.module('eventPlannerApp')
         endTime: '',
         host: '',
         guests: [],
-        eventLocation: '',
+        eventLocation: {},
         //additionalInfo: ''
       };
     };
@@ -60,13 +60,25 @@ angular.module('eventPlannerApp')
       vm.collection.$add(vm.event);
     };
 
-    this.submit = function(isValid){
-      if(isValid){
-        vm.addEvent();
+    this.guestsRequired = false;
+    this.guestDuplicate = false;
+    this.isNotValid = false;
 
+    this.submit = function(isValid){
+
+      if(vm.event.guests.length && isValid){
+        vm.addEvent();
         // Reload add form to clear inputs
         $state.reload();
+
+      } else {
+        vm.isNotValid = true;
       }
+
+      if(!vm.event.guests.length) {
+        vm.guestsRequired = true;
+      }
+
     };
 
     this.addGuest = function(e){
@@ -81,8 +93,12 @@ angular.module('eventPlannerApp')
       if(e.which === 13 || e === 'click'){
 
         if(!duplicate){
+          vm.guestsRequired = false;
+          vm.guestDuplicate = false;
           vm.event.guests.push(vm.guest);
           vm.guest = '';
+        } else if(duplicate){
+          vm.guestDuplicate = true;
         }
 
       }
@@ -115,14 +131,41 @@ angular.module('eventPlannerApp')
             center: geolocation,
             radius: position.coords.accuracy
           });
-          //autocomplete.setBounds(circle.getBounds());
-          console.log(circle);
+          vm.autocomplete.setBounds(circle.getBounds());
         });
       }
     };
 
+    this.fillInAddress = function() {
+      // Get the place details from the autocomplete object.
+      var place = vm.autocomplete.getPlace();
 
+      // Get each component of the address from the place details
+      // and fill the corresponding field on the form.
+      for (var i = 0; i < place.address_components.length; i++) {
+        var addressType = place.address_components[i].types[0];
+        if (vm.componentForm[addressType]) {
+          var val = place.address_components[i][vm.componentForm[addressType]];
 
+          // Save each address type
+          vm.event.eventLocation[addressType] = val;
+        }
+      }
+    };
+
+    this.initAutocomplete = function() {
+
+      // Create the autocomplete object, restricting the search to geographical
+      // location types.
+      vm.autocomplete = new google.maps.places.Autocomplete(
+          /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+          {types: ['geocode']});
+
+      // When the user selects an address from the dropdown, populate the address
+      // fields in the form.
+      vm.autocomplete.addListener('place_changed', vm.fillInAddress);
+      vm.geolocate();
+    };
 
   }//controller
 

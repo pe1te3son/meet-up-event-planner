@@ -12,7 +12,7 @@
           ng-model="form.event.name"
           cu-label
           required>
-        <div ng-messages="addEventForm.eventName.$error" ng-if="addEventForm.eventName.$dirty">
+        <div ng-messages="addEventForm.eventName.$error" ng-if="addEventForm.eventName.$dirty || form.isNotValid">
           <div ng-messages-include="views/messages.html"></div>
         </div>
       </div>
@@ -28,7 +28,7 @@
           cu-label
           required>
 
-        <div ng-messages="addEventForm.eventCategory.$error" ng-if="addEventForm.eventCategory.$dirty">
+        <div ng-messages="addEventForm.eventCategory.$error" ng-if="addEventForm.eventCategory.$dirty || form.isNotValid">
           <div ng-messages-include="views/messages.html"></div>
         </div>
         <datalist id="selectCategory">
@@ -71,16 +71,17 @@
         <label class="label-default-pos" for="autocomplete">Location</label>
         <input
           type="text"
-          name="location"
+          name="eventLocation"
           id="autocomplete"
           class="form-control event-input"
-          ng-model="form.event.eventLocation"
-          ng-focus="form.geolocate()"
+          ng-focus="form.initAutocomplete()"
+          ng-model="form.event.location"
+          placeholder=""
           cu-label
           required>
-        <div ng-messages="addEventForm.location.$error" ng-if="addEventForm.location.$dirty">
-          <div ng-messages-include="views/messages.html"></div>
-        </div>
+          <div ng-messages="addEventForm.eventLocation.$error" ng-if="addEventForm.eventLocation.$dirty || form.isNotValid">
+            <div ng-messages-include="views/messages.html"></div>
+          </div>
       </div>
 
       <div class="form-group form-label-animated">
@@ -93,7 +94,7 @@
           ng-model="form.event.host"
           cu-label
           required>
-        <div ng-messages="addEventForm.eventHost.$error" ng-if="addEventForm.eventHost.$dirty">
+        <div ng-messages="addEventForm.eventHost.$error" ng-if="addEventForm.eventHost.$dirty || form.isNotValid">
           <div ng-messages-include="views/messages.html"></div>
         </div>
       </div>
@@ -109,10 +110,15 @@
           ng-model="form.guest"
           ng-keypress="form.addGuest($event)"
           cu-label>
+
+        <span class="error-msg error-block" ng-show="form.guestsRequired">At least one guest required.</span>
+        <span class="error-msg error-block" ng-show="form.guestDuplicate">Guest already on the list.</span>
       </div>
       <div class="guests-cont">
         <span ng-repeat="guest in form.event.guests" class="guest" ng-click="form.removeGuest($index)">{{guest}}</span>
       </div>
+
+
 
     </div><!-- /custom-input-group -->
 
