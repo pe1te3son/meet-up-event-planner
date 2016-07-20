@@ -28,6 +28,7 @@
                     ng-minlength="1"
                     autocomplete="name"
                     cu-label
+                    autofocus
                     required>
             <div ng-messages="loginForm.name.$error" ng-if="loginForm.name.$dirty">
               <div ng-messages-include="views/messages.html"></div>
@@ -44,6 +45,7 @@
                     ng-model="currentUser.details.email"
                     autocomplete="email"
                     cu-label
+                    autofocus
                     required>
             <div ng-messages="loginForm.email.$error" ng-if="loginForm.email.$dirty">
               <div ng-messages-include="views/messages.html"></div>

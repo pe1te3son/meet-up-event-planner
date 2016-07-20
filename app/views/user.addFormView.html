@@ -11,7 +11,8 @@
           name="eventName"
           ng-model="form.event.name"
           cu-label
-          required>
+          required
+          autofocus>
         <div ng-messages="addEventForm.eventName.$error" ng-if="addEventForm.eventName.$dirty || form.isNotValid">
           <div ng-messages-include="views/messages.html"></div>
         </div>
