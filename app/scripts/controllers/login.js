@@ -87,7 +87,7 @@ angular.module('eventPlannerApp')
           email: vm.details.email,
           password: vm.details.password
         }).then(function(userData) {
-          console.log("User created with uid: " + userData.uid);
+          console.log('User created with uid: ' + userData.uid);
           $('#loginForm').slideUp('fast');
           vm.regSuccess = true;
 

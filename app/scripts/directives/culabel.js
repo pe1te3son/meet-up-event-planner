@@ -11,8 +11,7 @@ angular.module('eventPlannerApp')
     return {
       restrict: 'A',
       //scope, element, attrs
-      link: function(scope, element, attrs) {
-        console.log(attrs);
+      link: function(scope, element) {
         element.change(function(){
           var el = element.parent().find('label');
           if(element.val().length){

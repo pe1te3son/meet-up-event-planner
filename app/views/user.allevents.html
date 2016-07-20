@@ -1,13 +1,16 @@
 <section class="col-xs-12 all-events-section">
-  <ul class="list-inline event-list">
-    <li class="event col-sm-4 col-xs-8" ng-repeat="event in events.allEvents">
+  <ul class="event-list">
+    <li class="sn-event col-md-4 col-sm-6 col-xs-10" ng-repeat="event in events.allEvents">
 
+      <div class="sn-header">
+        <h3 class="sn-name">{{event.name}}</h3>
+      </div>
 
-        <h3>{{event.name}}</h3>
-        <p>{{event.category}}</p>
+      <div class="sn-body">
+        <p class="sn-cat">{{event.category}}</p>
 
-        <div class="sn-event-date">
-          <span>{{event.startDate}}</span>
+        <div class="sn-date-cont">
+          <span class="sn-date">{{event.startDate}}</span>
           <span>{{event.endDate}}</span>
         </div>
 
@@ -25,6 +28,8 @@
         </div>
 
         <p ng-show="event.additionalInfo.length > 0">{{event.additionalInfo}}</p>
+      </div>
+
 
 
     </li>
