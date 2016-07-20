@@ -32,7 +32,7 @@ angular.module('eventPlannerApp')
         endDate: '',
         endTime: '',
         host: '',
-        guests: '',
+        guests: [],
         eventLocation: ''
         //additionalInfo: ''
       };
@@ -104,7 +104,6 @@ angular.module('eventPlannerApp')
 
     this.addGuest = function(e){
       var duplicate = false;
-      vm.event.guests = [];
 
       for(var i = 0; i<vm.event.guests.length && !duplicate; i++){
         if(vm.guest === vm.event.guests[i]){

@@ -2,16 +2,30 @@
   <ul class="list-inline event-list">
     <li class="event col-sm-4 col-xs-8" ng-repeat="event in events.allEvents">
 
-      <ul>
-        <li>{{event.name}}</li>
-        <li>{{event.category}}</li>
-        <li>{{event.startDate}}</li>
-        <li>{{event.endDate}}</li>
-        <li>{{event.host}}</li>
-        <li>{{event.guests}}</li>
-        <li>{{event.eventLocation}}</li>
-        <li ng-show="event.additionalInfo.length > 0">{{event.additionalInfo}}</li>
-      </ul>
+
+        <h3>{{event.name}}</h3>
+        <p>{{event.category}}</p>
+
+        <div class="sn-event-date">
+          <span>{{event.startDate}}</span>
+          <span>{{event.endDate}}</span>
+        </div>
+
+        <p>{{event.host}}</p>
+
+        <div class="sn-event-guests">
+          <span class="sn-guest" ng-repeat="guest in event.guests">{{guest}} </span>
+        </div>
+
+        <div class="sn-event-location">
+          <p>{{event.eventLocation.street_number}}</p>
+          <p>{{event.eventLocation.route}}</p>
+          <p>{{event.eventLocation.locality}}</p>
+          <p>{{event.eventLocation.postal_code}}</p>
+        </div>
+
+        <p ng-show="event.additionalInfo.length > 0">{{event.additionalInfo}}</p>
+
 
     </li>
   </ul>
