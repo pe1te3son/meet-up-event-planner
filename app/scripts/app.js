@@ -30,6 +30,15 @@ angular
       $state.go('login');
     }
 
+    //event, toState, toParams, fromState, fromParams
+    $rootScope.$on('$stateChangeStart', function(){
+      $('.page-loading').removeClass('hidden');
+    });
+
+    $rootScope.$on('$stateChangeSuccess', function(){
+        $('.page-loading').addClass('hidden');
+    });
+
   }])
   .config(function($stateProvider) {
   // For any unmatched url, redirect to /state1
