@@ -2,14 +2,12 @@
   <ul class="event-list">
     <li class="sn-event"
       ng-repeat="event in events.allEvents"
-      ng-mouseover="hover=true"
-      ng-mouseleave="hover=false"
       ng-click="events.select(event)">
 
       <div class="sn-cont">
         <div class="sn-header sn-line">
           <h4 class="sn-name">{{event.name}}</h4>
-          <i class="fa fa-trash sn-remove-btn" aria-hidden="true" ng-show="hover" ng-click="events.remove(event)"></i>
+          <i class="fa fa-trash sn-remove-btn" aria-hidden="true" ng-click="events.remove(event)"></i>
         </div>
 
         <div class="sn-body">
@@ -49,10 +47,10 @@
               <em class="sn-info sn-cat-name">Additional info:</em>
               <p>{{event.additionalInfo}}</p>
             </div>
+
+
           </div><!-- /sn-extend -->
-
         </div><!-- /sn-body -->
-
       </div><!-- /sn-cont -->
 
     </li>

@@ -9,21 +9,22 @@
  */
 angular.module('eventPlannerApp')
   .controller('AlleventsCtrl', ['FirebaseService', function (FirebaseService) {
-
+    var vm = this;
     this.allEvents = FirebaseService.array('/events');
     this.remove = function(item){
-      console.log(item);
+      vm.allEvents.$remove(item);
     };
 
-
    this.select= function(item) {
-    console.log('select');
-    this.selected = item;
+    if(this.selected === item){
+      this.selected = null;
+    }else{
+      this.selected = item;
+    }
 
    };
 
    this.isActive = function(item) {
-     console.log('class');
     return this.selected === item;
    };
 
