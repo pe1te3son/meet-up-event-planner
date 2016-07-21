@@ -21,7 +21,7 @@
           <div class="form-group form-label-animated" ng-if="currentUser.$state == 'register'" ng-class="loginForm.name.$invalid && loginForm.name.$dirty ? 'error-msg-input' : '' ">
             <label class="label-default-pos" for="user-name">Your name</label>
             <input type="text"
-                    class="form-control"
+                    class="form-control event-input"
                     name="name"
                     id="user-name"
                     ng-model="currentUser.details.name"
@@ -39,7 +39,7 @@
           <div class="form-group form-label-animated" ng-class="loginForm.email.$invalid && loginForm.email.$dirty ? 'error-msg-input' : '' ">
             <label class="label-default-pos" for="user-email">Email address</label>
             <input type="email"
-                    class="form-control"
+                    class="form-control event-input"
                     id="user-email"
                     name="email"
                     ng-model="currentUser.details.email"
@@ -56,7 +56,7 @@
           <div class="form-group form-label-animated" ng-class="loginForm.userPassword.$invalid && loginForm.userPassword.$dirty && currentUser.$state != 'login' ? 'error-msg-input' : '' ">
             <label class="label-default-pos" for="user-password">Password</label>
             <input type="password"
-                    class="form-control"
+                    class="form-control event-input"
                     id="user-password"
                     name="userPassword"
                     ng-model="currentUser.details.password"
@@ -73,7 +73,7 @@
           <div class="form-group form-label-animated" ng-if="currentUser.$state == 'register'" ng-class="loginForm.confirmPassword.$invalid && loginForm.confirmPassword.$dirty ? 'error-msg-input' : '' ">
             <label class="label-default-pos" for="user-confirm-password">Confirm password</label>
             <input type="password"
-                    class="form-control"
+                    class="form-control event-input"
                     id="user-confirm-password"
                     name="confirmPassword"
                     ng-model="currentUser.details.confirmPassword"

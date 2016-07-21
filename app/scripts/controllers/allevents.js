@@ -28,6 +28,10 @@ angular.module('eventPlannerApp')
     return this.selected === item;
    };
 
+   this.formatDate = function(date){
+     return moment(date, 'YYYY-MM-DD').format('Do MMM YYYY');
+   };
+
 
   }// function ends
 
