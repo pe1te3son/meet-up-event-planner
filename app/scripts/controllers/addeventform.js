@@ -18,7 +18,10 @@ angular.module('eventPlannerApp')
     }
 
     var vm = this;
-    // Store events
+
+    $('#startDatepicker').datetimepicker({
+      format: 'yyyy/mm/dd hh:ii'
+    });
 
 
     // Returns all default values for add event form
