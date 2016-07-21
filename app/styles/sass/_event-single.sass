@@ -4,17 +4,48 @@
   margin: 0
 
 .sn-event
-  position: relative
+  min-width: 300px
+  margin-bottom: 15px
+  outline: none
+
+.sn-cont
+  border-radius: 5px
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px
+  overflow: hidden
   background: $color1
-  box-shadow: 0 0 5px darken($color7, 10%)
-  padding-left: 0
-  padding-right: 0
+  &:hover
+    cursor: pointer
+    background: lighten($color1, 5%)
+    .sn-header
+      background: $color2
+
+.sn-body
+  position: relative
+  padding: 0 10px 10px
 
 .sn-header
+  position: relative
   padding: 10px
-  background: $color2
+  background: lighten($color1, 5%)
+
+.sn-remove-btn
+  +position(absolute, 0 0 0 null)
+  font-size: 1.8em
+  padding: 8px 16px
+  background: $color1
+  &:hover
+    background: $color6
 
 .sn-name
   margin: 0
 
-.sn-body
+.sn-cat-name
+  color: $color9
+
+.sn-date
+  margin-right: 15px
+
+.sn-line
+  margin-bottom: 15px
+
+.sn-show-event

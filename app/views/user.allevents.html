@@ -1,36 +1,55 @@
 <section class="col-xs-12 all-events-section">
   <ul class="event-list">
-    <li class="sn-event col-md-4 col-sm-6 col-xs-10" ng-repeat="event in events.allEvents">
+    <li class="sn-event col-md-6"
+      ng-repeat="event in events.allEvents"
+      ng-mouseover="hover=true"
+      ng-mouseleave="hover=false">
 
-      <div class="sn-header">
-        <h3 class="sn-name">{{event.name}}</h3>
-      </div>
-
-      <div class="sn-body">
-        <p class="sn-cat">{{event.category}}</p>
-
-        <div class="sn-date-cont">
-          <span class="sn-date">{{event.startDate}}</span>
-          <span>{{event.endDate}}</span>
+      <div class="sn-cont">
+        <div class="sn-header sn-line">
+          <h4 class="sn-name">{{event.name}}</h4>
+          <i class="fa fa-trash sn-remove-btn" aria-hidden="true" ng-show="hover"></i>
         </div>
 
-        <p>{{event.host}}</p>
+        <div class="sn-body">
 
-        <div class="sn-event-guests">
-          <span class="sn-guest" ng-repeat="guest in event.guests">{{guest}} </span>
-        </div>
+          <div class="sn-line">
+            <p class="sn-cat"><em class="sn-cat-name">Category:&nbsp;</em>{{event.category}}</p>
+          </div>
+          <div class="sn-date-cont sn-line">
+            <span class="sn-date"><em class="sn-cat-name">Begins:&nbsp;</em>{{event.startDate}}</span>
+            <span class="sn-date"><em class="sn-cat-name">Ends:&nbsp;</em>{{event.endDate}}</span>
+          </div>
 
-        <div class="sn-event-location">
-          <p>{{event.eventLocation.street_number}}</p>
-          <p>{{event.eventLocation.route}}</p>
-          <p>{{event.eventLocation.locality}}</p>
-          <p>{{event.eventLocation.postal_code}}</p>
-        </div>
-
-        <p ng-show="event.additionalInfo.length > 0">{{event.additionalInfo}}</p>
-      </div>
+          <div class="sn-line">
+            <em class="sn-cat-name">Host:&nbsp;</em><span class="sn-host">{{event.host}}</span>
+          </div>
 
 
+          <div class="sn-event-guests sn-line">
+            <em class="sn-cat-name">Guests:&nbsp;</em>
+            <span class="sn-guest" ng-repeat="guest in event.guests">{{guest}},&nbsp;</span>
+          </div>
+
+          <div class="sn-event-location sn-line">
+            <em class="sn-cat-name">Address:</em>
+            <div class="address-line">
+              <span class="sn-street-number">{{event.eventLocation.street_number}}</span>
+              <span class="sn-street">{{event.eventLocation.route}}</span>
+            </div>
+            <div class="address-line">
+              <span class="sn-city">{{event.eventLocation.locality}}</span>
+              <span class="sn-postcode">{{event.eventLocation.postal_code}}</span>
+            </div>
+          </div>
+
+          <div class="sn-line" ng-show="event.additionalInfo.length > 0">
+            <em class="sn-info sn-cat-name">Additional info:</em>
+            <p>{{event.additionalInfo}}</p>
+          </div>
+        </div><!-- /sn-body -->
+
+      </div><!-- /sn-cont -->
 
     </li>
   </ul>
