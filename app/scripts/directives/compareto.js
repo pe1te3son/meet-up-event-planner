@@ -5,6 +5,7 @@
  * @name eventPlannerApp.directive:compareTo
  * @description
  * # compareTo
+ * Compares 2 inputs. Used to validate passwords
  */
 angular.module('eventPlannerApp')
   .directive('compareTo', function() {

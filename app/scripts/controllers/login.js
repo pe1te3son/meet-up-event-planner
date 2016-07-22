@@ -33,6 +33,7 @@ angular.module('eventPlannerApp')
         confirmPassword: '',
     };
 
+    // Remeber user by default
     this.rememberMeFunc = function(value){
       if(!value){
         return 'sessionOnly';
@@ -41,6 +42,7 @@ angular.module('eventPlannerApp')
       }
     };
 
+    // Redirect user to all events
     this.userLoggedIn = function(userName){
 
       $state.go('user', { userId: userName}).then(function(){
@@ -93,6 +95,7 @@ angular.module('eventPlannerApp')
           vm.regSuccess = true;
 
           var data = FirebaseService.obj(userData.uid);
+          // Save user name
           data.userDetails = {
             name: vm.details.name
           };

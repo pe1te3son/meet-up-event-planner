@@ -5,6 +5,7 @@
  * @name eventPlannerApp.directive:cuLabel
  * @description
  * # cuLabel
+ * label animation
  */
 angular.module('eventPlannerApp')
   .directive('cuLabel', function () {

@@ -22,6 +22,7 @@ angular
   ])
   .run(['$rootScope', '$state', 'FirebaseService', function($rootScope, $state, FirebaseService) {
 
+    // If sesion still active redirect user to all events page
     if(FirebaseService.auth().$getAuth()){
       $state.go('user', { userId: FirebaseService.auth().$getAuth().uid }).then(function(){
           $state.go('allEvents');
@@ -30,8 +31,9 @@ angular
       $state.go('login');
     }
 
-    //event, toState, toParams, fromState, fromParams
+    // Display spinner on view change
     $rootScope.$on('$stateChangeStart', function(){
+      //event, toState, toParams, fromState, fromParams
       $('.page-loading').removeClass('hidden');
     });
 
@@ -41,8 +43,6 @@ angular
 
   }])
   .config(function($stateProvider) {
-  // For any unmatched url, redirect to /state1
-  //$urlRouterProvider.otherwise('/login');
 
   $stateProvider
     .state('login', {
@@ -64,10 +64,7 @@ angular
       templateUrl: 'views/login.html',
       controller: 'LoginCtrl as currentUser',
       resolve: {
-         // controller will not be loaded until $waitForAuth resolves
-         // Auth refers to our $firebaseAuth wrapper in the example above
          'currentAuth': ['FirebaseService', function(FirebaseService) {
-           // $waitForAuth returns a promise so the resolve waits for it to complete
            var auth = FirebaseService.auth();
            return auth.$waitForAuth();
          }]
@@ -79,10 +76,7 @@ angular
       controller: 'ControlpanelCtrl as user',
       redirectTo: 'user.allEvents',
       resolve: {
-       // controller will not be loaded until $waitForAuth resolves
-       // Auth refers to our $firebaseAuth wrapper in the example above
        'currentAuth': ['FirebaseService', function(FirebaseService) {
-         // $waitForAuth returns a promise so the resolve waits for it to complete
          var auth = FirebaseService.auth();
          return auth.$waitForAuth();
        }]

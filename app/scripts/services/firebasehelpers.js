@@ -6,6 +6,7 @@
  * @description
  * # firebaseHelpers
  * Service in the eventPlannerApp.
+ * Symplifies use of firebase methods throughout the application
  */
 
 
