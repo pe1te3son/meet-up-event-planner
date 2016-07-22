@@ -16,7 +16,6 @@ angular.module('eventPlannerApp')
     }
     this.auth = FirebaseService.auth();
 
-    console.log(this.auth.$getAuth());
     this.logOut = function(){
       vm.auth.$unauth();
       $state.go('login');

@@ -6,6 +6,7 @@
  * @description
  * # AlleventsCtrl
  * Controller of the eventPlannerApp
+ * Displays all events saved in database
  */
 angular.module('eventPlannerApp')
   .controller('AlleventsCtrl', ['FirebaseService', function (FirebaseService) {
@@ -15,6 +16,7 @@ angular.module('eventPlannerApp')
       vm.allEvents.$remove(item);
     };
 
+    // On select make sure that there is only one event open
    this.select= function(item) {
     if(this.selected === item){
       this.selected = null;

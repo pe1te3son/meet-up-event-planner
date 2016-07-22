@@ -6,6 +6,7 @@
  * @description
  * # AddeventformCtrl
  * Controller of the eventPlannerApp
+ * Controls add event form
  */
 
 angular.module('eventPlannerApp')
@@ -18,11 +19,6 @@ angular.module('eventPlannerApp')
     }
 
     var vm = this;
-
-    $('#startDatepicker').datetimepicker({
-      format: 'yyyy/mm/dd hh:ii'
-    });
-
 
     // Returns all default values for add event form
     this.eventDefault = function(){
@@ -55,33 +51,36 @@ angular.module('eventPlannerApp')
 
       // Format time and date before saving to database
       vm.event.startDate = moment(vm.selectedStartDate).format('YYYY-MM-DD');
-      vm.event.startTime = moment(vm.selectedStartDate).format('hh:mm');
+      vm.event.startTime = moment(vm.selectedStartDate).format('HH:mm');
       vm.event.endDate = moment(vm.selectedEndDate).format('YYYY-MM-DD');
-      vm.event.endTime = moment(vm.selectedEndDate).format('hh:mm');
+      vm.event.endTime = moment(vm.selectedEndDate).format('HH:mm');
 
       // Save to database
       vm.collection.$add(vm.event);
     };
 
-    // Formated date for html input field with attribute type=datetime-local
+    // Formated date for datepicker input
     this.setDatetime = function(){
-      var date = moment().format('YYYY-MM-DD');
-      var time = moment().format('hh:mm');
-      return date + 'T' + time;
+      var date = moment().format('YYYY-MM-DD HH:mm');
+      return date;
     };
 
+    // Set datetime using bootstrap datepicker
+    // The `format` is not set with moment.js
     this.fillStartDateInput = function(){
-      vm.selectedStartDate = new Date(vm.setDatetime());
-      console.log(this.collection);
+      vm.selectedStartDate = vm.setDatetime();
+      $('#start-date').datetimepicker({
+        format: 'yyyy/mm/dd hh:ii',
+        startDate: vm.setDatetime()
+      });
     };
 
     this.fillEndDateInput = function(){
-      vm.updateEndDate();
-    };
-
-    // Updated end event time and date base on start date and time selected
-    this.updateEndDate = function(){
-      vm.selectedEndDate = vm.selectedStartDate;
+      vm.selectedEndDate = vm.selectedStartDate || vm.setDatetime();
+      $('#end-date').datetimepicker({
+        format: 'yyyy/mm/dd hh:ii',
+        startDate: vm.selectedEndDate
+      });
     };
 
     this.guestsRequired = false;
@@ -90,6 +89,7 @@ angular.module('eventPlannerApp')
 
     this.submit = function(isValid){
 
+      // Form must contain at least on guest before submiting
       if(vm.event.guests.length && isValid){
         vm.addEvent();
         // Reload add form to clear inputs
@@ -132,6 +132,7 @@ angular.module('eventPlannerApp')
       vm.event.guests.splice(index, 1);
     };
 
+    // Defaults for google`s API
     this.componentForm = {
       street_number: 'short_name',
       route: 'long_name',
@@ -175,7 +176,6 @@ angular.module('eventPlannerApp')
           vm.event.eventLocation[addressType] = val;
         }
       }
-      console.log(vm.event.eventLocation);
     };
 
     this.initAutocomplete = function() {

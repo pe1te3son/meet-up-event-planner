@@ -6,6 +6,7 @@
  * @description
  * # LoginCtrl
  * Controller of the eventPlannerApp
+ * Login, Register, Validate
  */
 angular.module('eventPlannerApp')
   .controller('LoginCtrl', ['FirebaseService', '$state', '$stateParams', '$rootScope', function (FirebaseService, $state, $stateParams, $rootScope) {

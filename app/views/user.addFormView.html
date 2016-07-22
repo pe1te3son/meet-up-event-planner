@@ -42,12 +42,11 @@
       <div class="form-group form-label-animated">
         <i class="fa fa-play label-icon" aria-hidden="true"></i>
         <label class="label-default-pos cover" for="start-date">Start date</label>
-        <input type="datetime-local"
+        <input type="text"
           class="form-control event-input"
           id="start-date"
           ng-model="form.selectedStartDate"
           name="selectedStartDate"
-          min="{{form.setDatetime()}}"
           ng-focus="form.fillStartDateInput()"
           ng-change="form.updateEndDate()"
           required
@@ -60,13 +59,12 @@
       <div class="form-group form-label-animated">
         <i class="fa fa-stop-circle label-icon" aria-hidden="true"></i>
         <label class="label-default-pos cover" for="end-date">End date</label>
-        <input type="datetime-local"
+        <input type="text"
           name="selectedEndDate"
           class="form-control event-input"
           id="end-date"
           ng-model="form.selectedEndDate"
           ng-focus="form.fillEndDateInput()"
-          min="{{form.setDatetime()}}"
           required
           cu-label>
         <div ng-messages="addEventForm.selectedEndDate.$error" ng-if="addEventForm.selectedEndDate.$dirty || form.isNotValid">
@@ -136,7 +134,7 @@
       <div class="form-group form-label-animated">
         <i class="fa fa-info-circle textarea-icon" aria-hidden="true"></i>
         <label class="textarea-label" for="optional-info">Additional information</label>
-        <textarea class="form-textarea" id="optional-info" rows="3" ng-model="form.event.additionalInfo" maxlength="250"></textarea>
+        <textarea class="form-textarea" id="optional-info" rows="3" ng-model="form.event.additionalInfo"></textarea>
       </div>
     </div><!-- /custom-input-group -->
 
