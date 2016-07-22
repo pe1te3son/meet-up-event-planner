@@ -99,7 +99,13 @@ angular
       url: '/events',
       templateUrl: 'views/user.allevents.html',
       controller: 'AlleventsCtrl as events',
-      parent: 'user'
+      parent: 'user',
+      resolve: {
+        'getEvents': ['FirebaseService', function(FirebaseService){
+          var list = FirebaseService.array('/events');
+          return list.$loaded();
+        }]
+      }
 
     });
 
