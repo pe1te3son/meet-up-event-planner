@@ -13,6 +13,9 @@
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
+
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places"
+          async defer></script>
   </head>
   <body ng-app="eventPlannerApp">
     <!--[if lte IE 8]>
@@ -52,20 +55,18 @@
     <!-- AngularFire -->
     <script src="https://cdn.firebase.com/libs/angularfire/1.2.0/angularfire.min.js"></script>
 
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/plugins/bootstrap-datetimepicker.js"></script>
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/controlpanel.js"></script>
-        <script src="scripts/controllers/addeventform.js"></script>
-        <script src="scripts/controllers/allevents.js"></script>
-        <script src="scripts/controllers/login.js"></script>
-        <script src="scripts/services/firebasehelpers.js"></script>
-        <script src="scripts/directives/culabel.js"></script>
-        <script src="scripts/directives/compareto.js"></script>
-        <script src="scripts/directives/autofocus.js"></script>
-        <!-- endbuild -->
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/plugins/bootstrap-datetimepicker.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/controlpanel.js"></script>
+    <script src="scripts/controllers/addeventform.js"></script>
+    <script src="scripts/controllers/allevents.js"></script>
+    <script src="scripts/controllers/login.js"></script>
+    <script src="scripts/services/firebasehelpers.js"></script>
+    <script src="scripts/directives/culabel.js"></script>
+    <script src="scripts/directives/compareto.js"></script>
+    <script src="scripts/directives/autofocus.js"></script>
+    <!-- endbuild -->
 
-        <script src="https://maps.googleapis.com/maps/api/js?libraries=places"
-              async defer></script>
 </body>
 </html>
