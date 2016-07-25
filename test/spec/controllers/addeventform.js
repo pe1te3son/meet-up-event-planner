@@ -16,8 +16,8 @@ describe('Controller: AddeventformCtrl', function () {
       // place here mocked dependencies
     });
   }));
-
-  it('should be an Object', function () {
-    expect(AddeventformCtrl.event).toEqual(jasmine.any(Object));
-  });
+  //
+  // it('should be an Object', function () {
+  //   expect(AddeventformCtrl.event).toEqual(jasmine.any(Object));
+  // });
 });

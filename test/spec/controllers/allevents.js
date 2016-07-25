@@ -12,12 +12,9 @@ describe('Controller: AlleventsCtrl', function () {
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
     AlleventsCtrl = $controller('AlleventsCtrl', {
-      $scope: scope
+      $scope: scope,
       // place here mocked dependencies
     });
   }));
 
-  it('allEvents should be an array', function () {
-    expect(AlleventsCtrl.allEvents).toEqual(jasmine.any(Array));
-  });
 });
