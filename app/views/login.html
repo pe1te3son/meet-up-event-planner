@@ -28,6 +28,7 @@
                     ng-model="currentUser.details.email"
                     autocomplete="email"
                     cu-label
+                    autofocus
                     required>
             <div ng-messages="loginForm.email.$error" ng-if="loginForm.email.$dirty || currentUser.formNotValid">
               <div ng-messages-include="views/messages.html"></div>
