@@ -2,7 +2,7 @@
 Senior web-developer udacity project 1
 
 App that creates and saves meet up events into firebase database.
-To improve user's experience It uses google geolocate API for easy address autocomplete and bootstrap datetime picker.
+To improve user's experience It uses google geolocate API for easy address autocomplete and bootstrap datetime picker for date and time selection.
 
 Visit [online](http://webenhanced.co.uk/event-planner/)
 
@@ -11,8 +11,11 @@ Visit [online](http://webenhanced.co.uk/event-planner/)
 This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
 version 0.15.1.
 
-Run `grunt` for building and `grunt serve` for preview.
+*  Run `npm install` and `bower install`
 
+*  To build compressed version of app for distribution run `grunt` from command line. _( Grunt builds app in /dist )_
+
+*  Run `grunt serve` when developing
 
 ### Resources
 
