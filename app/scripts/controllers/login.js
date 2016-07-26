@@ -9,10 +9,8 @@
  * Login, Register, Validate
  */
 angular.module('eventPlannerApp')
-  .controller('LoginCtrl', ['FirebaseService', '$state', '$stateParams', '$rootScope', function (FirebaseService, $state, $stateParams, $rootScope) {
+  .controller('LoginCtrl', ['FirebaseService', '$state', function (FirebaseService, $state) {
     var vm = this;
-
-    this.sc = $rootScope;
 
     this.$state = $state.current.name;
     this.rememberMe = true;
@@ -25,13 +23,24 @@ angular.module('eventPlannerApp')
     this.emailTaken = false;
     this.registerFailed = false;
     this.regError = '';
+    this.formNotValid = false;
 
+    // Optionals are commented out
     this.details = {
         name: '',
+        //jobTitle
+        //employer
+        //dateOfBirth
         email: '',
-        password: '',
-        confirmPassword: '',
     };
+
+    $('#start-date').datetimepicker({
+      format: 'd MM yyyy',
+      autoclose: true,
+      startView: 4,
+      minView: 2,
+      endDate: moment().format('D MM YYYY')
+    });
 
     // Remeber user by default
     this.rememberMeFunc = function(value){
