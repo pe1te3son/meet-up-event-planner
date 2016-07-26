@@ -67,20 +67,24 @@ angular.module('eventPlannerApp')
 
     // Set datetime using bootstrap datepicker
     // The `format` is not set with moment.js
-    this.fillStartDateInput = function(){
-      vm.selectedStartDate = vm.setDatetime();
-      $('#start-date').datetimepicker({
-        format: 'yyyy/mm/dd hh:ii',
-        startDate: vm.setDatetime()
-      });
-    };
+    this.selectedStartDate = vm.setDatetime();
+    $('#start-date').datetimepicker({
+      format: 'yyyy-mm-dd hh:ii',
+      startDate: vm.setDatetime(),
+      autoclose: true
+    });
 
-    this.fillEndDateInput = function(){
-      vm.selectedEndDate = vm.selectedStartDate || vm.setDatetime();
-      $('#end-date').datetimepicker({
-        format: 'yyyy/mm/dd hh:ii',
-        startDate: vm.selectedEndDate
-      });
+    vm.selectedEndDate = vm.selectedStartDate || vm.setDatetime();
+    $('#end-date').datetimepicker({
+      format: 'yyyy-mm-dd hh:ii',
+      startDate: vm.selectedEndDate,
+      autoclose: true
+    });
+
+    // When Startdate changes value, update end date
+    this.updateEndDateInput = function(){
+      vm.selectedEndDate = vm.selectedStartDate;
+      $('#end-date').datetimepicker('setStartDate', vm.selectedEndDate);
     };
 
     this.guestsRequired = false;

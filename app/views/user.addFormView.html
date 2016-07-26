@@ -41,14 +41,13 @@
 
       <div class="form-group form-label-animated">
         <i class="fa fa-play label-icon" aria-hidden="true"></i>
-        <label class="label-default-pos cover" for="start-date">Start date</label>
+        <label class="label-default-pos cover" for="start-date">Start date and time</label>
         <input type="text"
           class="form-control event-input"
           id="start-date"
           ng-model="form.selectedStartDate"
           name="selectedStartDate"
-          ng-focus="form.fillStartDateInput()"
-          ng-change="form.updateEndDate()"
+          ng-change="form.updateEndDateInput()"
           required
           cu-label>
         <div ng-messages="addEventForm.selectedStartDate.$error" ng-if="addEventForm.selectedStartDate.$dirty || form.isNotValid">
@@ -58,13 +57,12 @@
 
       <div class="form-group form-label-animated">
         <i class="fa fa-stop-circle label-icon" aria-hidden="true"></i>
-        <label class="label-default-pos cover" for="end-date">End date</label>
+        <label class="label-default-pos cover" for="end-date">End date and time</label>
         <input type="text"
           name="selectedEndDate"
           class="form-control event-input"
           id="end-date"
           ng-model="form.selectedEndDate"
-          ng-focus="form.fillEndDateInput()"
           required
           cu-label>
         <div ng-messages="addEventForm.selectedEndDate.$error" ng-if="addEventForm.selectedEndDate.$dirty || form.isNotValid">
