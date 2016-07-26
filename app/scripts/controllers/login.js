@@ -65,9 +65,8 @@ angular.module('eventPlannerApp')
         vm.spinner = true;
         FirebaseService.auth().$authWithPassword({
           email: vm.details.email,
-          password: vm.details.password
+          password: vm.password
         }, { remember: vm.rememberMeFunc(vm.rememberMe) }).then(function(authData) {
-          console.log(authData);
           vm.userLoggedIn(authData.uid);
 
           vm.spinner = false;
@@ -76,7 +75,7 @@ angular.module('eventPlannerApp')
             case 'INVALID_PASSWORD':
                 console.log('The specified user account or password is incorrect.');
                 vm.invalidPassword = true;
-                vm.details.password = '';
+                vm.password = '';
                 break;
             case 'INVALID_USER':
                 console.log('The specified user account does not exist.');
@@ -87,6 +86,8 @@ angular.module('eventPlannerApp')
           }
           vm.spinner = false;
         });
+      } else {
+        vm.formNotValid = true;
       }
 
     };
@@ -97,7 +98,7 @@ angular.module('eventPlannerApp')
         vm.spinner = true;
         FirebaseService.auth().$createUser({
           email: vm.details.email,
-          password: vm.details.password
+          password: vm.password
         }).then(function(userData) {
           console.log('User created with uid: ' + userData.uid);
           $('#loginForm').slideUp('fast');
@@ -105,9 +106,7 @@ angular.module('eventPlannerApp')
 
           var data = FirebaseService.obj(userData.uid);
           // Save user name
-          data.userDetails = {
-            name: vm.details.name
-          };
+          data.userDetails = vm.details;
           data.$save();
 
         }).catch(function(error) {
@@ -121,6 +120,8 @@ angular.module('eventPlannerApp')
 
           vm.spinner = false;
         });
+      } else {
+        vm.formNotValid = true;
       }
 
     };
