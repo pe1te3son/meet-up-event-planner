@@ -1,4 +1,12 @@
 # Meet-Up Event Planner
+
+### _Notes for Udacity reviewer_
+
+* There were some issues with loading main.css on the previous submission. I wasn't able to find out what that was as it is working for me on both Pc and [online](https://webenhanced.co.uk/event-planner/). If you have the same issue with my app, please try running it in incognito mode or another browser.
+* There was also a problem with google API key I solved it by unlocking localhost:9000, so it should be fine now if you run `grunt serve` to preview
+
+****
+
 Senior web-developer udacity project 1
 
 App that creates and saves meet up events into firebase database.
@@ -15,7 +23,7 @@ version 0.15.1.
 
 *  To build compressed version of app for distribution run `grunt` from command line. _( Grunt builds app in /dist )_
 
-*  Run `grunt serve` when developing
+*  Run `grunt serve` when developing or previewing
 
 ### Resources
 
