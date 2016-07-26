@@ -18,6 +18,25 @@
         </div>
 
         <form name="loginForm" class="text-left login-form animated fadeIn" id="loginForm" novalidate>
+          <small class="required">* Required</small>
+
+          <div class="form-group form-label-animated" ng-class="loginForm.name.$invalid && loginForm.name.$dirty ? 'error-msg-input' : '' ">
+            <label class="label-default-pos" for="user-name">* Your name</label>
+            <input type="text"
+                    class="form-control event-input"
+                    name="name"
+                    id="user-name"
+                    ng-model="currentUser.details.name"
+                    ng-minlength="1"
+                    autocomplete="name"
+                    cu-label
+                    autofocus
+                    required>
+            <div ng-messages="loginForm.name.$error" ng-if="loginForm.name.$dirty || currentUser.formNotValid">
+              <div ng-messages-include="views/messages.html"></div>
+            </div>
+
+          </div>
 
           <div class="form-group form-label-animated" ng-class="loginForm.email.$invalid && loginForm.email.$dirty ? 'error-msg-input' : '' ">
             <label class="label-default-pos" for="user-email">* Email address</label>
@@ -26,7 +45,6 @@
                     id="user-email"
                     name="email"
                     ng-model="currentUser.details.email"
-                    autocomplete="email"
                     cu-label
                     required>
             <div ng-messages="loginForm.email.$error" ng-if="loginForm.email.$dirty || currentUser.formNotValid">
@@ -41,7 +59,7 @@
                     class="form-control event-input"
                     id="user-password"
                     name="userPassword"
-                    ng-model="currentUser.details.password"
+                    ng-model="currentUser.password"
                     ng-pattern="/^.*(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/"
                     ng-minlength="8"
                     cu-label
@@ -52,6 +70,49 @@
 
           </div>
 
+          <div class="form-group form-label-animated" ng-class="loginForm.confirmPassword.$invalid && loginForm.confirmPassword.$dirty ? 'error-msg-input' : '' ">
+            <label class="label-default-pos" for="user-confirm-password">* Confirm password</label>
+            <input type="password"
+                    class="form-control event-input"
+                    id="user-confirm-password"
+                    name="confirmPassword"
+                    ng-model="currentUser.confirmPassword"
+                    compare-to="currentUser.password"
+                    cu-label
+                    required>
+            <div ng-messages="loginForm.confirmPassword.$error" ng-if="loginForm.confirmPassword.$dirty || currentUser.formNotValid">
+              <div ng-messages-include="views/messages.html"></div>
+            </div>
+          </div>
+          <div class="form-group form-label-animated" >
+            <label class="label-default-pos" for="start-date">Birthday</label>
+            <input type="text"
+              class="form-control event-input"
+              id="start-date"
+              ng-model="currentUser.details.birthday"
+              name="birthday"
+              cu-label>
+          </div>
+
+          <div class="form-group form-label-animated" >
+            <label class="label-default-pos" for="job-title">Job Title</label>
+            <input type="text"
+              class="form-control event-input"
+              id="job-title"
+              ng-model="currentUser.details.jobTitle"
+              name="jobTitle"
+              cu-label>
+          </div>
+
+          <div class="form-group form-label-animated" >
+            <label class="label-default-pos" for="employer">Employer</label>
+            <input type="text"
+              class="form-control event-input"
+              id="employer"
+              ng-model="currentUser.details.employer"
+              name="employer"
+              cu-label>
+          </div>
 
           <div class="general-msg-cont text-center">
             <span class="error-msg error-block" ng-show="currentUser.logInError">Failed to login! Please try later or reload the page.</span>
@@ -61,17 +122,14 @@
             <span class="error-msg error-block" ng-show="currentUser.invalidUser">The specified user account does not exist.</span>
           </div>
 
-          <div class="checkbox">
-            <label>
-              <input type="checkbox" ng-model="currentUser.rememberMe"> Remember me
-            </label>
+          <div class="register-btn-cont">
+            <button type="submit" class="btn btn-custom" ng-click="currentUser.registerUser(loginForm.$valid)">Register</button>
+            <div class="login-spinner-cont" ng-show="currentUser.spinner">
+              <i class="fa fa-spinner fa-spin fa-fw"></i>
+              <span class="sr-only">Loading...</span>
+            </div>
           </div>
 
-          <button type="submit" class="btn btn-custom" ng-click="currentUser.loginUser(loginForm.$valid)">Sign in</button>
-          <div class="login-spinner-cont" ng-show="currentUser.spinner">
-            <i class="fa fa-spinner fa-spin fa-fw"></i>
-            <span class="sr-only">Loading...</span>
-          </div>
 
       </form>
 

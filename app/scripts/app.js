@@ -61,7 +61,7 @@ angular
     })
     .state('register', {
       url: '/register',
-      templateUrl: 'views/login.html',
+      templateUrl: 'views/register.html',
       controller: 'LoginCtrl as currentUser',
       resolve: {
          'currentAuth': ['FirebaseService', function(FirebaseService) {
