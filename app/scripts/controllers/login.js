@@ -39,6 +39,7 @@ angular.module('eventPlannerApp')
       autoclose: true,
       startView: 4,
       minView: 2,
+      fontAwesome: true,
       endDate: moment().format('D MM YYYY')
     });
 

@@ -71,6 +71,7 @@ angular.module('eventPlannerApp')
     $('#start-date').datetimepicker({
       format: 'yyyy-mm-dd hh:ii',
       startDate: vm.setDatetime(),
+      fontAwesome: true,
       autoclose: true
     });
 
@@ -78,6 +79,7 @@ angular.module('eventPlannerApp')
     $('#end-date').datetimepicker({
       format: 'yyyy-mm-dd hh:ii',
       startDate: vm.selectedEndDate,
+      fontAwesome: true,
       autoclose: true
     });
 
