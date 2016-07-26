@@ -20,7 +20,7 @@ version 0.15.1.
 
 *****
 
-*If **CSS** is not being loaded, make sure You have installed [ruby](http://rubyinstaller.org/) `ruby -v` on your computer then run `gem install compass`*
+*If CSS is not being loaded, make sure You have installed [ruby](http://rubyinstaller.org/) `ruby -v` on your computer then run `gem install compass`*
 
 ### Resources
 
