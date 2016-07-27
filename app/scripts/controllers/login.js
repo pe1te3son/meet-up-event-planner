@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * @ngdoc function
  * @name eventPlannerApp.controller:LoginCtrl
@@ -10,8 +8,9 @@
  */
 angular.module('eventPlannerApp')
   .controller('LoginCtrl', ['FirebaseService', '$state', function (FirebaseService, $state) {
-    var vm = this;
+    'use strict';
 
+    var vm = this;
     this.$state = $state.current.name;
     this.rememberMe = true;
     this.spinner = false;

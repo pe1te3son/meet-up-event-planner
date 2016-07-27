@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * @ngdoc directive
  * @name eventPlannerApp.directive:cuLabel
@@ -9,6 +7,8 @@
  */
 angular.module('eventPlannerApp')
   .directive('cuLabel', function () {
+    'use strict';
+    
     return {
       restrict: 'A',
       //scope, element, attrs

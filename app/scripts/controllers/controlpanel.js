@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * @ngdoc function
  * @name eventPlannerApp.controller:ControlpanelCtrl
@@ -10,6 +8,8 @@
 
 angular.module('eventPlannerApp')
   .controller('ControlpanelCtrl', [ 'FirebaseService', '$state', 'currentAuth', function (FirebaseService, $state, currentAuth) {
+    'use strict';
+    
     var vm = this;
     if(!currentAuth){
       $state.go('login');

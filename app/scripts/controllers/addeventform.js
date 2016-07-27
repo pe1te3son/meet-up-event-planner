@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * @ngdoc function
  * @name eventPlannerApp.controller:AddeventformCtrl
@@ -11,7 +9,8 @@
 
 angular.module('eventPlannerApp')
   .controller('AddeventformCtrl', ['FirebaseService', '$state', 'currentAuth', function (FirebaseService, $state, currentAuth) {
-
+    'use strict';
+    
     if(currentAuth){
       this.collection = FirebaseService.array('/events');
     } else {

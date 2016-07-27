@@ -1,4 +1,3 @@
-
 /**
  * @ngdoc directive
  * @name eventPlannerApp.directive:autofocus

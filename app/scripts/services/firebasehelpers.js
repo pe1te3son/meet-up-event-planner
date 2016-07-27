@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * @ngdoc service
  * @name eventPlannerApp.firebaseHelpers
@@ -13,7 +11,7 @@
 
 angular.module('eventPlannerApp')
   .service('FirebaseService', [ '$firebaseAuth', '$firebaseArray', '$firebaseObject', function($firebaseAuth, $firebaseArray, $firebaseObject){
-
+      'use strict';
       this.link = 'https://event-planner-janak.firebaseio.com/';
 
       this.auth = function(){

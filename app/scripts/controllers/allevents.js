@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * @ngdoc function
  * @name eventPlannerApp.controller:AlleventsCtrl
@@ -10,6 +8,8 @@
  */
 angular.module('eventPlannerApp')
   .controller('AlleventsCtrl', ['FirebaseService', 'getEvents', function (FirebaseService, getEvents) {
+    'use strict';
+    
     var vm = this;
     this.allEvents = getEvents;
     this.remove = function(item){

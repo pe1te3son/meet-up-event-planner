@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * @ngdoc directive
  * @name eventPlannerApp.directive:compareTo
@@ -9,6 +7,8 @@
  */
 angular.module('eventPlannerApp')
   .directive('compareTo', function() {
+    'use strict';
+    
     return {
         require: 'ngModel',
         scope: {

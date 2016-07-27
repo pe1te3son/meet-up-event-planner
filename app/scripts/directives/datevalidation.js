@@ -1,14 +1,17 @@
-'use strict';
-
 /**
  * @ngdoc directive
  * @name eventPlannerApp.directive:dateValidation
  * @description
  * # dateValidation
+ * Validates date and time
+ * Requires moment.js
+ * Make sure that you passing correct moment.js format YYYY-MM-DD HH:mm = 2016-07-22 16:55
  */
  angular.module('eventPlannerApp')
    .directive('pastNot', function() {
-     // Requires moment.js
+    'use strict';
+
+    // Event can not HAPPEN in the past
      return {
          restrict: 'A',
 
@@ -30,7 +33,9 @@
 
  angular.module('eventPlannerApp')
    .directive('laterThan', function() {
-     // Requires moment.js
+    'use strict';
+
+      // Event can not END in the past
      return {
          restrict: 'A',
 
