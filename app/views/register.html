@@ -123,7 +123,7 @@
           </div>
 
           <div class="register-btn-cont">
-            <button type="submit" class="btn btn-custom" ng-click="currentUser.registerUser(loginForm.$valid)">Register</button>
+            <button type="submit" class="btn btn-custom" ng-click="currentUser.registerUser(loginForm.$valid)" ng-disabled="!loginForm.$valid">Register</button>
             <div class="login-spinner-cont" ng-show="currentUser.spinner">
               <i class="fa fa-spinner fa-spin fa-fw"></i>
               <span class="sr-only">Loading...</span>

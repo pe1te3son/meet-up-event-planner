@@ -1,4 +1,3 @@
-'use strict';
 
 /**
  * @ngdoc directive
@@ -10,6 +9,7 @@
  */
 angular.module('eventPlannerApp')
   .directive('autofocus', ['$timeout', function($timeout) {
+    'use strict';
     return {
       restrict: 'A',
       link : function($scope, $element) {
