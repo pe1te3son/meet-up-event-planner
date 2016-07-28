@@ -14,15 +14,15 @@ version 0.15.1.
 
 *  Run `npm install` and `bower install`
 
-*  Make sure that **compass** is installed globally to compile sass files
+*  This app requires **Compass** to be installed on your computer
+
+  * Install with [ruby](http://rubyinstaller.org/) by running  `gem install compass`
 
 *  To build compressed version of app for distribution run `grunt` from command line. _( Grunt builds app in /dist )_
 
-*  Run `grunt serve` when developing or previewing
+*  Run `grunt serve` to develop or preview
 
 *****
-
-*If CSS is not being loaded, make sure You have installed [ruby](http://rubyinstaller.org/) `ruby -v` on your computer then run `gem install compass`*
 
 ### Resources
 
