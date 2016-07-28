@@ -4,78 +4,79 @@
   margin: 0
 
 .sn-event
-  min-width: 300px
-  margin-bottom: 15px
+  padding: 10px
   outline: none
 
-.sn-cont
-  border-radius: 5px
-  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px
-  overflow: hidden
-  background: $color1
-  &:hover
-    cursor: pointer
-    background: lighten($color1, 5%)
-    .sn-header
-      background: $color2
-
 .sn-body
-  position: relative
-  padding: 0 10px 10px
-
-.sn-header
-  position: relative
-  padding: 10px
-  background: lighten($color1, 5%)
-
-.sn-remove-btn
-  +position(absolute, 0 0 0 null)
-  font-size: 1.8em
-  padding: 8px 16px
+  padding: 12px 15px 0
   background: $color1
-  z-index: 10
-  &:hover
-    background: $color6
-
-.sn-extend-hide
-  display: none
-
-.sn-extend
-  margin-top: 20px
-  box-shadow: 0 0 10px $color7
-  padding: 20px 0
-
-.sn-selected
-  display: block
+  border-radius: 30px
+  min-height: 300px
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px
 
 .sn-name
-  margin: 0
-
-.sn-cat-name
-  color: $color2
-
-.sn-date
-  display: inline-block
-  margin-right: 15px
-  padding-bottom: 3px
-  border-bottom: 2px solid $color8
-  margin-bottom: 5px
+  margin-top: 16px
+  margin-bottom: 0
+  padding: 10px 0
+  text-align: center
+  background: $color8
+  border-radius: 10px 10px 0 0
 
 .sn-line
-  margin-bottom: 15px
+  width: 100%
+  padding: 10px 0
+  +clearfix
 
-.sn-guest
-  padding: 5px 10px
-  margin-right: 5px
-  border-radius: 5px
-  background: $color5
-  color: $color7
+.sn-line:nth-child(even)
+  background: lighten($color1, 5%)
 
-.sn-host
-  font-size: 1.5em
 
 .sn-cat
+  float: left
   display: inline-block
+  width: 38%
+  padding-left: 2%
+  color: $color9
 
-.sn-address-line
-  text-decoration: underline
+.sn-data-item
+  float: right
+  text-align: left
+  display: inline-block
+  width: 59%
+  i
+    margin: 0 5px
+    color: $color2
+
+.sn-guest
+  margin-right: 5px
+  margin-bottom: 5px
+  &:nth-child(even)
+    color: $color2
+
+.address-line
+  display: block
+
+.sn-additional
+  text-align: justify
+
+.sn-hidden-cont
+  position: relative
+
+.sn-selected
+  display: block !important
+
+.sn-hidden
+  display: none
+  +position(absolute, 0 -15px null -15px)
+  background: $color1
+  z-index: 100
+  padding: 0 25px 15px
+  border-radius: 0 0 30px 30px
+  // border-left: 4px solid $color7
+  // border-right: 4px solid $color7
+  // border-bottom: 8px solid $color7
+
+.sn-additional-cat
+  display: inline-block
+  color: $color9
+  padding: 10px 5px

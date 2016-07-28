@@ -1,63 +1,64 @@
-<section class="col-sm-10 col-xs-12 all-events-section">
+<section class="col-xs-12 all-events-section">
   <ul class="event-list">
-    <li class="sn-event"
-      ng-repeat="event in events.allEvents track by $id(event)"
-      ng-click="events.select(event)">
+    <li class="sn-event col-sm-6"
+      ng-repeat="event in events.allEvents track by $id(event)">
 
-      <div class="sn-cont">
-        <div class="sn-header sn-line">
+      <div class="sn-body">
+        <div class="sn-header">
           <h4 class="sn-name">{{event.name}}</h4>
-          <i class="fa fa-trash sn-remove-btn" aria-hidden="true" ng-click="events.remove(event)"></i>
         </div>
 
-        <div class="sn-body col-xs-12">
+        <div class="sn-wrapper">
 
-          <div class="sn-line col-xs-12">
-            <p class="sn-cat"><em class="sn-cat-name">Category:&nbsp;</em>{{event.category}}</p>
-          </div>
-          <div class="sn-date-cont sn-line col-xs-12">
-            <span class="sn-date"><em class="sn-cat-name">Begins:&nbsp;</em>{{events.formatDate(event.startDate)}}&nbsp;<em class="sn-cat-name">at:&nbsp;</em>{{event.startTime}}</span>
-            <span class="sn-date"><em class="sn-cat-name">Ends:&nbsp;</em>{{events.formatDate(event.endDate)}}&nbsp;<em class="sn-cat-name">at:&nbsp;</em>{{event.endTime}}</span>
+          <div class="sn-line">
+            <span class="sn-cat">Category:</span>
+            <span class="sn-data-item">{{event.category}}</span>
           </div>
 
-          <div class="sn-extend sn-extend-hide col-xs-12" ng-class="{'sn-selected': events.isActive(event)}">
+          <div class="sn-line">
+            <span class="sn-cat">Begins:</span>
+            <span class="sn-data-item">{{events.formatDate(event.startDate)}}<i class="fa fa-clock-o" aria-hidden="true"></i>{{event.startTime}}</span>
+          </div>
 
-            <div class="sn-holder col-sm-6 col-xs-12">
-              <div class="sn-line">
-                <em class="sn-cat-name">Host:&nbsp;</em><span class="sn-host">{{event.host}}</span>
-              </div>
+          <div class="sn-line">
+            <span class="sn-cat">Ends:</span>
+            <span class="sn-data-item">{{events.formatDate(event.endDate)}}<i class="fa fa-clock-o" aria-hidden="true"></i>{{event.endTime}}</span>
+          </div>
 
-              <div class="sn-event-guests sn-line">
-                <p><em class="sn-cat-name">Guests:&nbsp;</em></p>
-                <span class="sn-guest" ng-repeat="guest in event.guests">{{guest}}</span>
-              </div>
+          <div class="sn-line">
+            <span class="sn-cat">Host:</span>
+            <span class="sn-data-item">{{event.host}}</span>
+          </div>
+
+          <div class="sn-line">
+            <span class="sn-cat">Guests:</span>
+            <div class="sn-data-item">
+              <span class="sn-guest" ng-repeat="guest in event.guests">{{guest}}</span>
             </div>
+          </div>
 
-            <div class="sn-holder col-sm-6 col-xs-12">
-              <div class="sn-event-location sn-line">
-                <i class="fa fa-map-marker" aria-hidden="true"></i>
-                <em class="sn-cat-name">Address:</em>
-                <div class="sn-address-line">
-                  <span class="sn-street-number">{{event.eventLocation.street_number}}</span>
-                  <span class="sn-street">{{event.eventLocation.route}}</span>
-                </div>
-                <div class="sn-address-line">
-                  <span class="sn-city">{{event.eventLocation.locality}}</span>
-                  <span class="sn-postcode">{{event.eventLocation.postal_code}}</span>
-                </div>
-              </div>
+          <div class="sn-line">
+            <span class="sn-cat">Address:</span>
+            <div class="sn-data-item">
+              <span class="address-line">{{event.eventLocation.street_number}}&nbsp;{{event.eventLocation.route}}</span>
+              <span class="address-line">{{event.eventLocation.locality}}&nbsp;{{event.eventLocation.postal_code}}</span>
             </div>
+          </div>
 
-            <div class="sn-holder col-xs-12" style="margin-top:20px">
-              <div class="sn-line" ng-show="event.additionalInfo.length > 0">
-                <em class="sn-info sn-cat-name">Additional info:</em>
-                <p>{{event.additionalInfo}}</p>
-              </div>
-            </div>
+          <div class="sn-line">
+            <span ng-show="event.additionalInfo.length > 0" class="sn-additional-cat" ng-click="events.select(event)">Additional info: <i class="fa fa-caret-down" aria-hidden="true"></i></span>
 
-          </div><!-- /sn-extend -->
-        </div><!-- /sn-body -->
-      </div><!-- /sn-cont -->
+          </div>
+
+        </div><!-- /sn-wrapper -->
+
+        <div class="sn-hidden-cont">
+          <div class="sn-hidden" ng-class="{'sn-selected': events.isActive(event)}">
+            <p class="sn-additional">{{event.additionalInfo}}</p>
+          </div>
+        </div>
+
+      </div><!-- /sn-body -->
 
     </li>
   </ul>
