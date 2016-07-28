@@ -5,7 +5,8 @@
 
       <div class="sn-body">
         <div class="sn-header">
-          <h4 class="sn-name">{{event.name}}</h4>
+          <h4 class="sn-name">{{event.name}}<i class="fa fa-trash remove-event" aria-hidden="true" ng-click="events.remove(event)"></i></h4>
+
         </div>
 
         <div class="sn-wrapper">
@@ -17,12 +18,12 @@
 
           <div class="sn-line">
             <span class="sn-cat">Begins:</span>
-            <span class="sn-data-item">{{events.formatDate(event.startDate)}}<i class="fa fa-clock-o" aria-hidden="true"></i>{{event.startTime}}</span>
+            <span class="sn-data-item"><i class="fa fa-calendar-check-o start" aria-hidden="true"></i>&nbsp;{{events.formatDate(event.startDate)}}<i class="fa fa-clock-o" aria-hidden="true"></i>{{event.startTime}}</span>
           </div>
 
           <div class="sn-line">
             <span class="sn-cat">Ends:</span>
-            <span class="sn-data-item">{{events.formatDate(event.endDate)}}<i class="fa fa-clock-o" aria-hidden="true"></i>{{event.endTime}}</span>
+            <span class="sn-data-item"><i class="fa fa-calendar-times-o end" aria-hidden="true"></i>&nbsp;{{events.formatDate(event.endDate)}}<i class="fa fa-clock-o" aria-hidden="true"></i>{{event.endTime}}</span>
           </div>
 
           <div class="sn-line">
@@ -33,7 +34,7 @@
           <div class="sn-line">
             <span class="sn-cat">Guests:</span>
             <div class="sn-data-item">
-              <span class="sn-guest" ng-repeat="guest in event.guests">{{guest}}</span>
+              <span class="sn-guest" ng-repeat="guest in event.guests">{{guest}},</span>
             </div>
           </div>
 
@@ -45,16 +46,14 @@
             </div>
           </div>
 
-          <div class="sn-line">
-            <span ng-show="event.additionalInfo.length > 0" class="sn-additional-cat" ng-click="events.select(event)">Additional info: <i class="fa fa-caret-down" aria-hidden="true"></i></span>
-
-          </div>
-
         </div><!-- /sn-wrapper -->
 
         <div class="sn-hidden-cont">
-          <div class="sn-hidden" ng-class="{'sn-selected': events.isActive(event)}">
-            <p class="sn-additional">{{event.additionalInfo}}</p>
+          <div class="sn-hidden-holder" ng-class="{'not-empty': event.additionalInfo.length > 0}">
+            <span ng-show="event.additionalInfo.length > 0" class="sn-additional-cat" ng-click="events.select(event)">Additional info:
+              <i class="fa" aria-hidden="true" ng-class="events.isActive(event) ? 'fa-chevron-circle-up' : 'fa-chevron-circle-down'"></i>
+            </span>
+            <p class="sn-additional sn-hidden" ng-class="{'sn-selected': events.isActive(event)}">{{event.additionalInfo}}</p>
           </div>
         </div>
 

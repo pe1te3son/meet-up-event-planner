@@ -8,19 +8,36 @@
   outline: none
 
 .sn-body
-  padding: 12px 15px 0
+  padding: 12px 15px 54px
   background: $color1
   border-radius: 30px
   min-height: 300px
   box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px
 
 .sn-name
+  position: relative
   margin-top: 16px
   margin-bottom: 0
-  padding: 10px 0
+  padding: 10px
   text-align: center
   background: $color8
-  border-radius: 10px 10px 0 0
+  border-radius: 10px 10px 0 10px
+
+.start
+  color: $color4 !important
+
+.end
+  color: $color6 !important
+
+.remove-event
+  +position(absolute, 0 0 0 null)
+  padding: 10px 15px 0
+  border-radius: 0 10px 0 0
+  background: $color8
+  z-index: 1
+  &:hover
+    background: $color6
+    cursor: pointer
 
 .sn-line
   width: 100%
@@ -62,21 +79,27 @@
 .sn-hidden-cont
   position: relative
 
+.sn-hidden-holder
+  +position(absolute, 0 -15px null -15px)
+  background: $color1
+  z-index: 50
+  padding: 0 25px 15px
+  border-radius: 0 0 30px 30px
+  text-align: center
+
 .sn-selected
   display: block !important
 
+.not-empty
+  border-bottom: 8px solid $color7
+
 .sn-hidden
   display: none
-  +position(absolute, 0 -15px null -15px)
-  background: $color1
-  z-index: 100
-  padding: 0 25px 15px
-  border-radius: 0 0 30px 30px
-  // border-left: 4px solid $color7
-  // border-right: 4px solid $color7
-  // border-bottom: 8px solid $color7
 
 .sn-additional-cat
+  outline: none
   display: inline-block
   color: $color9
-  padding: 10px 5px
+  padding: 10px 0
+  &:hover
+    color: $color5
