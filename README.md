@@ -14,6 +14,8 @@ version 0.15.1.
 
 *  Run `npm install` and `bower install`
 
+*  Make sure that **compass** is installed globally to compile sass files
+
 *  To build compressed version of app for distribution run `grunt` from command line. _( Grunt builds app in /dist )_
 
 *  Run `grunt serve` when developing or previewing
