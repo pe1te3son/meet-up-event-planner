@@ -12,11 +12,13 @@ Visit [online](https://webenhanced.co.uk/event-planner/)
 This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
 version 0.15.1.
 
-*  Run `npm install` and `bower install`
+*  Run following: `npm install` and `bower install`
 
 *  This app requires **Compass** to be installed on your computer
 
-  * Install with [ruby](http://rubyinstaller.org/) by running  `gem install compass`
+  * Install Ruby package manager ( [Windows](http://rubyinstaller.org/) / [Linux](https://www.ruby-lang.org/en/documentation/installation/) )
+
+  * Run `gem install compass`
 
 *  To build compressed version of app for distribution run `grunt` from command line. _( Grunt builds app in /dist )_
 
