@@ -38,7 +38,9 @@ Applications requires following:
  * Git
 
 
- #### To install run following commands in Terminal
+
+#### To install run following commands in Terminal
+
 
  1. curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
 
@@ -63,6 +65,7 @@ Applications requires following:
  10. npm install && bower install
 
  11. grunt serve
+
 
  ****
 
