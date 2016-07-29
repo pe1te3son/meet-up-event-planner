@@ -26,6 +26,48 @@ version 0.15.1.
 
 *****
 
+### Linux step by step installation
+
+_Tested on Ubuntu 16 LTS_
+
+Applications requires following:
+ * Node.js
+ * Grunt, Grunt-cli
+ * Ruby
+ * Compass
+ * Git
+
+
+ #### To install run following commands in Terminal
+
+ 1. curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+
+ 2. sudo apt-get install -y nodejs
+
+ 3. sudo npm intall npm -g
+
+ 4. sudo npm install grunt grunt-cli bower -g
+
+ 5. sudo apt-get install ruby-full
+
+ 6. sudo apt-get update
+
+ 7. sudo gem install compass
+
+ 8. sudo apt-get install git
+
+ 9. git clone https://github.com/pe1te3son/meet-up-event-planner.git
+
+ _Navigate into the project directory_
+
+ 10. npm install && bower install
+
+ 11. grunt serve
+
+ ****
+
+
+
 ### Resources
 
 https://docs.angularjs.org/api
