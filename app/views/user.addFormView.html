@@ -48,7 +48,7 @@
           ng-model="form.selectedStartDate"
           name="selectedStartDate"
           ng-change="form.updateEndDateInput()"
-          past-not="form.setDatetime()"
+          past-not
           required
           cu-label>
         <div ng-messages="addEventForm.selectedStartDate.$error" ng-if="addEventForm.selectedStartDate.$dirty || form.isNotValid">
@@ -140,7 +140,7 @@
 
 
     <div class="text-right">
-      <button type="button" class="btn btn-custom" ng-click="form.submit(addEventForm.$valid)" ng-disabled="!addEventForm.$valid">Add new</button>
+      <button type="button" class="btn btn-custom" ng-click="form.submit(addEventForm.$valid)" >Add new</button>
       <!-- <i class="fa fa-plus-circle btn-icon" aria-hidden="true"></i> -->
     </div>
 

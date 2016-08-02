@@ -10,7 +10,7 @@
 angular.module('eventPlannerApp')
   .controller('AddeventformCtrl', ['FirebaseService', '$state', 'currentAuth', function (FirebaseService, $state, currentAuth) {
     'use strict';
-    
+
     if(currentAuth){
       this.collection = FirebaseService.array('/events');
     } else {
@@ -59,32 +59,39 @@ angular.module('eventPlannerApp')
     };
 
     // Formated date for datepicker input
-    this.setDatetime = function(){
-      var date = moment().format('YYYY-MM-DD HH:mm');
-      return date;
+    // if $time it adds one minute to passing value
+    // $time must be date format 'YYYY-MM-DD HH:mm'
+    this.setDatetime = function($time){
+      if($time){
+        return moment(moment($time, 'YYYY-MM-DD HH:mm').add(1, 'minutes')).format('YYYY-MM-DD HH:mm');
+      } else {
+        return moment(moment().add(5, 'minutes')).format('YYYY-MM-DD HH:mm');
+      }
     };
 
     // Set datetime using bootstrap datepicker
-    // The `format` is not set with moment.js
+    // The `format` is not set with momsent.js
     this.selectedStartDate = vm.setDatetime();
     $('#start-date').datetimepicker({
       format: 'yyyy-mm-dd hh:ii',
       startDate: vm.setDatetime(),
       fontAwesome: true,
+      minuteStep: 1,
       autoclose: true
     });
 
-    vm.selectedEndDate = vm.selectedStartDate || vm.setDatetime();
+    vm.selectedEndDate = vm.selectedStartDate ? vm.setDatetime(vm.selectedStartDate) : vm.setDatetime();
     $('#end-date').datetimepicker({
       format: 'yyyy-mm-dd hh:ii',
       startDate: vm.selectedEndDate,
+      minuteStep: 1,
       fontAwesome: true,
       autoclose: true
     });
 
     // When Startdate changes value, update end date
     this.updateEndDateInput = function(){
-      vm.selectedEndDate = vm.selectedStartDate;
+      vm.selectedEndDate = vm.setDatetime(vm.selectedStartDate);
       $('#end-date').datetimepicker('setStartDate', vm.selectedEndDate);
     };
 

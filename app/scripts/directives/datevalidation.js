@@ -16,13 +16,9 @@
          restrict: 'A',
 
          require: 'ngModel',
-         scope: {
-           pastNotValue: '=pastNot'
-         },
-
          link: function(scope, element, attributes, ngModel) {
              ngModel.$validators.pastNot = function(modelValue) {
-               return moment(modelValue , 'YYYY-MM-DD HH:mm').isSameOrAfter(moment(scope.pastNotValue, 'YYYY-MM-DD HH:mm'));
+               return moment().isBefore(moment(modelValue, 'YYYY-MM-DD HH:mm'));
              };
              scope.$watch('pastNotValue', function() {
                  ngModel.$validate();
@@ -46,7 +42,12 @@
 
          link: function(scope, element, attributes, ngModel) {
              ngModel.$validators.laterThan = function(modelValue) {
-               return moment(modelValue , 'YYYY-MM-DD HH:mm').isSameOrAfter(moment(scope.otherModelValue, 'YYYY-MM-DD HH:mm'));
+               if(typeof scope.otherModelValue !== 'undefined'){
+                  return moment(modelValue , 'YYYY-MM-DD HH:mm').isAfter(moment(scope.otherModelValue, 'YYYY-MM-DD HH:mm'));
+               } else {
+                 return moment().isBefore(moment(modelValue, 'YYYY-MM-DD HH:mm'));
+               }
+
              };
              scope.$watch('otherModelValue', function() {
                  ngModel.$validate();
