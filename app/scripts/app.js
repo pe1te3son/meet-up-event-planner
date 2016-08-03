@@ -107,10 +107,18 @@ angular
 
       })
       .state('eventModal', {
-        url: '/modal',
+        url: '/:id',
         templateUrl: 'views/user.allevents.eventmodal.html',
         controller: 'EventmodalCtrl as eventModal',
-        parent: 'allEvents'
+        parent: 'allEvents',
+        resolve: {
+          'eventdata': ['FirebaseService', '$stateParams', function(FirebaseService, $stateParams){
+            var data = FirebaseService.array('/events');
+             return data.$loaded().then(function(response){
+                return response.$getRecord($stateParams.id);
+            });
+          }]
+        }
       });
 
 });

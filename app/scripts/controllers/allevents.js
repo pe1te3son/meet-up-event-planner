@@ -9,7 +9,7 @@
 angular.module('eventPlannerApp')
   .controller('AlleventsCtrl', ['FirebaseService', 'getEvents', '$state', function (FirebaseService, getEvents, $state) {
     'use strict';
-    
+
     console.log($state.get());
     var vm = this;
     this.allEvents = getEvents;
@@ -36,8 +36,7 @@ angular.module('eventPlannerApp')
    };
 
    this.showModal = function(e){
-     console.log($state.get(), e);
-     $state.go('eventModal', {$id: 'me'});
+     $state.go('eventModal', {id: e.$id});
    };
 
 
