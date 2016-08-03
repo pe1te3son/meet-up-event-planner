@@ -1,7 +1,11 @@
 <section class="col-xs-12 all-events-section">
+
+  <div ui-view class="view"></div>
+
   <ul class="event-list">
     <li class="sn-event col-sm-6"
-      ng-repeat="event in events.allEvents track by $id(event)">
+      ng-repeat="event in events.allEvents track by $id(event)"
+      ng-click="events.showModal(event)">
 
       <div class="sn-body">
         <div class="sn-header">

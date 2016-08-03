@@ -105,6 +105,12 @@ angular
           }]
         }
 
+      })
+      .state('eventModal', {
+        url: '/modal',
+        templateUrl: 'views/user.allevents.eventmodal.html',
+        controller: 'EventmodalCtrl as eventModal',
+        parent: 'allEvents'
       });
 
 });
