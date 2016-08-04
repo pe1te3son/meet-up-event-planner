@@ -7,9 +7,13 @@
       ng-repeat="event in events.allEvents track by $id(event)"
       ng-click="events.showModal(event)">
 
-      <div class="sn-body">
+      <div class="sn-body sn-shadow">
         <div class="sn-header">
-          <h4 class="sn-name">{{event.name}}<i class="fa fa-trash remove-event" aria-hidden="true" ng-click="events.remove(event)"></i></h4>
+          <h4 class="sn-name">
+            <i class="fa fa-trash sn-control control-left" aria-hidden="true" ng-click="events.remove(event)"></i>
+            <span class="sn-name-holder">{{event.name}}</span>
+            <i class="fa fa-expand sn-control control-right" aria-hidden="true"></i>
+          </h4>
 
         </div>
 
@@ -30,37 +34,7 @@
             <span class="sn-data-item"><i class="fa fa-calendar-times-o end" aria-hidden="true"></i>&nbsp;{{events.formatDate(event.endDate)}}<i class="fa fa-clock-o" aria-hidden="true"></i>{{event.endTime}}</span>
           </div>
 
-          <div class="sn-line">
-            <span class="sn-cat">Host:</span>
-            <span class="sn-data-item">{{event.host}}</span>
-          </div>
-
-          <div class="sn-line">
-            <span class="sn-cat">Guests:</span>
-            <div class="sn-data-item">
-              <span class="sn-guest" ng-repeat="guest in event.guests">{{guest}},</span>
-            </div>
-          </div>
-
-          <div class="sn-line">
-            <span class="sn-cat">Address:</span>
-            <div class="sn-data-item">
-              <span class="address-line">{{event.eventLocation.street_number}}&nbsp;{{event.eventLocation.route}}</span>
-              <span class="address-line">{{event.eventLocation.locality}}&nbsp;{{event.eventLocation.postal_code}}</span>
-            </div>
-          </div>
-
         </div><!-- /sn-wrapper -->
-
-        <div class="sn-hidden-cont">
-          <div class="sn-hidden-holder" ng-class="{'not-empty': event.additionalInfo.length > 0}">
-            <span ng-show="event.additionalInfo.length > 0" class="sn-additional-cat" ng-click="events.select(event)">Additional info:
-              <i class="fa" aria-hidden="true" ng-class="events.isActive(event) ? 'fa-chevron-circle-up' : 'fa-chevron-circle-down'"></i>
-            </span>
-            <p class="sn-additional sn-hidden" ng-class="{'sn-selected': events.isActive(event)}">{{event.additionalInfo}}</p>
-          </div>
-        </div>
-
       </div><!-- /sn-body -->
 
     </li>

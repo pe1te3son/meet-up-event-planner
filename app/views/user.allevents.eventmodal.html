@@ -1,18 +1,69 @@
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="event-modal" tabindex="-1" role="dialog" aria-labelledby="eventModalLabel">
   <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+    <div class="sn-body">
+      <div class="sn-header">
+        <h4 class="sn-name">
+          <i class="fa fa-trash sn-control control-left" aria-hidden="true" ng-click="eventModal.remove()"></i>
+          {{eventModal.eventdata.name}}
+          <i class="fa fa-times sn-control control-right" aria-hidden="true" ng-click="eventModal.closeModal()"></i>
+        </h4>
+
       </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
+
+      <div class="sn-wrapper">
+
+        <div class="sn-line">
+          <span class="sn-cat">Category:</span>
+          <span class="sn-data-item">{{eventModal.eventdata.category}}</span>
+        </div>
+
+        <div class="sn-line">
+          <span class="sn-cat">Begins:</span>
+          <span class="sn-data-item"><i class="fa fa-calendar-check-o start" aria-hidden="true"></i>&nbsp;
+            {{eventModal.formatDate(eventModal.eventdata.startDate)}}
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            {{eventModal.eventdata.startTime}}
+          </span>
+        </div>
+
+        <div class="sn-line">
+          <span class="sn-cat">Ends:</span>
+          <span class="sn-data-item">
+            <i class="fa fa-calendar-times-o end" aria-hidden="true"></i>&nbsp;
+            {{eventModal.formatDate(eventModal.eventdata.endDate)}}
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            {{eventModal.eventdata.endTime}}
+          </span>
+        </div>
+
+        <div class="sn-line">
+          <span class="sn-cat">Host:</span>
+          <span class="sn-data-item">{{eventModal.eventdata.host}}</span>
+        </div>
+
+        <div class="sn-line">
+          <span class="sn-cat">Guests:</span>
+          <div class="sn-data-item">
+            <span class="sn-guest" ng-repeat="guest in eventModal.eventdata.guests">{{guest}}</span>
+          </div>
+        </div>
+
+        <div class="sn-line" ng-class="eventModal.eventdata.additionalInfo.length ? '' : 'sn-last'">
+          <span class="sn-cat">Address:</span>
+          <div class="sn-data-item">
+            <span class="address-line">{{eventModal.eventdata.eventLocation.street_number}}&nbsp;{{eventModal.eventdata.eventLocation.route}}</span>
+            <span class="address-line">{{eventModal.eventdata.eventLocation.locality}}&nbsp;{{eventModal.eventdata.eventLocation.postal_code}}</span>
+          </div>
+        </div>
+
+        <div class="sn-line"  ng-show="eventModal.eventdata.additionalInfo.length">
+          <span class="sn-cat">Additional info:</span>
+          <span class="sn-data-item">{{eventModal.eventdata.additionalInfo}}</span>
+        </div>
+
+      </div><!-- /sn-wrapper -->
+
+    </div><!-- /sn-body -->
   </div>
 </div>
