@@ -7,11 +7,10 @@
  * Displays all events saved in database
  */
 angular.module('eventPlannerApp')
-  .controller('AlleventsCtrl', ['FirebaseService', 'getEvents', '$state', function (FirebaseService, getEvents, $state) {
+  .controller('AlleventsCtrl', ['getEvents', '$state', function (getEvents, $state) {
     'use strict';
-
-    console.log($state.get());
     var vm = this;
+
     this.allEvents = getEvents;
     this.remove = function(item){
       vm.allEvents.$remove(item);
