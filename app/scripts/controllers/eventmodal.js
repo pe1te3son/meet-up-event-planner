@@ -9,15 +9,13 @@
  */
 angular.module('eventPlannerApp')
   .controller('EventmodalCtrl', [ 'eventdata', '$state',  function (eventdata, $state) {
-    this.close = function(){
-      $state.go('allEvents');
-    };
 
+    $('#myModal').modal('show').on('hide.bs.modal', function(){
+      setTimeout(function () {
+        $state.go('allEvents');
+      }, 200);
+    });
     console.log(eventdata);
 
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+
   }]);
