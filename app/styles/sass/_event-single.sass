@@ -7,18 +7,24 @@
   padding: 10px
   outline: none
 
+.sn-name-holder
+  display: block
+  height: 20px
+  overflow: hidden
+
 .sn-body
-  padding: 12px 15px 54px
+  padding: 12px 15px
   background: $color1
   border-radius: 30px
-  min-height: 300px
+
+.sn-shadow
   box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px
 
 .sn-name
   position: relative
   margin-top: 16px
   margin-bottom: 0
-  padding: 10px
+  padding: 10px 45px
   text-align: center
   background: $color8
   border-radius: 10px 10px 0 10px
@@ -29,15 +35,24 @@
 .end
   color: $color6 !important
 
-.remove-event
+.sn-control
+  background: darken($color8, 10%)
+  z-index: 1
+  outline: none
+  &:hover
+    background: $color6
+    color: $color5
+    cursor: pointer
+
+.control-left
+  +position(absolute, 0 null 0 0)
+  padding: 10px 15px 0
+  border-radius: 10px 0 0 10px
+
+.control-right
   +position(absolute, 0 0 0 null)
   padding: 10px 15px 0
   border-radius: 0 10px 0 0
-  background: $color8
-  z-index: 1
-  &:hover
-    background: $color6
-    cursor: pointer
 
 .sn-line
   width: 100%
@@ -51,7 +66,7 @@
 .sn-cat
   float: left
   display: inline-block
-  width: 38%
+  width: 35%
   padding-left: 2%
   color: $color9
 
@@ -59,47 +74,21 @@
   float: right
   text-align: left
   display: inline-block
-  width: 59%
+  width: 62%
   i
     margin: 0 5px
-    color: $color2
-
-.sn-guest
-  margin-right: 5px
-  margin-bottom: 5px
-  &:nth-child(even)
     color: $color2
 
 .address-line
   display: block
 
-.sn-additional
-  text-align: justify
-
-.sn-hidden-cont
-  position: relative
-
-.sn-hidden-holder
-  +position(absolute, 0 -15px null -15px)
-  background: $color1
-  z-index: 50
-  padding: 0 25px 15px
-  border-radius: 0 0 30px 30px
-  text-align: center
-
-.sn-selected
-  display: block !important
-
 .not-empty
   border-bottom: 8px solid $color7
 
-.sn-hidden
-  display: none
-
-.sn-additional-cat
-  outline: none
+.sn-guest
   display: inline-block
-  color: $color9
-  padding: 10px 0
-  &:hover
-    color: $color5
+  padding: 5px 10px
+  margin-bottom: 5px
+  margin-right: 5px
+  border-radius: 2px
+  background: darken($color2, 10%)
