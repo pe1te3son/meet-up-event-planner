@@ -20,6 +20,14 @@ angular
   ])
   .run(['$rootScope', '$state', 'FirebaseService', function($rootScope, $state, FirebaseService) {
     'use strict';
+    $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
+      // We can catch the error thrown when the $requireAuth promise is rejected
+      // and redirect the user back to the home page
+      if (error) {
+        $state.go('login');
+      }
+    });
+
     // If sesion still active redirect user to all events page
     if(FirebaseService.auth().$getAuth()){
       $state.go('user', { userId: FirebaseService.auth().$getAuth().uid }).then(function(){
@@ -114,9 +122,11 @@ angular
         resolve: {
           'eventdata': ['FirebaseService', '$stateParams', function(FirebaseService, $stateParams){
             var data = FirebaseService.array('/events');
-             return data.$loaded().then(function(response){
+             return data.$loaded()
+             .then(function(response){
                 return response.$getRecord($stateParams.id);
             });
+
           }]
         }
       });
