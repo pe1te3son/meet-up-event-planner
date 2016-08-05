@@ -40,7 +40,6 @@
   z-index: 1
   outline: none
   &:hover
-    background: $color6
     color: $color5
     cursor: pointer
 
@@ -48,11 +47,15 @@
   +position(absolute, 0 null 0 0)
   padding: 10px 15px 0
   border-radius: 10px 0 0 10px
+  &:hover
+    background: $color6
 
 .control-right
   +position(absolute, 0 0 0 null)
   padding: 10px 15px 0
   border-radius: 0 10px 0 0
+  &:hover
+    background: darken($color2, 10%)
 
 .sn-line
   width: 100%
