@@ -13,6 +13,14 @@ angular.module('eventPlannerApp')
     if(!currentAuth){
       $state.go('login');
     }
+
+    var counter = FirebaseService.array('/events');
+    this.eventsCounter = null;
+
+    counter.$watch(function(){
+      vm.eventsCounter = counter.length;
+    });
+
     this.auth = FirebaseService.auth();
 
     this.logOut = function(){
